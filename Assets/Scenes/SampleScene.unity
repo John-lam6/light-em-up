@@ -1847,7 +1847,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2052425450}
+  m_Mesh: {fileID: 2052241245}
 --- !u!33 &788715892
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -3146,7 +3146,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -3415,7 +3415,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2052241245}
+  m_Mesh: {fileID: 852063485}
 --- !u!33 &1242263142
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -3776,7 +3776,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -4425,7 +4425,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
-  m_Mesh: {fileID: 2052425450}
+  m_Mesh: {fileID: 210886358}
 --- !u!33 &1387329203
 MeshFilter:
   m_ObjectHideFlags: 10
@@ -6029,7 +6029,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
