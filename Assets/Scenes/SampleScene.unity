@@ -668,7 +668,7 @@ GameObject:
   - component: {fileID: 299402445}
   - component: {fileID: 299402446}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Cursed Light 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1123,6 +1123,77 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1809274670}
   m_SourcePrefab: {fileID: 100100000, guid: a7159e697d5beaf4ab2f1398331828aa, type: 3}
+--- !u!1 &367910113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 367910114}
+  - component: {fileID: 367910116}
+  - component: {fileID: 367910115}
+  m_Layer: 0
+  m_Name: Torch Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &367910114
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367910113}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.17963207, y: -0.018770844, z: -0.043180108, w: 0.98260653}
+  m_LocalPosition: {x: -3.211121, y: -6.024363, z: -2.4437604}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 966219019}
+  m_LocalEulerAnglesHint: {x: 20.573, y: -3.209, z: -5.615}
+--- !u!114 &367910115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367910113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48072fa0a2341c640a26bfc4ac937241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torchLight: {fileID: 299402446}
+  flickerSpeed: 0.05
+  minIntensity: 1.5
+  maxIntensity: 2
+  fadeSpeed: 0.02
+--- !u!65 &367910116
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367910113}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 21.5786, y: 0.9358013, z: 10.008174}
+  m_Center: {x: 2.4931579, y: 0.03210082, z: -4.504101}
 --- !u!1 &410142676
 GameObject:
   m_ObjectHideFlags: 0
@@ -1134,7 +1205,7 @@ GameObject:
   - component: {fileID: 410142677}
   - component: {fileID: 410142678}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Cursed Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2063,7 +2134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -3406,7 +3477,7 @@ GameObject:
   - component: {fileID: 859488846}
   - component: {fileID: 859488845}
   m_Layer: 0
-  m_Name: Torch (3)
+  m_Name: Cursed Torch 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3499,6 +3570,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1131241817}
+  - {fileID: 1427169342}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 1.033, y: 92.763, z: -19.505}
 --- !u!1 &952394331
@@ -3823,7 +3895,7 @@ GameObject:
   - component: {fileID: 966219017}
   - component: {fileID: 966219016}
   m_Layer: 0
-  m_Name: Torch (1)
+  m_Name: Cursed Torch 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3916,6 +3988,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 299402445}
+  - {fileID: 367910114}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -20.771, y: 76.699, z: 4.792}
 --- !u!1001 &967248252
@@ -3988,7 +4061,7 @@ GameObject:
   - component: {fileID: 996369883}
   - component: {fileID: 996369882}
   m_Layer: 0
-  m_Name: Torch (2)
+  m_Name: Cursed Torch 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4081,6 +4154,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1549456483}
+  - {fileID: 1843755810}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 1.692, y: 271.253, z: -20.44}
 --- !u!1001 &1033426380
@@ -4700,7 +4774,7 @@ GameObject:
   - component: {fileID: 1131241817}
   - component: {fileID: 1131241818}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Cursed Light 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6398,6 +6472,77 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59dbe1ffa44fb2b419b71ba1f408f7de, type: 3}
+--- !u!1 &1427169341
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1427169342}
+  - component: {fileID: 1427169344}
+  - component: {fileID: 1427169343}
+  m_Layer: 0
+  m_Name: Torch Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1427169342
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427169341}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.09503674, y: -0.5954177, z: 0.14049192, w: 0.78530747}
+  m_LocalPosition: {x: 3.8, y: -6, z: -1.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 859488848}
+  m_LocalEulerAnglesHint: {x: 0, y: 18.602, z: 0}
+--- !u!114 &1427169343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427169341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48072fa0a2341c640a26bfc4ac937241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torchLight: {fileID: 1131241818}
+  flickerSpeed: 0.05
+  minIntensity: 1.5
+  maxIntensity: 2
+  fadeSpeed: 0.02
+--- !u!65 &1427169344
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427169341}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 21.5786, y: 0.9358013, z: 10.008174}
+  m_Center: {x: 2.4931579, y: 0.03210082, z: -4.504101}
 --- !u!1001 &1434281628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6784,7 +6929,7 @@ GameObject:
   - component: {fileID: 1549456483}
   - component: {fileID: 1549456484}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Cursed Light 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7850,6 +7995,77 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e137e2fc58e8f874ea4aed04756ffa55, type: 3}
+--- !u!1 &1843755807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1843755810}
+  - component: {fileID: 1843755809}
+  - component: {fileID: 1843755808}
+  m_Layer: 0
+  m_Name: Torch Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1843755808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843755807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48072fa0a2341c640a26bfc4ac937241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torchLight: {fileID: 1549456484}
+  flickerSpeed: 0.05
+  minIntensity: 1.5
+  maxIntensity: 2
+  fadeSpeed: 0.02
+--- !u!65 &1843755809
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843755807}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 21.5786, y: 0.9358013, z: 10.008174}
+  m_Center: {x: 2.4931579, y: 0.03210082, z: -4.504101}
+--- !u!4 &1843755810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843755807}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.15153809, y: -0.7912476, z: -0.09338503, w: -0.58501524}
+  m_LocalPosition: {x: 11.786499, y: -3.007054, z: 0.42343852}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 996369885}
+  m_LocalEulerAnglesHint: {x: 0, y: 18.602, z: 0}
 --- !u!1001 &1898319789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8184,6 +8400,77 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 9044705744668436879, guid: efa7119d0bbbed849a1eada7b1968133, type: 3}
+--- !u!1 &2024640548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2024640549}
+  - component: {fileID: 2024640551}
+  - component: {fileID: 2024640550}
+  m_Layer: 0
+  m_Name: Torch Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2024640549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024640548}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.021662412, y: -0.9828514, z: -0.18291381, w: -0.00874409}
+  m_LocalPosition: {x: -5.972762, y: -3.0429692, z: -12.215795}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2103329006}
+  m_LocalEulerAnglesHint: {x: 20.573, y: -3.209, z: -5.615}
+--- !u!114 &2024640550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024640548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48072fa0a2341c640a26bfc4ac937241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  torchLight: {fileID: 410142678}
+  flickerSpeed: 0.05
+  minIntensity: 1.5
+  maxIntensity: 2
+  fadeSpeed: 0.02
+--- !u!65 &2024640551
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024640548}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 21.5786, y: 0.9358013, z: 10.008174}
+  m_Center: {x: 2.4931579, y: 0.03210082, z: -4.504101}
 --- !u!1 &2032696846 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 502257176897152769, guid: f0cb175e38e8f5644b7791362fc43539, type: 3}
@@ -8905,7 +9192,7 @@ GameObject:
   - component: {fileID: 2103329004}
   - component: {fileID: 2103329003}
   m_Layer: 0
-  m_Name: Torch
+  m_Name: Cursed Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8998,6 +9285,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 410142677}
+  - {fileID: 2024640549}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -21.096, y: 255.95801, z: 2.419}
 --- !u!1001 &2110774155
