@@ -1,11 +1,14 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class PlayerMovement : MonoBehaviour {
     [Header("Movement Settings")]
     //[SerializeField] private Animator m_Animator;
     private Vector3 m_Movement;
+    [SerializeField] private Animator m_Animator;
 
     public Rigidbody m_Rigidbody;
     public float m_Speed = 10f;
@@ -22,13 +25,14 @@ public class PlayerMovement : MonoBehaviour {
     private bool isDashing = false;
     private bool canDash = true;
     private bool dash_key;
+    public Slider dash_slider;
     
     [Header("Raycast")]
     [SerializeField] private Camera camera;
     
 
     void Start() {
-        //m_Animator = GetComponentInChildren<Animator>();
+        m_Animator = GetComponentInChildren<Animator>();
         m_Rigidbody = GetComponent<Rigidbody> ();
     }
 
@@ -52,6 +56,9 @@ public class PlayerMovement : MonoBehaviour {
                 last_dash_time = Time.time;
                 canDash = false;
                 StartCoroutine(Dash());
+                dash_slider.gameObject.SetActive(true);
+                dash_slider.value = 0;
+                dash_slider.DOValue (1, dash_cooldown).SetEase (Ease.Linear).OnComplete(() => dash_slider.gameObject.SetActive(false));
             }
 
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -79,7 +86,7 @@ public class PlayerMovement : MonoBehaviour {
         bool hasHorizontalInput = !Mathf.Approximately(movementX, 0f);
         bool hasVerticalInput = !Mathf.Approximately(movementY, 0f);
         bool isRunning = hasHorizontalInput || hasVerticalInput;
-        //m_Animator.SetBool("isRunning", isRunning);
+        m_Animator.SetBool("isRunning", isRunning);
     }
     
     //private void OnAnimatorMove() {
@@ -93,9 +100,11 @@ public class PlayerMovement : MonoBehaviour {
     public IEnumerator Dash() {
         // dashes for a short duration
         isDashing = true;
+        m_Animator.SetBool("isDashing", true);
         Vector3 moveDir = new Vector3(movementX, 0, movementY).normalized;
         m_Rigidbody.velocity = new Vector3 (moveDir.x * dash_speed, 0, moveDir.z * dash_speed);
         yield return new WaitForSeconds(dash_duration);
         isDashing = false;
+        m_Animator.SetBool("isDashing", false);
     }
 }
