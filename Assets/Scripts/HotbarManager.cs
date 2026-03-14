@@ -58,11 +58,13 @@ public class HotbarManager : MonoBehaviour {
 
     private void SwitchSlot(int newSlot) {
         if (!(Time.time > last_swap_time + global_swap_time)) return;
+        if (active_slot == newSlot) return; 
+        
         swap_slider.gameObject.SetActive(true);
         swap_slider.value = 0;
         swap_slider.DOValue (1, global_swap_time).SetEase (Ease.Linear).OnComplete(() => swap_slider.gameObject.SetActive(false));
         last_swap_time = Time.time;
-        if (active_slot == newSlot) return; 
+        
         tools[active_slot].Unequip();
         tools[newSlot].Equip();
         slotImages[active_slot].color = normalColor;

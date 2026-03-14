@@ -6687,7 +6687,7 @@ MonoBehaviour:
   - {fileID: 171539291}
   normalColor: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 1}
   activeColor: {r: 1, g: 0.78086257, b: 0.48867923, a: 1}
-  global_swap_time: 0.3
+  global_swap_time: 0.5
   swap_slider: {fileID: 242882523}
 --- !u!1001 &1096754458
 PrefabInstance:
