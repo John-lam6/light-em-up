@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class ToolBase : MonoBehaviour {
-    protected float cooldown;
+    public float cooldown;
     protected float last_use_time;
     
     public abstract void Equip();
