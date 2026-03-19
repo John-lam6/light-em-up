@@ -33,7 +33,10 @@ public class PlayerMovement : MonoBehaviour {
     
 
     void Start() {
-        m_Animator = GetComponentInChildren<Animator>();
+        if (m_Animator == null) {
+            Debug.LogError("Player Animator is not assigned. Drag the Animator from Man_0.4 into the m_Animator field on PlayerMovement.");
+        }
+
         m_Rigidbody = GetComponent<Rigidbody> ();
     }
 
@@ -68,8 +71,11 @@ public class PlayerMovement : MonoBehaviour {
             if (Physics.Raycast(ray, out hit)) {
                 Vector3 lookDir = hit.point - transform.position;
                 lookDir.y = 0;
-                Quaternion rotation = Quaternion.LookRotation(lookDir);
-                transform.rotation = rotation;
+
+                if (lookDir != Vector3.zero) {
+                    Quaternion rotation = Quaternion.LookRotation(lookDir);
+                    transform.rotation = rotation;
+                }
             }
         }
     }
@@ -87,7 +93,10 @@ public class PlayerMovement : MonoBehaviour {
         bool hasHorizontalInput = !Mathf.Approximately(movementX, 0f);
         bool hasVerticalInput = !Mathf.Approximately(movementY, 0f);
         bool isRunning = hasHorizontalInput || hasVerticalInput;
-        m_Animator.SetBool("isRunning", isRunning);
+
+        if (m_Animator != null) {
+            m_Animator.SetBool("isRunning", isRunning);
+        }
     }
     
     //private void OnAnimatorMove() {
@@ -101,12 +110,19 @@ public class PlayerMovement : MonoBehaviour {
     public IEnumerator Dash() {
         // dashes for a short duration
         isDashing = true;
-        m_Animator.SetBool("isDashing", true);
+
+        if (m_Animator != null) {
+            m_Animator.SetBool("isDashing", true);
+        }
+
         Instantiate(particlePrefab, transform.position, transform.rotation);
         Vector3 moveDir = new Vector3(movementX, 0, movementY).normalized;
         m_Rigidbody.velocity = new Vector3 (moveDir.x * dash_speed, 0, moveDir.z * dash_speed);
         yield return new WaitForSeconds(dash_duration);
         isDashing = false;
-        m_Animator.SetBool("isDashing", false);
+
+        if (m_Animator != null) {
+            m_Animator.SetBool("isDashing", false);
+        }
     }
 }
