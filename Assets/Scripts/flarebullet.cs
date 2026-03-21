@@ -30,8 +30,13 @@ public class FlareBullet : MonoBehaviour
 
         if (flarelight != null)
         {
+<<<<<<< HEAD
             flarelight.range = 0f;
             flarelight.intensity = 0f;
+=======
+            flarelight.range = 6;
+            flarelight.intensity = 0.8f;
+>>>>>>> john
         }
 
         if (flaresound != null && flareBurningSound != null)
@@ -78,8 +83,13 @@ public class FlareBullet : MonoBehaviour
         {
             if (flarelight != null)
             {
+<<<<<<< HEAD
                 flarelight.intensity = Mathf.Lerp(flarelight.intensity, 0f, Time.deltaTime * smooth);
                 flarelight.range = Mathf.Lerp(flarelight.range, 0f, Time.deltaTime * smooth);
+=======
+                flarelight.intensity = Mathf.Lerp(flarelight.intensity, 0.8f, Time.deltaTime * smooth);
+                flarelight.range = Mathf.Lerp(flarelight.range, 6f, Time.deltaTime * smooth);
+>>>>>>> john
             }
 
             if (flaresound != null)

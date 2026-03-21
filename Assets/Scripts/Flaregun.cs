@@ -19,9 +19,15 @@ public class Flaregun : ToolBase
     public float maxAimDistance = 200f;
 
     [Header("Ammo")]
+<<<<<<< HEAD
     public int maxSpareRounds = 5;
     public int spareRounds = 3;
     public int currentRound = 3;
+=======
+    public int maxSpareRounds = 999;
+    public int spareRounds = 999;
+    public int currentRound = 999;
+>>>>>>> john
 
     [Header("Aiming")]
     public Camera playerCamera;
@@ -61,7 +67,11 @@ public class Flaregun : ToolBase
         {
             Use();
         }
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> john
         if (Input.GetKeyDown(KeyCode.R) && (anim == null || !anim.isPlaying))
         {
             Reload();
