@@ -1945,10 +1945,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c36d859d02d634a8420cab4eb768ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   cooldown: 0
   radius: 10
   duration: 7
   hotbar: {fileID: 0}
+=======
+>>>>>>> Stashed changes
 --- !u!4 &395937293
 Transform:
   m_ObjectHideFlags: 0
@@ -11171,6 +11174,157 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18a11fd6df8ceb449b8785301026d639, type: 3}
+--- !u!1001 &1746938744
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1091732713}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_Name
+      value: flaregun
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2330655
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.10218097
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.107360005
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1746938747}
+    - targetCorrespondingSourceObject: {fileID: 100004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1746938749}
+  m_SourcePrefab: {fileID: 100100000, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+--- !u!4 &1746938745 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+  m_PrefabInstance: {fileID: 1746938744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1746938746 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
+  m_PrefabInstance: {fileID: 1746938744}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1746938747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746938746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cbc09bc53089f4886a33ab8aadee56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  flareBullet: {fileID: 5400000, guid: 502f397bde12655448ff152eac00cdc7, type: 3}
+  barrelEnd: {fileID: 1146728886}
+  muzzleParticles: {fileID: 0}
+  hotbar: {fileID: 0}
+  flareShotSound: {fileID: 8300000, guid: 0f01458ab91c1ac4883d0e6e549bff26, type: 3}
+  noAmmoSound: {fileID: 8300000, guid: 33b4f082caddfbd479b447561a4339b4, type: 3}
+  reloadSound: {fileID: 8300000, guid: 83c52e0124588cb41b7c1c200f457a50, type: 3}
+  bulletSpeed: 40
+  maxAimDistance: 200
+  maxSpareRounds: 999
+  spareRounds: 999
+  currentRound: 999
+  playerCamera: {fileID: 963194227}
+  aimLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  hotbarSlotIndex: 2
+--- !u!114 &1746938749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1746938746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0776a28a12c9fe478e16082929ea503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1755472243
 PrefabInstance:
   m_ObjectHideFlags: 0
