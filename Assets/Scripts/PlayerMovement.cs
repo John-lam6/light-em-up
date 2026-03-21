@@ -28,6 +28,10 @@ public class PlayerMovement : MonoBehaviour {
     public Slider dash_slider;
     public GameObject particlePrefab; 
     
+    [Header ("Audio")]
+    public AudioSource audioSource;
+    public AudioClip dash_sound;
+    
     [Header("Raycast")]
     [SerializeField] private Camera camera;
     
@@ -102,6 +106,7 @@ public class PlayerMovement : MonoBehaviour {
         // dashes for a short duration
         isDashing = true;
         m_Animator.SetBool("isDashing", true);
+        audioSource.PlayOneShot(dash_sound);
         Instantiate(particlePrefab, transform.position, transform.rotation);
         Vector3 moveDir = new Vector3(movementX, 0, movementY).normalized;
         m_Rigidbody.velocity = new Vector3 (moveDir.x * dash_speed, 0, moveDir.z * dash_speed);
