@@ -1,0 +1,107 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+
+public class Upgrade : MonoBehaviour
+{
+    public static Upgrade Instance;
+    public UpgradeData[] upgrades;
+
+    //UI varaibles
+    public GameObject upgradePanel;
+    public Transform optionParent;
+    public GameObject upgradeOptionPrefab;
+    void Awake()
+    {
+        Instance = this;
+        upgradePanel.SetActive(false);
+    }
+    public void UpgradePlayer()
+    {
+        List<UpgradeData> availableUpgrades = new List<UpgradeData>(upgrades);
+        List<UpgradeData> selectedUpgrades = new List<UpgradeData>();
+        for (int i = 0; i < 3; i++)
+        {
+            int upgradeIndex = Random.Range(0, availableUpgrades.Count);
+
+            UpgradeData randomUpgrade = availableUpgrades[upgradeIndex];
+
+            if(randomUpgrade.valueRange.Length != 2)
+            {
+                randomUpgrade.value = 1f;
+            } else
+            {
+                randomUpgrade.value = Mathf.Round(Random.Range(randomUpgrade.valueRange[0], randomUpgrade.valueRange[1]) * 100f) / 100f;
+            }
+            
+            selectedUpgrades.Add(randomUpgrade);
+            availableUpgrades.RemoveAt(upgradeIndex);
+        }
+        upgradePanel.SetActive(true);
+        Cursor.visible = true;
+        Time.timeScale = 0f;
+        ShowUpgrades(selectedUpgrades);
+    }
+
+    void ShowUpgrades(List<UpgradeData> availableUpgrades)
+    {
+        foreach (Transform child in optionParent)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (UpgradeData upgrade in availableUpgrades)
+        {
+            Debug.Log(upgrade);
+        }
+        CreateOption(availableUpgrades[0]);
+        CreateOption(availableUpgrades[1]);
+        CreateOption(availableUpgrades[2]);
+    }
+
+    void CreateOption(UpgradeData data)
+    {
+        GameObject option = Instantiate(upgradeOptionPrefab, optionParent);
+
+        Transform nameT = option.transform.Find("Name");
+        Transform descT = option.transform.Find("Description");
+        Transform iconT = option.transform.Find("Icon");
+
+        option.transform.Find("Name").GetComponent<TMP_Text>().text = data.upgradeName;
+        option.transform.Find("Description").GetComponent<TMP_Text>().text = data.description + $"increase by {data.value}";
+        option.transform.Find("Icon").GetComponent<Image>().sprite = data.icon;
+
+        option.GetComponent<Button>().onClick.AddListener(() =>
+        {
+            ApplyUpgrade(data);
+            upgradePanel.SetActive(false);
+            Time.timeScale = 1f;
+        });
+    }
+
+    void ApplyUpgrade(UpgradeData data)
+    {
+
+        switch (data.id)
+        {
+            case 0:
+                StatsManager.Instance.maxHealth += data.value;
+                StatsManager.Instance.curHealth += data.value;
+                break;
+
+            case 1:
+                StatsManager.Instance.hpRegen += data.value;
+                break;
+
+            case 2:
+                StatsManager.Instance.moveSpeed += data.value;
+                break;
+
+            case 3:
+                StatsManager.Instance.swordDamage += data.value;
+                break;
+                
+        }
+    }
+}

@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 m_Movement;
 
     public Rigidbody m_Rigidbody;
-    public float m_Speed = 10f;
+    //public float m_Speed = 10f;
     private bool canMove = true; // change to false after implementing menus
     
     private float movementX;
@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour {
     void Start() {
         //m_Animator = GetComponentInChildren<Animator>();
         m_Rigidbody = GetComponent<Rigidbody> ();
+        StatsManager.Instance.moveSpeed = 10f;
     }
 
 
@@ -70,7 +71,7 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 moveDir = new Vector3(movementX, 0, movementY).normalized;
         
         if (!isDashing) {
-            Vector3 newVelocity = moveDir * m_Speed;
+            Vector3 newVelocity = moveDir * StatsManager.Instance.moveSpeed;
             newVelocity.y = m_Rigidbody.velocity.y; 
             m_Rigidbody.velocity = newVelocity;
         }
