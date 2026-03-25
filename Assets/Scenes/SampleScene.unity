@@ -2197,32 +2197,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 395937293}
-  - component: {fileID: 395937292}
   m_Layer: 0
   m_Name: flaretool (test)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &395937292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395937291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46c36d859d02d634a8420cab4eb768ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0
-  last_use_time: 0
-  radius: 10
-  duration: 7
-  hotbar: {fileID: 0}
-  equipped: 0
+  m_IsActive: 0
 --- !u!4 &395937293
 Transform:
   m_ObjectHideFlags: 0
@@ -11781,9 +11762,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1746938747}
-    - targetCorrespondingSourceObject: {fileID: 100004, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1746938749}
   m_SourcePrefab: {fileID: 100100000, guid: 1d204df1bf723d645a3ce8946a952fed, type: 3}
 --- !u!4 &1746938745 stripped
 Transform:
@@ -11825,21 +11803,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   hotbarSlotIndex: 2
---- !u!114 &1746938749
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746938746}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0776a28a12c9fe478e16082929ea503, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flaregun: {fileID: 0}
-  flare: {fileID: 0}
-  pickupSound: {fileID: 0}
 --- !u!1001 &1755472243
 PrefabInstance:
   m_ObjectHideFlags: 0
