@@ -28,15 +28,16 @@ public class PlayerMovement : MonoBehaviour {
     public Slider dash_slider;
     public GameObject particlePrefab; 
     
+    [Header ("Audio")]
+    public AudioSource audioSource;
+    public AudioClip dash_sound;
+    
     [Header("Raycast")]
     [SerializeField] private Camera camera;
     
 
     void Start() {
-        if (m_Animator == null) {
-            Debug.LogError("Player Animator is not assigned. Drag the Animator from Man_0.4 into the m_Animator field on PlayerMovement.");
-        }
-
+        m_Animator = GetComponentInChildren<Animator>();
         m_Rigidbody = GetComponent<Rigidbody> ();
     }
 
@@ -71,11 +72,8 @@ public class PlayerMovement : MonoBehaviour {
             if (Physics.Raycast(ray, out hit)) {
                 Vector3 lookDir = hit.point - transform.position;
                 lookDir.y = 0;
-
-                if (lookDir != Vector3.zero) {
-                    Quaternion rotation = Quaternion.LookRotation(lookDir);
-                    transform.rotation = rotation;
-                }
+                Quaternion rotation = Quaternion.LookRotation(lookDir);
+                transform.rotation = rotation;
             }
         }
     }
@@ -93,10 +91,7 @@ public class PlayerMovement : MonoBehaviour {
         bool hasHorizontalInput = !Mathf.Approximately(movementX, 0f);
         bool hasVerticalInput = !Mathf.Approximately(movementY, 0f);
         bool isRunning = hasHorizontalInput || hasVerticalInput;
-
-        if (m_Animator != null) {
-            m_Animator.SetBool("isRunning", isRunning);
-        }
+        m_Animator.SetBool("isRunning", isRunning);
     }
     
     //private void OnAnimatorMove() {
@@ -110,19 +105,13 @@ public class PlayerMovement : MonoBehaviour {
     public IEnumerator Dash() {
         // dashes for a short duration
         isDashing = true;
-
-        if (m_Animator != null) {
-            m_Animator.SetBool("isDashing", true);
-        }
-
+        m_Animator.SetBool("isDashing", true);
+        audioSource.PlayOneShot(dash_sound);
         Instantiate(particlePrefab, transform.position, transform.rotation);
         Vector3 moveDir = new Vector3(movementX, 0, movementY).normalized;
         m_Rigidbody.velocity = new Vector3 (moveDir.x * dash_speed, 0, moveDir.z * dash_speed);
         yield return new WaitForSeconds(dash_duration);
         isDashing = false;
-
-        if (m_Animator != null) {
-            m_Animator.SetBool("isDashing", false);
-        }
+        m_Animator.SetBool("isDashing", false);
     }
 }
