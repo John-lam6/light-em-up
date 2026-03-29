@@ -16,3 +16,7 @@ MonoBehaviour:
   upgradeName: MS Up
   description: 
   icon: {fileID: 0}
+  valueRange:
+  - 1
+  - 5
+  value: 2.63
