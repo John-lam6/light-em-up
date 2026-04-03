@@ -32,11 +32,11 @@ public class ArrowProjectile : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             // Try to get enemy health script
-            EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+            EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
 
             if (enemy != null)
             {
-                enemy.TakeDamage(damage);
+                enemy.StartCoroutine(enemy.DamageAgent((int)damage));
                 Debug.Log("Hit enemy for " + damage + " damage");
             }
         }
@@ -82,6 +82,7 @@ public class ArrowProjectile : MonoBehaviour
         // Stick to enemy so it moves with them
         transform.SetParent(collision.transform, true);
 
-        Destroy(gameObject, 2f);
+        //Destroy(gameObject, 1f);
+        Destroy(gameObject);
     }
 }

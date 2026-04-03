@@ -15,9 +15,6 @@ public class EnemyController : MonoBehaviour
     private float nextPathUpdateTime = 0f;
     private float updateRate = 0.2f;
     
-    public TMP_Text healthText;
-    public Slider healthSlider;
-    
     public int maxHealth = 100;
     public int currentHealth;
     public float sliderEaseTime = 0.05f;
@@ -32,7 +29,7 @@ public class EnemyController : MonoBehaviour
     [HideInInspector]
     public Rigidbody rb;
     [HideInInspector]
-    public Material mat;
+    public Renderer[] renderers;
     [HideInInspector]
     public Color m_Color;
     
@@ -45,15 +42,16 @@ public class EnemyController : MonoBehaviour
         target = FindObjectByTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         rb = GetComponent<Rigidbody>();
-        mat = GetComponentInChildren<Renderer>().material;
-        m_Color = mat.color;
+        renderers = GetComponentsInChildren<Renderer>();
+        m_Color = renderers[0].material.color;
         currentHealth = maxHealth;
+
+        canMove = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //healthText.text = currentHealth + " / " + maxHealth;
         if (Time.time >= nextPathUpdateTime) {
             nextPathUpdateTime = Time.time + updateRate;
             if (!dead && !agent.isStopped) agent.SetDestination(target.position);
@@ -75,20 +73,24 @@ public class EnemyController : MonoBehaviour
         
         if (agent.enabled && !dead && canMove) {
             agent.isStopped = true;
-            mat.DOColor(damageColor, 0.1f);
+            
+            foreach (Renderer r in renderers)
+                r.material.DOColor(damageColor, 0.1f);
+            
             yield return new WaitForSeconds(0.1f);
 
             //rb.velocity = Vector3.zero;
             //rb.angularVelocity = Vector3.zero;
 
             if (currentHealth - damage > 0) agent.ResetPath();
-            mat.DOColor(m_Color, 0.1f);
+            
+            
+            foreach (Renderer r in renderers)
+                r.material.DOColor(m_Color, 0.1f);
         }
         
         if (currentHealth - damage < 0) currentHealth = 0;
         else currentHealth -= damage;
-        
-        healthSlider.DOValue((float)currentHealth / maxHealth, sliderEaseTime).SetEase(Ease.Linear);
     
         yield return new WaitForSeconds(sliderEaseTime);
         
@@ -98,11 +100,16 @@ public class EnemyController : MonoBehaviour
             dead = true;
             m_Animator.SetBool("isDead", dead);
             capsule.enabled = false;
-            //rb.velocity = Vector3.zero;
-            //rb.angularVelocity = Vector3.zero;
             rb.isKinematic = true;
-            //gameManager.addScore(score);
-            yield return new WaitForSeconds(deathDelay);
+
+            while (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("death") && !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Z_FallingBack")) {
+                yield return null;
+            }
+                        
+            AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
+            float deathAnimLength = stateInfo.length;
+            
+            yield return new WaitForSeconds(deathAnimLength);
             Destroy(gameObject);
         }
         else if (!dead) {

@@ -7,6 +7,7 @@ TagManager:
   - UpgradeTest
   - FxTemporaire
   - Enemy
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -17,8 +18,8 @@ TagManager:
   - Player and Enemies
   - Terrain
   - Arrow
-  - 
-  - 
+  - Obstacle
+  - Breakable
   - 
   - 
   - 

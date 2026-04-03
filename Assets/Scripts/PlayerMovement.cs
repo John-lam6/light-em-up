@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour {
     void Start() {
         m_Animator = GetComponentInChildren<Animator>();
         m_Rigidbody = GetComponent<Rigidbody> ();
-        StatsManager.Instance.moveSpeed = 10f;
+        StatsManager.Instance.moveSpeed = 6f;
     }
 
 
