@@ -11,17 +11,10 @@ public class Flaregun : ToolBase
 
     [Header("Audio")]
     public AudioClip flareShotSound;
-    public AudioClip noAmmoSound;
-    public AudioClip reloadSound;
 
     [Header("Stats")]
     public float bulletSpeed = 20f;
     public float maxAimDistance = 200f;
-
-    [Header("Ammo")]
-    public int maxSpareRounds = 5;
-    public int spareRounds = 3;
-    public int currentRound = 3;
 
     [Header("Aiming")]
     public Camera playerCamera;
@@ -61,11 +54,6 @@ public class Flaregun : ToolBase
         {
             Use();
         }
-
-        if (Input.GetKeyDown(KeyCode.R) && (anim == null || !anim.isPlaying))
-        {
-            Reload();
-        }
     }
 
     public override void Equip()
@@ -88,25 +76,14 @@ public class Flaregun : ToolBase
         if (!CanUse())
             return;
 
-        if (currentRound > 0)
+        last_use_time = Time.time;
+
+        if (hotbar != null)
         {
-            last_use_time = Time.time;
-
-            if (hotbar != null)
-            {
-                hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));
-            }
-
-            Shoot();
+            hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));
         }
-        else
-        {
-            if (anim != null)
-                anim.Play("noAmmo");
 
-            if (audioSource != null && noAmmoSound != null)
-                audioSource.PlayOneShot(noAmmoSound);
-        }
+        Shoot();
     }
 
     void Shoot()
@@ -122,8 +99,6 @@ public class Flaregun : ToolBase
             Debug.LogError("Flaregun ERROR: flareBullet prefab is missing!");
             return;
         }
-
-        currentRound = Mathf.Max(0, currentRound - 1);
 
         if (anim != null)
             anim.CrossFade("Shoot");
@@ -166,24 +141,6 @@ public class Flaregun : ToolBase
         if (muzzleParticles != null)
         {
             Instantiate(muzzleParticles, barrelEnd.position, barrelEnd.rotation);
-        }
-    }
-
-    void Reload()
-    {
-        if (!equipped)
-            return;
-
-        if (spareRounds >= 1 && currentRound == 0)
-        {
-            if (audioSource != null && reloadSound != null)
-                audioSource.PlayOneShot(reloadSound);
-
-            spareRounds--;
-            currentRound++;
-
-            if (anim != null)
-                anim.CrossFade("Reload");
         }
     }
 }
