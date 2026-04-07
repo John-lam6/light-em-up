@@ -8,11 +8,6 @@ public class BowTool : RangedTool
 
     // AUDIO
     public AudioClip shootSound;       // Sound when shooting
-    public AudioClip noAmmoSound;      // Sound when out of arrows
-
-    // AMMO
-    [Header("Ammo")]
-    public int currentArrows = 20;     // How many arrows we currently have
 
     // HOTBAR
     [Header("Hotbar")]
@@ -108,14 +103,6 @@ public class BowTool : RangedTool
         if (!equipped) return;
         if (!CanUse()) return;
 
-        // Check if out of ammo
-        if (currentArrows <= 0)
-        {
-            if (audioSource != null && noAmmoSound != null)
-                audioSource.PlayOneShot(noAmmoSound);
-            return;
-        }
-
         // Safety checks so game doesn't crash
         if (arrowPrefab == null)
         {
@@ -129,9 +116,8 @@ public class BowTool : RangedTool
             return;
         }
 
-        // Update cooldown + ammo
+        // Update cooldown
         last_use_time = Time.time;
-        currentArrows--;
 
         // Start cooldown UI on hotbar
         if (hotbar != null)
