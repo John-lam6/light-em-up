@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RangedTool : ToolBase
@@ -8,35 +6,31 @@ public class RangedTool : ToolBase
     public float range = 50f;
     public int pierce = 0;
     public float projectile_speed = 35f;
-    
-    private bool equipped = false;
-    
-    
+
+    protected bool equipped = false;
     public HotbarManager hotbar;
 
-    void Start() {
+    protected virtual void Start()
+    {
         cooldown = 1.5f;
         last_use_time = -cooldown;
         hotbar = FindObjectOfType<HotbarManager>();
     }
-    
-    void Update()
+
+    public override void Equip()
     {
-        if (equipped && Input.GetMouseButton(0) && CanUse()) {
-            Use();
-        }
-    }
-    
-    public override void Equip() {
         equipped = true;
+        gameObject.SetActive(true);
     }
 
-    public override void Unequip() {
+    public override void Unequip()
+    {
         equipped = false;
+        gameObject.SetActive(false);
     }
-    
-    public override void Use() {
+
+    public override void Use()
+    {
         last_use_time = Time.time;
-        hotbar.StartCoroutine(hotbar.cooldownSlider(1, cooldown));
     }
 }

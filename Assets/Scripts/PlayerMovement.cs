@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] private Animator m_Animator;
 
     public Rigidbody m_Rigidbody;
-    public float m_Speed = 10f;
+    //public float m_Speed = 10f;
     private bool canMove = true; // change to false after implementing menus
     
     private float movementX;
@@ -28,6 +28,10 @@ public class PlayerMovement : MonoBehaviour {
     public Slider dash_slider;
     public GameObject particlePrefab; 
     
+    [Header ("Audio")]
+    public AudioSource audioSource;
+    public AudioClip dash_sound;
+    
     [Header("Raycast")]
     [SerializeField] private Camera camera;
     
@@ -35,6 +39,7 @@ public class PlayerMovement : MonoBehaviour {
     void Start() {
         m_Animator = GetComponentInChildren<Animator>();
         m_Rigidbody = GetComponent<Rigidbody> ();
+        StatsManager.Instance.moveSpeed = 6f;
     }
 
 
@@ -78,7 +83,7 @@ public class PlayerMovement : MonoBehaviour {
         Vector3 moveDir = new Vector3(movementX, 0, movementY).normalized;
         
         if (!isDashing) {
-            Vector3 newVelocity = moveDir * m_Speed;
+            Vector3 newVelocity = moveDir * StatsManager.Instance.moveSpeed;
             newVelocity.y = m_Rigidbody.velocity.y; 
             m_Rigidbody.velocity = newVelocity;
         }
@@ -102,6 +107,7 @@ public class PlayerMovement : MonoBehaviour {
         // dashes for a short duration
         isDashing = true;
         m_Animator.SetBool("isDashing", true);
+        audioSource.PlayOneShot(dash_sound);
         Instantiate(particlePrefab, transform.position, transform.rotation);
         Vector3 moveDir = new Vector3(movementX, 0, movementY).normalized;
         m_Rigidbody.velocity = new Vector3 (moveDir.x * dash_speed, 0, moveDir.z * dash_speed);

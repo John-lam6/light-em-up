@@ -7,6 +7,9 @@ https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/ampl
 Flaregun
 https://assetstore.unity.com/packages/3d/props/guns/flare-gun-12820
 
+Bow and Arrow
+https://assetstore.unity.com/packages/3d/props/weapons/free-pack-of-medieval-weapons-136607
+
 Level Textures
 https://assetstore.unity.com/packages/2d/textures-materials/sandstone-textures-4k-179134
 
@@ -49,3 +52,17 @@ https://www.freepik.com/premium-vector/swap-icon_320035090.htm
 Dash sprite
 https://www.shutterstock.com/image-vector/dash-fast-run-icon-element-walking-1208750191
 
+Dash sound
+https://www.youtube.com/watch?v=JPxJPY1Mw8c
+
+Vase break sound
+https://pixabay.com/sound-effects/film-special-effects-break-the-sbestos-roof-411502/
+
+Zombie
+https://assetstore.unity.com/packages/3d/characters/humanoids/zombie-30232
+
+Skeleton 
+https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/lowpoly-medieval-skeleton-free-low-poly-medieval-fantasy-series-181883
+
+Crusader
+https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/crusader-tank-101601
