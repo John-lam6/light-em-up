@@ -28,12 +28,13 @@ public class PlayerHealth : MonoBehaviour
 
     public IEnumerator Damage(int damage) {
         currentHealth -= damage;
+        if (currentHealth <= 0) currentHealth = 0;
+        
         healthSlider.DOValue((float)currentHealth / maxHealth, sliderEaseTime).SetEase(Ease.Linear);
 
         yield return new WaitForSeconds(sliderEaseTime);
 
-        if (currentHealth <= 0) {
-            currentHealth = 0;
+        if (currentHealth == 0) {
             // END GAME
         }
     }

@@ -66,3 +66,7 @@ https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/lowpoly-me
 
 Crusader
 https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/crusader-tank-101601
+
+Particles
+https://assetstore.unity.com/packages/vfx/particles/spells/fx-magic-plane-ii-free-25218
+https://assetstore.unity.com/packages/vfx/particles/free-quick-effects-vol-1-304424

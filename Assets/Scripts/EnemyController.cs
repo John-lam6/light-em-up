@@ -74,19 +74,35 @@ public class EnemyController : MonoBehaviour
         if (agent.enabled && !dead && canMove) {
             agent.isStopped = true;
             
+            
+            foreach (Renderer r in renderers)
+            {
+                r.material.EnableKeyword("_EMISSION");
+                r.material.DOColor(damageColor * 0.3f, "_EmissionColor", 0.1f);
+            }
+
+            yield return new WaitForSeconds(0.1f);
+
+            foreach (Renderer r in renderers)
+            {
+                r.material.DOColor(Color.black, "_EmissionColor", 0.1f);
+            }
+            
+            
+            /*
             foreach (Renderer r in renderers)
                 r.material.DOColor(damageColor, 0.1f);
             
             yield return new WaitForSeconds(0.1f);
-
+            */
             //rb.velocity = Vector3.zero;
             //rb.angularVelocity = Vector3.zero;
 
             if (currentHealth - damage > 0) agent.ResetPath();
             
             
-            foreach (Renderer r in renderers)
-                r.material.DOColor(m_Color, 0.1f);
+            //foreach (Renderer r in renderers)
+                //r.material.DOColor(m_Color, 0.1f);
         }
         
         if (currentHealth - damage < 0) currentHealth = 0;
