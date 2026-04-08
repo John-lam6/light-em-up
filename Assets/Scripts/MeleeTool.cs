@@ -7,11 +7,11 @@ public class MeleeTool : ToolBase
     public float damage = 10f;
     public float range = 5f;
     
-    private bool equipped = false;
+    protected bool equipped = false;
     
     public HotbarManager hotbar;
 
-    void Start() {
+    protected virtual void Start() {
         cooldown = 1f;
         last_use_time = -cooldown;
         hotbar = FindObjectOfType<HotbarManager>();
