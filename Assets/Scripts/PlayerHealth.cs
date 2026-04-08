@@ -17,9 +17,9 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    void Update() {
-        healthText.text = currentHealth + " / " + maxHealth;
-    }
+        void Update() {
+            healthText.text = currentHealth + " / " + maxHealth;
+        }
 
     public void Reset() {
         currentHealth = maxHealth;

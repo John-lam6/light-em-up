@@ -99,7 +99,8 @@ public class Upgrade : MonoBehaviour
                 break;
 
             case 3:
-                StatsManager.Instance.swordDamage += data.value;
+                //StatsManager.Instance.swordDamage += data.value;
+                StatsManager.Instance.swordAttackSpeed += 1f;
                 break;
                 
         }
