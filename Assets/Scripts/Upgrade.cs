@@ -18,6 +18,16 @@ public class Upgrade : MonoBehaviour
         Instance = this;
         upgradePanel.SetActive(false);
     }
+
+    void Update()
+    {
+        if (StatsManager.Instance.xp >= StatsManager.Instance.xpNeeded)
+        {
+            UpgradePlayer();
+            StatsManager.Instance.xp -= StatsManager.Instance.xpNeeded;
+            StatsManager.Instance.xpNeeded *= 1.5f;
+        }
+    }
     public void UpgradePlayer()
     {
         List<UpgradeData> availableUpgrades = new List<UpgradeData>(upgrades);
@@ -30,10 +40,21 @@ public class Upgrade : MonoBehaviour
 
             if(randomUpgrade.valueRange.Length != 2)
             {
-                randomUpgrade.value = 1f;
-            } else
+                if (randomUpgrade.value == 0)
+                {
+                    randomUpgrade.value = 1;
+                }
+            } 
+            else
             {
-                randomUpgrade.value = Mathf.Round(Random.Range(randomUpgrade.valueRange[0], randomUpgrade.valueRange[1]) * 100f) / 100f;
+                if(randomUpgrade.isPercentage || randomUpgrade.isFloat)
+                {
+                    randomUpgrade.value = Mathf.Round(Random.Range(randomUpgrade.valueRange[0], randomUpgrade.valueRange[1]) * 100f) / 100f;
+                } 
+                else
+                {
+                    randomUpgrade.value = Mathf.Round(Random.Range(randomUpgrade.valueRange[0], randomUpgrade.valueRange[1]));
+                }
             }
             
             selectedUpgrades.Add(randomUpgrade);
@@ -91,7 +112,7 @@ public class Upgrade : MonoBehaviour
                 break;
 
             case 1:
-                StatsManager.Instance.hpRegen += data.value;
+                StatsManager.Instance.swordAttackSpeed *= data.value;
                 break;
 
             case 2:
@@ -99,8 +120,7 @@ public class Upgrade : MonoBehaviour
                 break;
 
             case 3:
-                //StatsManager.Instance.swordDamage += data.value;
-                StatsManager.Instance.swordAttackSpeed += 1f;
+                StatsManager.Instance.swordDamage += data.value;
                 break;
                 
         }

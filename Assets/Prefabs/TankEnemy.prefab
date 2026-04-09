@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Animator: {fileID: 0}
   target: {fileID: 0}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
+  xpValue: 50
   maxHealth: 150
   currentHealth: 0
   sliderEaseTime: 0.05

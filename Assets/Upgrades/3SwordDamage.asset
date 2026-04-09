@@ -16,3 +16,9 @@ MonoBehaviour:
   upgradeName: DMG Up
   description: 
   icon: {fileID: 0}
+  valueRange:
+  - 5
+  - 10
+  value: 10
+  isPercentage: 0
+  isFloat: 0

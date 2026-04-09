@@ -20,10 +20,10 @@ public class StatsManager : MonoBehaviour
     public float hpRegen;
 
     [Header("Misc")]
-    public float enemiesKilled;
-    public float totalKilled;
-    public float enemiesNeeded; //for level up
+    public float xp;
+    public float xpNeeded; //for level up
     public float level;
+    public float totalKilled;
 
     private void Awake()
     {

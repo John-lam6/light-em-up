@@ -11,6 +11,7 @@ public class SwordTool : MeleeTool
     [SerializeField] private Animator animator;
     [SerializeField] private SwordHitbox hitbox;
 
+    private float swingClipLength;
 
     private float attackSpeed;
 
@@ -20,9 +21,13 @@ public class SwordTool : MeleeTool
         base.Start();
 
         attackSpeed = StatsManager.Instance.swordAttackSpeed;
+        foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
+        if (clip.name == "HumanM@Attack1H01_R") { swingClipLength = clip.length; break; }
 
-        cooldown  = 1f / attackSpeed; 
+        cooldown  = swingClipLength / attackSpeed; 
         last_use_time = -cooldown;
+        
+
 
     }
 
@@ -56,12 +61,13 @@ public class SwordTool : MeleeTool
         // Update cooldown
         last_use_time = Time.time;
         attackSpeed = StatsManager.Instance.swordAttackSpeed;
-        cooldown  = 1f / attackSpeed; 
+        cooldown  = swingClipLength  / attackSpeed; 
 
         // Start cooldown UI on hotbar
         if (hotbar != null)
             hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));
-
+        
+        animator.SetFloat("AttackSpeed", attackSpeed);
         animator.SetTrigger("Swing");
     }
 

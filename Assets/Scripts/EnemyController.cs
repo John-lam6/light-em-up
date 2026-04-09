@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private Animator m_Animator;
     public Transform target;
     public Color damageColor;
-    
+    public int xpValue;
     private float nextPathUpdateTime = 0f;
     private float updateRate = 0.2f;
     
@@ -111,6 +111,8 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(sliderEaseTime);
         
         if (currentHealth <= 0 && !dead) {
+            StatsManager.Instance.xp += xpValue;
+            Debug.Log("Gained " + xpValue + " XP " + StatsManager.Instance.xp + " / " + StatsManager.Instance.xpNeeded);
             agent.isStopped = true;
             agent.enabled = false;
             dead = true;

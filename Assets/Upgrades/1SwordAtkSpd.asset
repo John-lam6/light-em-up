@@ -10,9 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42505586e4c23414c9ef1196f4bbc305, type: 3}
-  m_Name: 1HpRegen
+  m_Name: 1SwordAtkSpd
   m_EditorClassIdentifier: 
   id: 1
-  upgradeName: HP Regen
+  upgradeName: Sword Attack Speed
   description: 
   icon: {fileID: 0}
+  valueRange: []
+  value: 1.05
+  isPercentage: 1
+  isFloat: 1
