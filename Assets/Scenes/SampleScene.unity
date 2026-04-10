@@ -3818,7 +3818,7 @@ MonoBehaviour:
   swordDamage: 20
   swordRange: 0
   swordAttackSpeed: 1
-  bowDamage: 3
+  bowDamage: 20
   bowAttackSpeed: 1
   bowArrowsPerShot: 1
   bowPierceCount: 0

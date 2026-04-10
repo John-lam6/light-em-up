@@ -2,17 +2,26 @@ using UnityEngine;
 
 public class ArrowProjectile : MonoBehaviour
 {
-    public float damage = 10f;          // How much damage the arrow does
-    public int remainingPierces = 0;    // How many targets the arrow can pass through
+    [HideInInspector]
+    public float damage;
+
+    [HideInInspector]
+    public int remainingPierces = 0;
 
     private Rigidbody rb;
-    private bool hasStuck = false;      
+    private bool hasStuck = false;
     private Collider arrowCollider;
+    private float launchSpeed;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         arrowCollider = GetComponent<Collider>();
+
+        if (rb != null)
+        {
+            launchSpeed = rb.velocity.magnitude;
+        }
     }
 
     void Update()
@@ -28,10 +37,9 @@ public class ArrowProjectile : MonoBehaviour
     {
         if (hasStuck) return;
 
-        // DAMAGE
+        // ENEMY HIT
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            // Try to get enemy health script
             EnemyController enemy = collision.gameObject.GetComponent<EnemyController>();
 
             if (enemy != null)
@@ -39,22 +47,32 @@ public class ArrowProjectile : MonoBehaviour
                 enemy.StartCoroutine(enemy.DamageAgent((int)damage));
                 Debug.Log("Hit enemy for " + damage + " damage");
             }
-        }
 
-        // PIERCE
-        if (remainingPierces > 0)
-        {
-            remainingPierces--;
-
-            Collider hitCollider = collision.collider;
-            if (arrowCollider != null && hitCollider != null)
+            // PIERCE ONLY ON ENEMIES
+            if (remainingPierces > 0)
             {
-                Physics.IgnoreCollision(arrowCollider, hitCollider);
+                remainingPierces--;
+
+                Collider hitCollider = collision.collider;
+                if (arrowCollider != null && hitCollider != null)
+                {
+                    Physics.IgnoreCollision(arrowCollider, hitCollider);
+                }
+
+                if (rb != null)
+                {
+                    rb.velocity = transform.forward * launchSpeed;
+                    rb.angularVelocity = Vector3.zero;
+                }
+
+                return;
             }
 
+            Destroy(gameObject);
             return;
         }
 
+        // ANYTHING THAT IS NOT AN ENEMY
         StickToTarget(collision);
     }
 
@@ -79,10 +97,8 @@ public class ArrowProjectile : MonoBehaviour
             arrowCollider.enabled = false;
         }
 
-        // Stick to enemy so it moves with them
         transform.SetParent(collision.transform, true);
 
-        //Destroy(gameObject, 1f);
-        Destroy(gameObject);
+        Destroy(gameObject, 2f);
     }
 }
