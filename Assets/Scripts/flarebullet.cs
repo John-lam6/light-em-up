@@ -12,6 +12,7 @@ public class FlareBullet : MonoBehaviour
     private bool landed = false;
 
     private float smooth = 2.4f;
+    private Vector3 adjustedTargetPoint;
 
     public float flareTimer = 7f;
     public float radius = 10f;
@@ -20,6 +21,7 @@ public class FlareBullet : MonoBehaviour
 
     public Vector3 targetPoint;
     public float moveSpeed = 20f;
+    public float landedHeightOffset = 0.3f;
 
     void Start()
     {
@@ -28,11 +30,13 @@ public class FlareBullet : MonoBehaviour
         smokeParSystem = GetComponent<ParticleSystemRenderer>();
         rb = GetComponent<Rigidbody>();
 
+        adjustedTargetPoint = targetPoint + Vector3.up * landedHeightOffset;
+
         if (flarelight != null)
         {
             flarelight.range = 0f;
             flarelight.intensity = 0f;
-            flarelight.color = new Color(1f, 0.35f, 0f); // deeper orange
+            flarelight.color = new Color(1f, 0.35f, 0f);
         }
 
         if (flaresound != null && flareBurningSound != null)
@@ -53,15 +57,15 @@ public class FlareBullet : MonoBehaviour
     {
         if (!landed)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPoint, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, adjustedTargetPoint, moveSpeed * Time.deltaTime);
 
-            Vector3 direction = targetPoint - transform.position;
+            Vector3 direction = adjustedTargetPoint - transform.position;
             if (direction != Vector3.zero)
             {
                 transform.rotation = Quaternion.LookRotation(direction);
             }
 
-            if (Vector3.Distance(transform.position, targetPoint) < 0.05f)
+            if (Vector3.Distance(transform.position, adjustedTargetPoint) < 0.05f)
             {
                 Land();
             }
@@ -98,7 +102,7 @@ public class FlareBullet : MonoBehaviour
     void Land()
     {
         landed = true;
-        transform.position = targetPoint;
+        transform.position = adjustedTargetPoint;
         StartCoroutine(FlareLife());
     }
 

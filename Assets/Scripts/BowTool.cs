@@ -24,11 +24,13 @@ public class BowTool : RangedTool
 
     private float last_multishot_time = -999f;
     public AudioSource audioSource;
+    private Animator anim;
 
     protected override void Start()
     {
         base.Start();
         cooldown = bowHotbarCooldown;
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -73,6 +75,11 @@ public class BowTool : RangedTool
             return;
         }
 
+        if (anim != null)
+        {
+            anim.Play("Shoot", 0, 0f);
+        }
+
         if (hotbar != null)
             hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));
 
@@ -104,6 +111,11 @@ public class BowTool : RangedTool
             return;
 
         last_multishot_time = Time.time;
+
+        if (anim != null)
+        {
+            anim.Play("Shoot", 0, 0f);
+        }
 
         // visible shared cooldown stays same as normal shot
         if (hotbar != null)
@@ -141,7 +153,8 @@ public class BowTool : RangedTool
             SpawnArrow(spawnPosition, shotDirection);
         }
 
-        if (audioSource != null && shootSound != null) {
+        if (audioSource != null && shootSound != null)
+        {
             audioSource.volume = 0.8f;
             audioSource.PlayOneShot(shootSound);
         }

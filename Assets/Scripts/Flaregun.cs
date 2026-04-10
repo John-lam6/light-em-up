@@ -6,7 +6,6 @@ public class Flaregun : ToolBase
     [Header("References")]
     public Rigidbody flareBullet;
     public Transform barrelEnd;
-    public GameObject muzzleParticles;
     public HotbarManager hotbar;
 
     [Header("Audio")]
@@ -136,11 +135,6 @@ public class Flaregun : ToolBase
         if (flareScript != null)
         {
             flareScript.targetPoint = targetPoint;
-        }
-
-        if (muzzleParticles != null)
-        {
-            Instantiate(muzzleParticles, barrelEnd.position, barrelEnd.rotation);
         }
     }
 }
