@@ -162,10 +162,21 @@ public class BowTool : RangedTool
         }
 
         ArrowProjectile arrowProjectile = arrowInstance.GetComponent<ArrowProjectile>();
-        if (arrowProjectile != null && StatsManager.Instance != null)
+        if (arrowProjectile != null)
         {
-            arrowProjectile.damage = StatsManager.Instance.bowDamage;
-            arrowProjectile.remainingPierces = StatsManager.Instance.bowPierceCount;
+            float bowDamage = 10f;
+            int bowPierce = 0;
+
+            if (StatsManager.Instance != null)
+            {
+                bowDamage = StatsManager.Instance.bowDamage;
+                bowPierce = StatsManager.Instance.bowPierceCount;
+            }
+
+            arrowProjectile.damage = bowDamage;
+            arrowProjectile.remainingPierces = bowPierce;
+
+            Debug.Log("Arrow spawned with damage: " + bowDamage + " and pierce: " + bowPierce);
         }
 
         Collider arrowCol = arrowInstance.GetComponent<Collider>();
