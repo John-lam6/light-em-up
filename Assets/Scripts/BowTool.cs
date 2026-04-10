@@ -3,107 +3,66 @@ using UnityEngine;
 public class BowTool : RangedTool
 {
     // REFERENCES
-    public GameObject arrowPrefab;     // Prefab for the arrow we spawn
-    public Transform arrowSpawn;       // Where the arrow comes out of (tip of bow)
+    public GameObject arrowPrefab;
+    public Transform arrowSpawn;
 
     // AUDIO
-    public AudioClip shootSound;       // Sound when shooting
+    public AudioClip shootSound;
 
     // HOTBAR
     [Header("Hotbar")]
-    [SerializeField] private int hotbarSlotIndex = 1; // Which slot this bow is in
+    [SerializeField] private int hotbarSlotIndex = 1;
 
-    // BASE STATS
-    // These are the default values before any upgrades
-    [Header("Base Bow Stats")]
-    [SerializeField] private int baseArrowsPerShot = 1;
-    [SerializeField] private int basePierceCount = 0;
-    [SerializeField] private float baseArrowDamage = 10f;
-    [SerializeField] private float baseAngleBetweenArrows = 0f;
-
-    // CURRENT STATS
-    // These change during gameplay with upgrades
-    [Header("Current Bow Stats")]
-    [SerializeField] private int arrowsPerShot;
-    [SerializeField] private int pierceCount;
-    [SerializeField] private float arrowDamage;
-    [SerializeField] private float angleBetweenArrows;
-
-    // UPGRADE VALUES
-    // How much each upgrade increases stats
-    [Header("Upgrade Amounts")]
-    [SerializeField] private int arrowsPerShotUpgradeAmount = 1;
-    [SerializeField] private float angleBetweenArrowsUpgradeAmount = 2f;
-    [SerializeField] private int pierceUpgradeAmount = 1;
-    [SerializeField] private float damageUpgradeAmount = 5f;
+    // SHARED VISIBLE COOLDOWN
+    [Header("Bow Cooldown")]
+    [SerializeField] private float bowHotbarCooldown = 0.75f;
 
     // SPAWN TUNING
-    // Small offsets so arrows don't spawn inside each other
     [Header("Arrow Spawn Tuning")]
     [SerializeField] private float forwardSpawnOffset = 0.6f;
     [SerializeField] private float sidewaysSpawnOffset = 0.08f;
 
-    private AudioSource audioSource;   // Used to play sounds
+    private float last_multishot_time = -999f;
+    private AudioSource audioSource;
 
-    // START
     protected override void Start()
     {
         base.Start();
 
-        // Set cooldown between shots
-        cooldown = 0.75f;
-        last_use_time = -cooldown;
-
         audioSource = GetComponent<AudioSource>();
-
-        // Reset all stats to base values at start
-        ResetAllUpgrades();
+        cooldown = bowHotbarCooldown;
     }
 
-    // UPDATE
     void Update()
     {
-        if (!equipped) return; // Only work if bow is equipped
+        if (!equipped) return;
 
-        // Left click → shoot
         if (Input.GetButtonDown("Fire1"))
             Use();
 
-        // Debug/testing upgrade keys
-        if (Input.GetKeyDown(KeyCode.U))
-            IncreaseMultiShotUpgrade();
-
-        if (Input.GetKeyDown(KeyCode.I))
-            IncreasePierceCount(pierceUpgradeAmount);
-
-        if (Input.GetKeyDown(KeyCode.O))
-            IncreaseDamage(damageUpgradeAmount);
-
-        if (Input.GetKeyDown(KeyCode.P))
-            ResetAllUpgrades();
+        if (Input.GetButtonDown("Fire2"))
+            UseMultiShot();
     }
 
-    // EQUIP
     public override void Equip()
     {
         equipped = true;
         gameObject.SetActive(true);
     }
 
-    // UNEQUIP
     public override void Unequip()
     {
         equipped = false;
         gameObject.SetActive(false);
     }
 
-    // USE (SHOOT)
+    // NORMAL SHOT
     public override void Use()
     {
         if (!equipped) return;
-        if (!CanUse()) return;
 
-        // Safety checks so game doesn't crash
+        if (hotbar != null && hotbar.IsOnCooldown(hotbarSlotIndex)) return;
+
         if (arrowPrefab == null)
         {
             Debug.LogError("BowTool ERROR: arrowPrefab is not assigned!");
@@ -116,43 +75,66 @@ public class BowTool : RangedTool
             return;
         }
 
-        // Update cooldown
-        last_use_time = Time.time;
-
-        // Start cooldown UI on hotbar
         if (hotbar != null)
             hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));
 
-        ShootArrow();
+        ShootArrow(1);
     }
 
-    // SHOOT LOGIC
-    void ShootArrow()
+    // MULTISHOT
+    void UseMultiShot()
     {
-        int totalArrowsToShoot = Mathf.Max(1, arrowsPerShot);
+        if (!equipped) return;
+
+        if (hotbar != null && hotbar.IsOnCooldown(hotbarSlotIndex)) return;
+
+        if (arrowPrefab == null)
+        {
+            Debug.LogError("BowTool ERROR: arrowPrefab is not assigned!");
+            return;
+        }
+
+        if (arrowSpawn == null)
+        {
+            Debug.LogError("BowTool ERROR: arrowSpawn is not assigned!");
+            return;
+        }
+
+        if (StatsManager.Instance == null) return;
+
+        if (Time.time < last_multishot_time + StatsManager.Instance.bowMultishotCooldown)
+            return;
+
+        last_multishot_time = Time.time;
+
+        // visible shared cooldown stays same as normal shot
+        if (hotbar != null)
+            hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));
+
+        ShootArrow(StatsManager.Instance.bowArrowsPerShot);
+    }
+
+    void ShootArrow(int arrowsToShoot)
+    {
+        int totalArrowsToShoot = Mathf.Max(1, arrowsToShoot);
         Debug.Log("Shooting " + totalArrowsToShoot + " arrows");
+
+        float angleBetweenArrows = 0f;
+        if (StatsManager.Instance != null)
+            angleBetweenArrows = StatsManager.Instance.bowAngleBetweenArrows;
 
         for (int i = 0; i < totalArrowsToShoot; i++)
         {
-            // Center arrows properly (so spread is symmetric)
             float centerOffset = i - (totalArrowsToShoot - 1) / 2f;
-
-            // Calculate angle for spread
             float angle = centerOffset * angleBetweenArrows;
 
-            // Base direction = forward from spawn point
             Vector3 baseDirection = arrowSpawn.forward;
-
-            // Slight downward tilt so arrows don't fly perfectly straight
             baseDirection += Vector3.down * 0.1f;
-
             baseDirection.Normalize();
 
-            // Apply spread rotation
             Vector3 shotDirection =
                 Quaternion.AngleAxis(angle, arrowSpawn.up) * baseDirection;
 
-            // Offset spawn position slightly so arrows don't overlap
             Vector3 spawnPosition =
                 arrowSpawn.position +
                 arrowSpawn.forward * forwardSpawnOffset +
@@ -161,37 +143,31 @@ public class BowTool : RangedTool
             SpawnArrow(spawnPosition, shotDirection);
         }
 
-        // Play shooting sound
         if (audioSource != null && shootSound != null)
             audioSource.PlayOneShot(shootSound);
     }
 
-    // SPAWN ARROW
     void SpawnArrow(Vector3 spawnPosition, Vector3 shotDirection)
     {
-        // Create arrow instance
         GameObject arrowInstance = Instantiate(
             arrowPrefab,
             spawnPosition,
             Quaternion.LookRotation(shotDirection)
         );
 
-        // Apply velocity to arrow
         Rigidbody rb = arrowInstance.GetComponent<Rigidbody>();
         if (rb != null)
         {
             rb.velocity = shotDirection.normalized * projectile_speed;
         }
 
-        // Set arrow stats (damage + pierce)
         ArrowProjectile arrowProjectile = arrowInstance.GetComponent<ArrowProjectile>();
-        if (arrowProjectile != null)
+        if (arrowProjectile != null && StatsManager.Instance != null)
         {
-            arrowProjectile.damage = arrowDamage;
-            arrowProjectile.remainingPierces = pierceCount;
+            arrowProjectile.damage = StatsManager.Instance.bowDamage;
+            arrowProjectile.remainingPierces = StatsManager.Instance.bowPierceCount;
         }
 
-        // Prevent arrow from colliding with player/bow immediately
         Collider arrowCol = arrowInstance.GetComponent<Collider>();
         Collider bowCol = GetComponent<Collider>();
 
@@ -199,46 +175,5 @@ public class BowTool : RangedTool
         {
             Physics.IgnoreCollision(arrowCol, bowCol);
         }
-    }
-
-    // UPGRADES
-    
-    // Increase number of arrows shot + spread
-    public void IncreaseMultiShotUpgrade()
-    {
-        arrowsPerShot += arrowsPerShotUpgradeAmount;
-        arrowsPerShot = Mathf.Max(1, arrowsPerShot);
-
-        if (arrowsPerShot > 1)
-            angleBetweenArrows += angleBetweenArrowsUpgradeAmount;
-
-        Debug.Log("Bow upgraded: arrowsPerShot = " + arrowsPerShot +
-                  ", angleBetweenArrows = " + angleBetweenArrows);
-    }
-
-    // Increase how many enemies arrow can pass through
-    public void IncreasePierceCount(int amount)
-    {
-        pierceCount += amount;
-        pierceCount = Mathf.Max(0, pierceCount);
-    }
-
-    // Increase arrow damage
-    public void IncreaseDamage(float amount)
-    {
-        arrowDamage += amount;
-        arrowDamage = Mathf.Max(0f, arrowDamage);
-    }
-
-    // Reset everything back to base stats
-    public void ResetAllUpgrades()
-    {
-        arrowsPerShot = baseArrowsPerShot;
-        pierceCount = basePierceCount;
-        arrowDamage = baseArrowDamage;
-        angleBetweenArrows = baseAngleBetweenArrows;
-
-        Debug.Log("Bow reset: arrowsPerShot = " + arrowsPerShot +
-                  ", angleBetweenArrows = " + angleBetweenArrows);
     }
 }

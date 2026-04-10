@@ -2073,18 +2073,7 @@ MonoBehaviour:
   arrowSpawn: {fileID: 863675148}
   shootSound: {fileID: 8300000, guid: 0f01458ab91c1ac4883d0e6e549bff26, type: 3}
   hotbarSlotIndex: 1
-  baseArrowsPerShot: 1
-  basePierceCount: 0
-  baseArrowDamage: 10
-  baseAngleBetweenArrows: 8
-  arrowsPerShot: 0
-  pierceCount: 0
-  arrowDamage: 0
-  angleBetweenArrows: 0
-  arrowsPerShotUpgradeAmount: 1
-  angleBetweenArrowsUpgradeAmount: 2
-  pierceUpgradeAmount: 1
-  damageUpgradeAmount: 5
+  bowHotbarCooldown: 0.75
   forwardSpawnOffset: 0.6
   sidewaysSpawnOffset: 0.08
 --- !u!1001 &315598749
@@ -3828,6 +3817,10 @@ MonoBehaviour:
   swordAttackSpeed: 1
   bowDamage: 3
   bowAttackSpeed: 1
+  bowArrowsPerShot: 1
+  bowPierceCount: 0
+  bowAngleBetweenArrows: 0
+  bowMultishotCooldown: 3
   moveSpeed: 12
   maxHealth: 0
   curHealth: 0
@@ -14394,7 +14387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1695060279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14542,6 +14535,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 24d85cb5e8cc93c4aaa9cff092276340, type: 2}
   - {fileID: 11400000, guid: 6d23ed5ac87592a418611dfbe87df360, type: 2}
   - {fileID: 11400000, guid: 40db788f1c811c049934503ef351a129, type: 2}
+  - {fileID: 11400000, guid: 00a2df86942e70c4aa3f23ca52c0a358, type: 2}
+  - {fileID: 11400000, guid: 1a6de69a450359d43b0cdab5c09b2afd, type: 2}
+  - {fileID: 11400000, guid: 11a68494b85a9d14fa3a9943c3937fa5, type: 2}
   upgradePanel: {fileID: 1476389701}
   optionParent: {fileID: 1994347914}
   upgradeOptionPrefab: {fileID: 1900242685151005853, guid: cb62391ed91c8c44ab810f18523054fe, type: 3}

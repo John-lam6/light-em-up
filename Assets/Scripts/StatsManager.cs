@@ -13,6 +13,12 @@ public class StatsManager : MonoBehaviour
     public float bowDamage;
     public float bowAttackSpeed;
 
+    [Header("Bow Upgrade Stats")]
+    public int bowArrowsPerShot = 1;
+    public int bowPierceCount = 0;
+    public float bowAngleBetweenArrows = 0f;
+    public float bowMultishotCooldown = 3f;
+
     [Header("Player Stats")]
     public float moveSpeed;
     public float maxHealth;

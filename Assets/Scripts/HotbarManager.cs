@@ -79,4 +79,11 @@ public class HotbarManager : MonoBehaviour {
         slider.DOValue (1, cooldown).SetEase (Ease.Linear).OnComplete(() => slider.gameObject.SetActive(false));
         yield return null;
     }
+
+    public bool IsOnCooldown(int slot)
+    {
+        Slider slider = slotImages[slot].GetComponentInChildren<Slider>(true);
+        if (slider == null) return false;
+        return slider.gameObject.activeSelf;
+    }
 }

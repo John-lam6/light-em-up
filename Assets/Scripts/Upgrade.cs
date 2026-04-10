@@ -122,7 +122,24 @@ public class Upgrade : MonoBehaviour
             case 3:
                 StatsManager.Instance.swordDamage += data.value;
                 break;
-                
+
+            case 4: // bow damage
+                StatsManager.Instance.bowDamage += data.value;
+                break;
+
+            case 5: // multishot (arrows + spread together)
+                StatsManager.Instance.bowArrowsPerShot += Mathf.RoundToInt(data.value);
+                StatsManager.Instance.bowArrowsPerShot = Mathf.Max(1, StatsManager.Instance.bowArrowsPerShot);
+
+                if (StatsManager.Instance.bowArrowsPerShot > 1)
+                    StatsManager.Instance.bowAngleBetweenArrows += 2f;
+
+                break;
+
+            case 6: // pierce
+                StatsManager.Instance.bowPierceCount += Mathf.RoundToInt(data.value);
+                StatsManager.Instance.bowPierceCount = Mathf.Max(0, StatsManager.Instance.bowPierceCount);
+                break;
         }
     }
 }
