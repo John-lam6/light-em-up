@@ -118,8 +118,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.78431374, g: 0.078431375, b: 0.078431375, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 1, g: 0.3529412, b: 0, a: 1}
+  m_Intensity: 1
   m_Range: 110.69
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -151,7 +151,7 @@ Light:
       e33: 1
     m_UseCullingMatrixOverride: 0
   m_Cookie: {fileID: 0}
-  m_DrawHalo: 1
+  m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
@@ -284,7 +284,7 @@ Halo:
   m_Enabled: 1
   m_Color:
     serializedVersion: 2
-    rgba: 1929399551
+    rgba: 4278213375
   m_Size: 1.25
 --- !u!198 &19883576
 ParticleSystem:
@@ -476,7 +476,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.83137256, g: 0.75686276, b: 0.72156864, a: 0.22745098}
+      maxColor: {r: 1, g: 0.39215687, b: 0, a: 0}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

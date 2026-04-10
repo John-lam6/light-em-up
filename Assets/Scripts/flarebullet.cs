@@ -15,7 +15,7 @@ public class FlareBullet : MonoBehaviour
 
     public float flareTimer = 7f;
     public float radius = 10f;
-    public float landedLightIntensity = 4f;
+    public float landedLightIntensity = 1f;
     public AudioClip flareBurningSound;
 
     public Vector3 targetPoint;
@@ -32,6 +32,7 @@ public class FlareBullet : MonoBehaviour
         {
             flarelight.range = 0f;
             flarelight.intensity = 0f;
+            flarelight.color = new Color(1f, 0.35f, 0f); // deeper orange
         }
 
         if (flaresound != null && flareBurningSound != null)
