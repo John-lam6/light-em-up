@@ -22,13 +22,18 @@ public class Flaregun : ToolBase
     [Header("Hotbar")]
     [SerializeField] private int hotbarSlotIndex = 2;
 
+    [Header("Shared Visible Cooldown")]
+    [SerializeField] private float flareHotbarCooldown = 5f;
+
     private Animation anim;
     private AudioSource audioSource;
     private bool equipped = false;
 
+    private float last_blue_flare_time = -999f;
+
     void Start()
     {
-        cooldown = 5f;
+        cooldown = flareHotbarCooldown;
         last_use_time = -cooldown;
 
         anim = GetComponent<Animation>();
@@ -49,9 +54,14 @@ public class Flaregun : ToolBase
     {
         if (!equipped) return;
 
-        if (Input.GetMouseButton(0) && (anim == null || !anim.isPlaying))
+        if (Input.GetMouseButton(0))
         {
             Use();
+        }
+
+        if (Input.GetMouseButton(1))
+        {
+            UseBlueFlare();
         }
     }
 
@@ -69,23 +79,41 @@ public class Flaregun : ToolBase
 
     public override void Use()
     {
-        if (!equipped)
-            return;
+        if (!equipped) return;
 
-        if (!CanUse())
-            return;
+        if (hotbar != null && hotbar.IsOnCooldown(hotbarSlotIndex)) return;
 
-        last_use_time = Time.time;
+        Shoot(false);
 
         if (hotbar != null)
         {
             hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));
         }
-
-        Shoot();
     }
 
-    void Shoot()
+    void UseBlueFlare()
+    {
+        if (!equipped) return;
+
+        if (hotbar != null && hotbar.IsOnCooldown(hotbarSlotIndex)) return;
+
+        if (StatsManager.Instance == null) return;
+        if (!StatsManager.Instance.blueFlareUnlocked) return;
+
+        if (Time.time < last_blue_flare_time + StatsManager.Instance.blueFlareCooldown)
+            return;
+
+        last_blue_flare_time = Time.time;
+
+        Shoot(true);
+
+        if (hotbar != null)
+        {
+            hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));
+        }
+    }
+
+    void Shoot(bool isBlueFlare)
     {
         if (barrelEnd == null)
         {
@@ -135,6 +163,7 @@ public class Flaregun : ToolBase
         if (flareScript != null)
         {
             flareScript.targetPoint = targetPoint;
+            flareScript.isBlueFlare = isBlueFlare;
         }
     }
 }

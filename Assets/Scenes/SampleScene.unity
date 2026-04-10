@@ -3455,7 +3455,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -24.099976, y: 0}
+  m_AnchoredPosition: {x: -24.100098, y: 0}
   m_SizeDelta: {x: 120, y: 200}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &482071690
@@ -3824,6 +3824,12 @@ MonoBehaviour:
   bowPierceCount: 0
   bowAngleBetweenArrows: 0
   bowMultishotCooldown: 3
+  flareRadiusBonus: 0
+  blueFlareUnlocked: 0
+  blueFlareCooldown: 5
+  blueFlareSlowMultiplier: 0.5
+  blueFlareDamagePerTick: 5
+  blueFlareTickRate: 0.5
   moveSpeed: 12
   maxHealth: 0
   curHealth: 0
@@ -14865,6 +14871,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 00a2df86942e70c4aa3f23ca52c0a358, type: 2}
   - {fileID: 11400000, guid: 1a6de69a450359d43b0cdab5c09b2afd, type: 2}
   - {fileID: 11400000, guid: 11a68494b85a9d14fa3a9943c3937fa5, type: 2}
+  - {fileID: 11400000, guid: cc972270ba5e9e04a8e4baa860e115fe, type: 2}
+  - {fileID: 11400000, guid: fedf2893f5518e04f9b77203713a501e, type: 2}
   upgradePanel: {fileID: 1476389701}
   optionParent: {fileID: 1994347914}
   upgradeOptionPrefab: {fileID: 1900242685151005853, guid: cb62391ed91c8c44ab810f18523054fe, type: 3}
@@ -15206,7 +15214,6 @@ MonoBehaviour:
   cooldown: 0
   flareBullet: {fileID: 5400000, guid: 502f397bde12655448ff152eac00cdc7, type: 3}
   barrelEnd: {fileID: 1146728886}
-  muzzleParticles: {fileID: 0}
   hotbar: {fileID: 0}
   flareShotSound: {fileID: 8300000, guid: 0f01458ab91c1ac4883d0e6e549bff26, type: 3}
   bulletSpeed: 40
@@ -15216,6 +15223,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   hotbarSlotIndex: 2
+  flareHotbarCooldown: 5
 --- !u!82 &1746938749
 AudioSource:
   m_ObjectHideFlags: 0

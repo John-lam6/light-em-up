@@ -145,6 +145,14 @@ public class Upgrade : MonoBehaviour
                 StatsManager.Instance.bowPierceCount += Mathf.RoundToInt(data.value);
                 StatsManager.Instance.bowPierceCount = Mathf.Max(0, StatsManager.Instance.bowPierceCount);
                 break;
+
+            case 7: // flare radius
+                StatsManager.Instance.flareRadiusBonus += data.value;
+                break;
+
+            case 8: // blue flare unlock
+                StatsManager.Instance.blueFlareUnlocked = true;
+                break;
         }
     }
 }

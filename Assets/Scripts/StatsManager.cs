@@ -19,6 +19,14 @@ public class StatsManager : MonoBehaviour
     public float bowAngleBetweenArrows = 0f;
     public float bowMultishotCooldown = 3f;
 
+    [Header("Flare Upgrade Stats")]
+    public float flareRadiusBonus = 0f;
+    public bool blueFlareUnlocked = false;
+    public float blueFlareCooldown = 5f;
+    public float blueFlareSlowMultiplier = 0.85f;
+    public float blueFlareDamagePerTick = 1f;
+    public float blueFlareTickRate = 1f;
+
     [Header("Player Stats")]
     public float moveSpeed;
     public float maxHealth;
@@ -34,10 +42,11 @@ public class StatsManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
-        } else
+        }
+        else
         {
             Destroy(gameObject);
         }

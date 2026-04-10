@@ -1,11 +1,11 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FlareBullet : MonoBehaviour
 {
-    private Light flarelight;
+    public Light flarelight;
     private AudioSource flaresound;
-    private ParticleSystemRenderer smokeParSystem;
     private Rigidbody rb;
 
     private bool burning = true;
@@ -23,20 +23,33 @@ public class FlareBullet : MonoBehaviour
     public float moveSpeed = 20f;
     public float landedHeightOffset = 0.3f;
 
+    [HideInInspector] public bool isBlueFlare = false;
+
+    private float damageTickTimer = 0f;
+    private Dictionary<EnemyController, float> slowedEnemies = new Dictionary<EnemyController, float>();
+
     void Start()
     {
-        flarelight = GetComponent<Light>();
         flaresound = GetComponent<AudioSource>();
-        smokeParSystem = GetComponent<ParticleSystemRenderer>();
         rb = GetComponent<Rigidbody>();
 
         adjustedTargetPoint = targetPoint + Vector3.up * landedHeightOffset;
 
+        if (StatsManager.Instance != null)
+        {
+            radius += StatsManager.Instance.flareRadiusBonus;
+        }
+
         if (flarelight != null)
         {
-            flarelight.range = 0f;
-            flarelight.intensity = 0f;
-            flarelight.color = new Color(1f, 0.35f, 0f);
+            if (isBlueFlare)
+            {
+                flarelight.color = Color.blue;
+            }
+            else
+            {
+                flarelight.color = new Color(1f, 0.35f, 0f);
+            }
         }
 
         if (flaresound != null && flareBurningSound != null)
@@ -78,6 +91,19 @@ public class FlareBullet : MonoBehaviour
                 flarelight.intensity = Mathf.Lerp(flarelight.intensity, landedLightIntensity, Time.deltaTime * smooth);
                 flarelight.range = Mathf.Lerp(flarelight.range, radius, Time.deltaTime * smooth);
             }
+
+            if (isBlueFlare)
+            {
+                HandleBlueFlareEffect();
+            }
+        }
+        else if (!landed && burning)
+        {
+            if (flarelight != null)
+            {
+                flarelight.intensity = landedLightIntensity;
+                flarelight.range = radius;
+            }
         }
         else
         {
@@ -90,11 +116,6 @@ public class FlareBullet : MonoBehaviour
             if (flaresound != null)
             {
                 flaresound.volume = Mathf.Lerp(flaresound.volume, 0f, Time.deltaTime * smooth);
-            }
-
-            if (smokeParSystem != null)
-            {
-                smokeParSystem.maxParticleSize = Mathf.Lerp(smokeParSystem.maxParticleSize, 0f, Time.deltaTime * 5f);
             }
         }
     }
@@ -111,5 +132,90 @@ public class FlareBullet : MonoBehaviour
         burning = true;
         yield return new WaitForSeconds(flareTimer);
         burning = false;
+        RestoreAllEnemies();
+    }
+
+    void HandleBlueFlareEffect()
+    {
+        if (StatsManager.Instance == null) return;
+
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, radius);
+        HashSet<EnemyController> enemiesInRange = new HashSet<EnemyController>();
+
+        foreach (Collider hit in hitColliders)
+        {
+            EnemyController enemy = hit.GetComponentInParent<EnemyController>();
+
+            if (enemy != null && !enemy.isDead())
+            {
+                enemiesInRange.Add(enemy);
+
+                if (enemy.agent != null && enemy.agent.enabled)
+                {
+                    if (!slowedEnemies.ContainsKey(enemy))
+                    {
+                        slowedEnemies.Add(enemy, enemy.agent.speed);
+
+                        float softerSlowMultiplier = Mathf.Max(0.8f, StatsManager.Instance.blueFlareSlowMultiplier);
+                        enemy.agent.speed *= softerSlowMultiplier;
+                    }
+                }
+            }
+        }
+
+        List<EnemyController> enemiesToRestore = new List<EnemyController>();
+
+        foreach (var slowedEnemy in slowedEnemies)
+        {
+            if (!enemiesInRange.Contains(slowedEnemy.Key))
+            {
+                if (slowedEnemy.Key != null && slowedEnemy.Key.agent != null && slowedEnemy.Key.agent.enabled)
+                {
+                    slowedEnemy.Key.agent.speed = slowedEnemy.Value;
+                }
+
+                enemiesToRestore.Add(slowedEnemy.Key);
+            }
+        }
+
+        foreach (EnemyController enemy in enemiesToRestore)
+        {
+            slowedEnemies.Remove(enemy);
+        }
+
+        damageTickTimer += Time.deltaTime;
+
+        if (damageTickTimer >= StatsManager.Instance.blueFlareTickRate)
+        {
+            damageTickTimer = 0f;
+
+            int softerDamage = Mathf.Max(1, Mathf.RoundToInt(StatsManager.Instance.blueFlareDamagePerTick * 0.5f));
+
+            foreach (EnemyController enemy in enemiesInRange)
+            {
+                if (enemy != null && !enemy.isDead())
+                {
+                    StartCoroutine(enemy.DamageAgent(softerDamage));
+                }
+            }
+        }
+    }
+
+    void RestoreAllEnemies()
+    {
+        foreach (var slowedEnemy in slowedEnemies)
+        {
+            if (slowedEnemy.Key != null && slowedEnemy.Key.agent != null && slowedEnemy.Key.agent.enabled)
+            {
+                slowedEnemy.Key.agent.speed = slowedEnemy.Value;
+            }
+        }
+
+        slowedEnemies.Clear();
+    }
+
+    void OnDestroy()
+    {
+        RestoreAllEnemies();
     }
 }
