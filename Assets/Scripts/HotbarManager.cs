@@ -18,6 +18,8 @@ public class HotbarManager : MonoBehaviour {
     private bool paused = false;
 
     public Slider swap_slider;
+    public AudioSource audioSource;
+    public AudioClip audioclip;
     
     void Start() {
         if (tools == null || tools.Length < 3) {
@@ -60,6 +62,8 @@ public class HotbarManager : MonoBehaviour {
         if (!(Time.time > last_swap_time + global_swap_time)) return;
         if (active_slot == newSlot) return; 
         
+        audioSource.volume = 0.3f;
+        audioSource.PlayOneShot(audioclip);
         swap_slider.gameObject.SetActive(true);
         swap_slider.value = 0;
         swap_slider.DOValue (1, global_swap_time).SetEase (Ease.Linear).OnComplete(() => swap_slider.gameObject.SetActive(false));

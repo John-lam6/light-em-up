@@ -13,6 +13,10 @@ public class Upgrade : MonoBehaviour
     public GameObject upgradePanel;
     public Transform optionParent;
     public GameObject upgradeOptionPrefab;
+
+    public AudioSource audioSource;
+    public AudioClip audioclip;
+    
     void Awake()
     {
         Instance = this;
@@ -21,8 +25,9 @@ public class Upgrade : MonoBehaviour
 
     void Update()
     {
-        if (StatsManager.Instance.xp >= StatsManager.Instance.xpNeeded)
-        {
+        if (StatsManager.Instance.xp >= StatsManager.Instance.xpNeeded) {
+            audioSource.volume = 0.6f;
+            audioSource.PlayOneShot(audioclip);
             UpgradePlayer();
             StatsManager.Instance.xp -= StatsManager.Instance.xpNeeded;
             StatsManager.Instance.xpNeeded *= 1.5f;

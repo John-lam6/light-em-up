@@ -12,6 +12,9 @@ public class PlayerHealth : MonoBehaviour
     public int currentHealth;
     public float sliderEaseTime = 0.15f;
     
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+    
     // Start is called before the first frame update
     void Start() {
         currentHealth = maxHealth;
@@ -27,6 +30,8 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public IEnumerator Damage(int damage) {
+        audioSource.volume = 0.35f;
+        audioSource.PlayOneShot(audioClip);
         currentHealth -= damage;
         if (currentHealth <= 0) currentHealth = 0;
         

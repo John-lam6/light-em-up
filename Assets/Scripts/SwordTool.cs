@@ -14,6 +14,8 @@ public class SwordTool : MeleeTool
     private float swingClipLength;
 
     private float attackSpeed;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
 
     // Start is called before the first frame update
     protected override void Start()
@@ -26,9 +28,6 @@ public class SwordTool : MeleeTool
 
         cooldown  = swingClipLength / attackSpeed; 
         last_use_time = -cooldown;
-        
-
-
     }
 
     // Update is called once per frame
@@ -36,7 +35,7 @@ public class SwordTool : MeleeTool
     {
         if (!equipped) return; // Only work if sword is equipped
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetMouseButton(0))
             Use();
     }
 
@@ -69,6 +68,8 @@ public class SwordTool : MeleeTool
         
         animator.SetFloat("AttackSpeed", attackSpeed);
         animator.SetTrigger("Swing");
+        audioSource.volume = 0.8f;
+        audioSource.PlayOneShot(audioClip);
     }
 
 }

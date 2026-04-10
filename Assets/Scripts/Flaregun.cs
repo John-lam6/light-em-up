@@ -50,7 +50,7 @@ public class Flaregun : ToolBase
     {
         if (!equipped) return;
 
-        if (Input.GetButtonDown("Fire1") && (anim == null || !anim.isPlaying))
+        if (Input.GetMouseButton(0) && (anim == null || !anim.isPlaying))
         {
             Use();
         }

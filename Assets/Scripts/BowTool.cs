@@ -23,13 +23,11 @@ public class BowTool : RangedTool
     [SerializeField] private float sidewaysSpawnOffset = 0.08f;
 
     private float last_multishot_time = -999f;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
     protected override void Start()
     {
         base.Start();
-
-        audioSource = GetComponent<AudioSource>();
         cooldown = bowHotbarCooldown;
     }
 
@@ -37,10 +35,10 @@ public class BowTool : RangedTool
     {
         if (!equipped) return;
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetMouseButton(0))
             Use();
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetMouseButton(1))
             UseMultiShot();
     }
 
@@ -143,8 +141,10 @@ public class BowTool : RangedTool
             SpawnArrow(spawnPosition, shotDirection);
         }
 
-        if (audioSource != null && shootSound != null)
+        if (audioSource != null && shootSound != null) {
+            audioSource.volume = 0.8f;
             audioSource.PlayOneShot(shootSound);
+        }
     }
 
     void SpawnArrow(Vector3 spawnPosition, Vector3 shotDirection)
