@@ -80,8 +80,10 @@ public class SpawnManager : MonoBehaviour
 
         // pre boss waves
         if (currentWave < numWaves) {
-
-            int enemiesToSpawn = 2 + currentWave * 3;
+            int enemiesToSpawn = 3;
+            if (currLevel == 1) enemiesToSpawn = 2 + currentWave * 3; // 5, 8, 11, 14, 17
+            else if (currLevel == 2) enemiesToSpawn = 7 + currentWave * 3; // 10, 13, 16, 19, 22
+            else if (currLevel == 3) enemiesToSpawn = 6 + currentWave * 4; // 10, 14, 18, 22, 26
             //int enemiesToSpawn = 20;
 
             for (int i = 0; i < enemiesToSpawn; i++) {
@@ -125,14 +127,51 @@ public class SpawnManager : MonoBehaviour
             StartCoroutine(StartNextWave());
         }
         else {
+            int enemiesToSpawn = 3;
+            if (currLevel == 1) enemiesToSpawn = 2 + (2) * 3; // 8
+            else if (currLevel == 2) enemiesToSpawn = 7 + (2) * 3; // 13
+            else if (currLevel == 3) enemiesToSpawn = 6 + (2) * 4; // 14
+            //int enemiesToSpawn = 20;
+
+            for (int i = 0; i < enemiesToSpawn; i++) {
+                int enemyType = GetWeightedEnemyType();
+                GameObject prefab;
+                float interval;
+                if (enemyType == 1) {
+                    prefab = defaultEnemy;
+                    interval = spawnDefaultInterval;
+                }
+                else if (enemyType == 2) {
+                    prefab = rangedEnemy;
+                    interval = spawnRangedInterval;
+                }
+                else {
+                    //if(enemyType == 3) {
+                    prefab = tankEnemy;
+                    interval = spawnTankInterval;
+                }
+
+                Transform spawnPoint = GetValidSpawnPoint();
+                if (spawnPoint != null) {
+                    StartCoroutine(SpawnWithIndicator(prefab, spawnPoint));
+                }
+            }
+
+            GameObject bossPrefab = defaultEnemyBoss;
             switch (currLevel) {
                 case 1:
-                    
+                    bossPrefab = defaultEnemyBoss;
                     break;
                 case 2:
+                    bossPrefab = rangedEnemyBoss;
                     break;
                 case 3:
+                    bossPrefab = tankEnemyBoss;
                     break;
+            }
+            Transform bossSpawnPoint = GetValidSpawnPoint();
+            if (bossSpawnPoint != null) {
+                StartCoroutine(SpawnWithIndicator(bossPrefab, bossSpawnPoint));
             }
         }
     }

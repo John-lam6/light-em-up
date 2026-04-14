@@ -67,6 +67,10 @@ public class EnemyController : MonoBehaviour
     public bool isDead() {
         return dead;
     }
+
+    public int GetHealth() {
+        return currentHealth;
+    }
     
     public IEnumerator DamageAgent(int damage) {
         if (dead) yield break;
