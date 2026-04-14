@@ -98,7 +98,16 @@ https://pixabay.com/sound-effects/film-special-effects-dark-magic-6-378652/
 https://pixabay.com/sound-effects/nature-droplets-in-a-cave-482871/
 https://pixabay.com/sound-effects/film-special-effects-creepy-cave-47164/
 https://pixabay.com/sound-effects/soft-wind-477404/
-https://www.youtube.com/watch?v=o-b5nMCj5hI&list=RDo-b5nMCj5hI&start_radio=1
+https://www.youtube.com/watch?v=o-b5nMCj5hI
 
 Hum atmosphere
 https://www.youtube.com/watch?v=XpDwKwF-d2s
+
+Castle Door
+https://assetstore.unity.com/packages/3d/environments/fantasy/medieval-castle-modular-282498
+
+Key
+https://assetstore.unity.com/packages/3d/props/rust-key-167590
+
+Miniboss Spawn Sound
+https://pixabay.com/sound-effects/film-special-effects-relaxing-music-viking-horn-12-116626/

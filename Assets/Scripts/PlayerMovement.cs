@@ -115,4 +115,13 @@ public class PlayerMovement : MonoBehaviour {
         isDashing = false;
         m_Animator.SetBool("isDashing", false);
     }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DoorCollider"))
+        {
+            Debug.Log("Door collided");
+            // GO NEXT LEVEL ////////////////////////////////////////////////////////////////////////
+        }
+    }
 }
