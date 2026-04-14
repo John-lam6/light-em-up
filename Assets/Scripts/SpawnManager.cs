@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,9 @@ public class SpawnManager : MonoBehaviour
     public GameObject defaultEnemy;
     public GameObject rangedEnemy;
     public GameObject tankEnemy;
+    public GameObject defaultEnemyBoss;
+    public GameObject rangedEnemyBoss;
+    public GameObject tankEnemyBoss;
     public GameObject spawnCircle;
     public GameObject spawnParticle;
 
@@ -20,6 +24,7 @@ public class SpawnManager : MonoBehaviour
 
     public int currentWave = 0;
     private bool isSpawning = false;
+    public int numWaves = 7;
     
     public int default_weight = 50;
     public int ranged_weight = 32;
@@ -27,6 +32,8 @@ public class SpawnManager : MonoBehaviour
     
     public int rangedUnlockWave = 3;
     public int tankUnlockWave = 5;
+
+    public int currLevel = 1;
     
     public float spawnDefaultInterval = 0.15f;
     public float spawnRangedInterval = 0.2f;
@@ -66,50 +73,68 @@ public class SpawnManager : MonoBehaviour
     
     IEnumerator StartNextWave() {
         if (isSpawning) yield break;
-        isSpawning = true;
         
         currentWave++;
-        
-        int enemiesToSpawn = 2 + currentWave * 3;
-        //int enemiesToSpawn = 20;
-        
-        for (int i = 0; i < enemiesToSpawn; i++) {
-            int enemyType = GetWeightedEnemyType();
-            GameObject prefab;
-            float interval;
-            if (enemyType == 1) {
-                prefab = defaultEnemy;
-                interval = spawnDefaultInterval;
-            }
-            else if (enemyType == 2) {
-                prefab = rangedEnemy;
-                interval = spawnRangedInterval;
-            }
-            else {//if(enemyType == 3) {
-                prefab = tankEnemy;
-                interval = spawnTankInterval;
-            }
             
-            Transform spawnPoint = GetValidSpawnPoint();
-            if (spawnPoint != null) {
-                StartCoroutine(SpawnWithIndicator(prefab, spawnPoint));
+        isSpawning = true;
+
+        // pre boss waves
+        if (currentWave < numWaves) {
+
+            int enemiesToSpawn = 2 + currentWave * 3;
+            //int enemiesToSpawn = 20;
+
+            for (int i = 0; i < enemiesToSpawn; i++) {
+                int enemyType = GetWeightedEnemyType();
+                GameObject prefab;
+                float interval;
+                if (enemyType == 1) {
+                    prefab = defaultEnemy;
+                    interval = spawnDefaultInterval;
+                }
+                else if (enemyType == 2) {
+                    prefab = rangedEnemy;
+                    interval = spawnRangedInterval;
+                }
+                else {
+                    //if(enemyType == 3) {
+                    prefab = tankEnemy;
+                    interval = spawnTankInterval;
+                }
+
+                Transform spawnPoint = GetValidSpawnPoint();
+                if (spawnPoint != null) {
+                    StartCoroutine(SpawnWithIndicator(prefab, spawnPoint));
+                }
+
+                yield return new WaitForSeconds(interval);
+
+
+                /*
+                int enemyType = SpawnWeightedEnemy();
+
+                if (enemyType == 1) yield return new WaitForSeconds(spawnDefaultInterval);
+                else if (enemyType == 2) yield return new WaitForSeconds(spawnRangedInterval);
+                else if (enemyType == 3) yield return new WaitForSeconds(spawnTankInterval);
+                //yield return new WaitForSeconds(spawnInterval);
+                */
             }
-            
-            yield return new WaitForSeconds(interval);
 
-
-            /*
-            int enemyType = SpawnWeightedEnemy();
-
-            if (enemyType == 1) yield return new WaitForSeconds(spawnDefaultInterval);
-            else if (enemyType == 2) yield return new WaitForSeconds(spawnRangedInterval);
-            else if (enemyType == 3) yield return new WaitForSeconds(spawnTankInterval);
-            //yield return new WaitForSeconds(spawnInterval);
-            */
+            isSpawning = false;
+            yield return new WaitForSeconds(waveDelay);
+            StartCoroutine(StartNextWave());
         }
-        isSpawning = false;
-        yield return new WaitForSeconds(waveDelay);
-        StartCoroutine(StartNextWave());
+        else {
+            switch (currLevel) {
+                case 1:
+                    
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+            }
+        }
     }
 
     private IEnumerator SpawnWithIndicator(GameObject prefab, Transform spawnPoint) {
