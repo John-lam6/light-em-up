@@ -11,6 +11,7 @@ public class HotbarManager : MonoBehaviour {
     private int active_slot = 0;
     public Color normalColor;
     public Color activeColor;
+    public Color abilityReadyColor = Color.blue;
 
     public float global_swap_time = 0.5f;
     private float last_swap_time;
@@ -20,7 +21,13 @@ public class HotbarManager : MonoBehaviour {
     public Slider swap_slider;
     public AudioSource audioSource;
     public AudioClip audioclip;
-    
+
+    [Header("Ability Slot")]
+    [SerializeField] private GameObject abilitySlotRoot;
+    [SerializeField] private Image abilityIcon;
+    [SerializeField] private Slider abilitySlider;
+    [SerializeField] private TMPro.TMP_Text abilityText;
+        
     void Start() {
         if (tools == null || tools.Length < 3) {
             Debug.Log ("Tools is null or has insufficient number of tools");
@@ -89,5 +96,41 @@ public class HotbarManager : MonoBehaviour {
         Slider slider = slotImages[slot].GetComponentInChildren<Slider>(true);
         if (slider == null) return false;
         return slider.gameObject.activeSelf;
+    }
+
+    public void ShowAbilityCooldown(Sprite icon, float timeRemaining, float maxCooldown)
+    {
+        if (abilitySlotRoot != null && !abilitySlotRoot.activeSelf)
+            abilitySlotRoot.SetActive(true);
+
+        if (abilityIcon != null)
+        {
+            abilityIcon.sprite = icon;
+            abilityIcon.color = abilityReadyColor; // ALWAYS BLUE
+        }
+
+        if (abilitySlider != null)
+        {
+            abilitySlider.gameObject.SetActive(true);
+
+            if (maxCooldown > 0f)
+                abilitySlider.value = 1f - (timeRemaining / maxCooldown);
+            else
+                abilitySlider.value = 1f;
+
+            // also keep slider fill blue always
+            if (abilitySlider.fillRect != null)
+            {
+                Image fillImage = abilitySlider.fillRect.GetComponent<Image>();
+                if (fillImage != null)
+                    fillImage.color = abilityReadyColor;
+            }
+        }
+    }
+
+    public void HideAbilityCooldown()
+    {
+        if (abilitySlotRoot != null)
+            abilitySlotRoot.SetActive(false);
     }
 }

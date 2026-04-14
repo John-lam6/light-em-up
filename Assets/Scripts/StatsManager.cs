@@ -22,7 +22,7 @@ public class StatsManager : MonoBehaviour
     [Header("Flare Upgrade Stats")]
     public float flareRadiusBonus = 0f;
     public bool blueFlareUnlocked = false;
-    public float blueFlareCooldown = 5f;
+    public float blueFlareCooldown = 20f;
     public float blueFlareSlowMultiplier = 0.85f;
     public float blueFlareDamagePerTick = 1f;
     public float blueFlareTickRate = 1f;

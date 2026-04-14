@@ -21,10 +21,13 @@ public class BowTool : RangedTool
     [Header("Arrow Spawn Tuning")]
     [SerializeField] private float forwardSpawnOffset = 0.6f;
     [SerializeField] private float sidewaysSpawnOffset = 0.08f;
+    
 
     private float last_multishot_time = -999f;
     public AudioSource audioSource;
     private Animator anim;
+
+    public Sprite multishotIcon;
 
     protected override void Start()
     {
@@ -35,13 +38,19 @@ public class BowTool : RangedTool
 
     void Update()
     {
-        if (!equipped) return;
+        if (!equipped)
+        {
+            HideAbilityUI();
+            return;
+        }
 
         if (Input.GetMouseButton(0))
             Use();
 
         if (Input.GetMouseButton(1))
             UseMultiShot();
+
+        UpdateAbilityUI();
     }
 
     public override void Equip()
@@ -53,6 +62,10 @@ public class BowTool : RangedTool
     public override void Unequip()
     {
         equipped = false;
+
+        if (hotbar != null)
+            hotbar.HideAbilityCooldown();
+
         gameObject.SetActive(false);
     }
 
@@ -199,5 +212,30 @@ public class BowTool : RangedTool
         {
             Physics.IgnoreCollision(arrowCol, bowCol);
         }
+    }
+
+    void UpdateAbilityUI()
+    {
+        if (hotbar == null || StatsManager.Instance == null) return;
+
+        bool show = equipped && StatsManager.Instance.bowArrowsPerShot > 1;
+
+        if (!show)
+        {
+            hotbar.HideAbilityCooldown();
+            return;
+        }
+
+        float cooldown = StatsManager.Instance.bowMultishotCooldown;
+        float timeRemaining = Mathf.Max(0f, (last_multishot_time + cooldown) - Time.time);
+
+        hotbar.ShowAbilityCooldown(multishotIcon, timeRemaining, cooldown);
+    }
+
+
+    void HideAbilityUI()
+    {
+        if (hotbar != null)
+            hotbar.HideAbilityCooldown();
     }
 }

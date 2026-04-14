@@ -24,6 +24,9 @@ public class Flaregun : ToolBase
 
     [Header("Shared Visible Cooldown")]
     [SerializeField] private float flareHotbarCooldown = 5f;
+    
+    [Header("Ability Slot UI")]
+    public Sprite blueFlareIcon;
 
     private Animation anim;
     private AudioSource audioSource;
@@ -52,7 +55,11 @@ public class Flaregun : ToolBase
 
     void Update()
     {
-        if (!equipped) return;
+        if (!equipped)
+        {
+            HideAbilityUI();
+            return;
+        }
 
         if (Input.GetMouseButton(0))
         {
@@ -63,6 +70,8 @@ public class Flaregun : ToolBase
         {
             UseBlueFlare();
         }
+
+        UpdateAbilityUI();
     }
 
     public override void Equip()
@@ -74,6 +83,10 @@ public class Flaregun : ToolBase
     public override void Unequip()
     {
         equipped = false;
+
+        if (hotbar != null)
+            hotbar.HideAbilityCooldown();
+
         gameObject.SetActive(false);
     }
 
@@ -165,5 +178,29 @@ public class Flaregun : ToolBase
             flareScript.targetPoint = targetPoint;
             flareScript.isBlueFlare = isBlueFlare;
         }
+    }
+
+    void UpdateAbilityUI()
+    {
+        if (hotbar == null || StatsManager.Instance == null) return;
+
+        bool show = equipped && StatsManager.Instance.blueFlareUnlocked;
+
+        if (!show)
+        {
+            hotbar.HideAbilityCooldown();
+            return;
+        }
+
+        float cooldown = StatsManager.Instance.blueFlareCooldown;
+        float timeRemaining = Mathf.Max(0f, (last_blue_flare_time + cooldown) - Time.time);
+
+        hotbar.ShowAbilityCooldown(blueFlareIcon, timeRemaining, cooldown);
+    }
+
+    void HideAbilityUI()
+    {
+        if (hotbar != null)
+            hotbar.HideAbilityCooldown();
     }
 }

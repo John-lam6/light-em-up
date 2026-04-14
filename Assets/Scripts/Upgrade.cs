@@ -95,7 +95,25 @@ public class Upgrade : MonoBehaviour
         Transform iconT = option.transform.Find("Icon");
 
         option.transform.Find("Name").GetComponent<TMP_Text>().text = data.upgradeName;
-        option.transform.Find("Description").GetComponent<TMP_Text>().text = data.description + $"increase by {data.value}";
+
+        TMP_Text descText = option.transform.Find("Description").GetComponent<TMP_Text>();
+
+        if (data.id == 8)
+        {
+            if (StatsManager.Instance != null && !StatsManager.Instance.blueFlareUnlocked)
+            {
+                descText.text = "Unlock blue flare";
+            }
+            else
+            {
+                descText.text = data.description + $" increase by {data.value}";
+            }
+        }
+        else
+        {
+            descText.text = data.description + $" increase by {data.value}";
+        }
+
         option.transform.Find("Icon").GetComponent<Image>().sprite = data.icon;
 
         option.GetComponent<Button>().onClick.AddListener(() =>
@@ -150,8 +168,15 @@ public class Upgrade : MonoBehaviour
                 StatsManager.Instance.flareRadiusBonus += data.value;
                 break;
 
-            case 8: // blue flare unlock
-                StatsManager.Instance.blueFlareUnlocked = true;
+            case 8: // blue flare unlock first, then increase damage
+                if (!StatsManager.Instance.blueFlareUnlocked)
+                {
+                    StatsManager.Instance.blueFlareUnlocked = true;
+                }
+                else
+                {
+                    StatsManager.Instance.blueFlareDamagePerTick += data.value;
+                }
                 break;
         }
     }
