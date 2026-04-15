@@ -44,6 +44,8 @@ public class PlayerMovement : MonoBehaviour {
 
 
     void Update() {
+        if (Time.timeScale == 0f) return;
+
         if (canMove) {
             if (isDashing) return; // if it is dashing, prevent any new inputs
             
@@ -62,9 +64,19 @@ public class PlayerMovement : MonoBehaviour {
                 last_dash_time = Time.time;
                 canDash = false;
                 StartCoroutine(Dash());
-                dash_slider.gameObject.SetActive(true);
-                dash_slider.value = 0;
-                dash_slider.DOValue (1, dash_cooldown).SetEase (Ease.Linear).OnComplete(() => dash_slider.gameObject.SetActive(false));
+
+                if (dash_slider != null) {
+                    dash_slider.DOKill();
+                    dash_slider.gameObject.SetActive(true);
+                    dash_slider.value = 0;
+                    dash_slider.DOValue(1, dash_cooldown)
+                        .SetEase(Ease.Linear)
+                        .OnComplete(() => {
+                            if (dash_slider != null) {
+                                dash_slider.gameObject.SetActive(false);
+                            }
+                        });
+                }
             }
 
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -73,13 +85,22 @@ public class PlayerMovement : MonoBehaviour {
             if (Physics.Raycast(ray, out hit)) {
                 Vector3 lookDir = hit.point - transform.position;
                 lookDir.y = 0;
-                Quaternion rotation = Quaternion.LookRotation(lookDir);
-                transform.rotation = rotation;
+
+                if (lookDir.sqrMagnitude > 0.001f) {
+                    Quaternion rotation = Quaternion.LookRotation(lookDir);
+                    transform.rotation = rotation;
+                }
             }
         }
     }
     
     void FixedUpdate() {
+        if (!canMove || Time.timeScale == 0f) {
+            m_Rigidbody.velocity = new Vector3(0f, m_Rigidbody.velocity.y, 0f);
+            m_Animator.SetBool("isRunning", false);
+            return;
+        }
+
         Vector3 moveDir = new Vector3(movementX, 0, movementY).normalized;
         
         if (!isDashing) {
@@ -114,6 +135,12 @@ public class PlayerMovement : MonoBehaviour {
         yield return new WaitForSeconds(dash_duration);
         isDashing = false;
         m_Animator.SetBool("isDashing", false);
+    }
+
+    void OnDestroy() {
+        if (dash_slider != null) {
+            dash_slider.DOKill();
+        }
     }
     
     void OnTriggerEnter(Collider other)

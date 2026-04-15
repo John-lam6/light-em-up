@@ -20,23 +20,46 @@ public class Upgrade : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        upgradePanel.SetActive(false);
+
+        if (upgradePanel != null)
+        {
+            upgradePanel.SetActive(false);
+        }
     }
 
     void Update()
     {
+        if (StatsManager.Instance == null) return;
+        if (upgradePanel == null) return;
+        if (optionParent == null) return;
+        if (upgradeOptionPrefab == null) return;
+
+        if (GameEndManager.Instance != null && GameEndManager.Instance.IsGameEnded())
+            return;
+
+        if (Time.timeScale == 0f && !upgradePanel.activeSelf)
+            return;
+
         if (StatsManager.Instance.xp >= StatsManager.Instance.xpNeeded) {
-            audioSource.volume = 0.6f;
-            audioSource.PlayOneShot(audioclip);
+            if (audioSource != null && audioclip != null)
+            {
+                audioSource.volume = 0.6f;
+                audioSource.PlayOneShot(audioclip);
+            }
+
             UpgradePlayer();
             StatsManager.Instance.xp -= StatsManager.Instance.xpNeeded;
             StatsManager.Instance.xpNeeded *= 1.5f;
         }
     }
+
     public void UpgradePlayer()
     {
+        if (upgrades == null || upgrades.Length < 3) return;
+
         List<UpgradeData> availableUpgrades = new List<UpgradeData>(upgrades);
         List<UpgradeData> selectedUpgrades = new List<UpgradeData>();
+
         for (int i = 0; i < 3; i++)
         {
             int upgradeIndex = Random.Range(0, availableUpgrades.Count);
@@ -65,8 +88,10 @@ public class Upgrade : MonoBehaviour
             selectedUpgrades.Add(randomUpgrade);
             availableUpgrades.RemoveAt(upgradeIndex);
         }
+
         upgradePanel.SetActive(true);
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
         ShowUpgrades(selectedUpgrades);
     }
@@ -77,10 +102,14 @@ public class Upgrade : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+
         foreach (UpgradeData upgrade in availableUpgrades)
         {
             Debug.Log(upgrade);
         }
+
+        if (availableUpgrades.Count < 3) return;
+
         CreateOption(availableUpgrades[0]);
         CreateOption(availableUpgrades[1]);
         CreateOption(availableUpgrades[2]);
@@ -94,9 +123,24 @@ public class Upgrade : MonoBehaviour
         Transform descT = option.transform.Find("Description");
         Transform iconT = option.transform.Find("Icon");
 
-        option.transform.Find("Name").GetComponent<TMP_Text>().text = data.upgradeName;
+        if (nameT == null || descT == null || iconT == null)
+        {
+            Debug.LogWarning("Upgrade option prefab is missing Name, Description, or Icon child.");
+            return;
+        }
 
-        TMP_Text descText = option.transform.Find("Description").GetComponent<TMP_Text>();
+        TMP_Text nameText = nameT.GetComponent<TMP_Text>();
+        TMP_Text descText = descT.GetComponent<TMP_Text>();
+        Image iconImage = iconT.GetComponent<Image>();
+        Button optionButton = option.GetComponent<Button>();
+
+        if (nameText == null || descText == null || iconImage == null || optionButton == null)
+        {
+            Debug.LogWarning("Upgrade option prefab is missing TMP_Text, Image, or Button component.");
+            return;
+        }
+
+        nameText.text = data.upgradeName;
 
         if (data.id == 8)
         {
@@ -114,9 +158,10 @@ public class Upgrade : MonoBehaviour
             descText.text = data.description + $" increase by {data.value}";
         }
 
-        option.transform.Find("Icon").GetComponent<Image>().sprite = data.icon;
+        iconImage.sprite = data.icon;
 
-        option.GetComponent<Button>().onClick.AddListener(() =>
+        optionButton.onClick.RemoveAllListeners();
+        optionButton.onClick.AddListener(() =>
         {
             ApplyUpgrade(data);
             upgradePanel.SetActive(false);
@@ -126,6 +171,7 @@ public class Upgrade : MonoBehaviour
 
     void ApplyUpgrade(UpgradeData data)
     {
+        if (StatsManager.Instance == null) return;
 
         switch (data.id)
         {

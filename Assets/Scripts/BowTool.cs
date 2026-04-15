@@ -38,6 +38,8 @@ public class BowTool : RangedTool
 
     void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         if (!equipped)
         {
             HideAbilityUI();

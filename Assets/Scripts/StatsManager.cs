@@ -6,6 +6,33 @@ public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance;
 
+    [Header("Default Combat Stats")]
+    public float defaultSwordDamage;
+    public float defaultSwordRange;
+    public float defaultSwordAttackSpeed;
+    public float defaultBowDamage;
+    public float defaultBowAttackSpeed;
+
+    [Header("Default Bow Upgrade Stats")]
+    public int defaultBowArrowsPerShot = 1;
+    public int defaultBowPierceCount = 0;
+    public float defaultBowAngleBetweenArrows = 0f;
+    public float defaultBowMultishotCooldown = 3f;
+
+    [Header("Default Flare Upgrade Stats")]
+    public float defaultFlareRadiusBonus = 0f;
+    public float defaultBlueFlareCooldown = 20f;
+    public float defaultBlueFlareSlowMultiplier = 0.85f;
+    public float defaultBlueFlareDamagePerTick = 1f;
+    public float defaultBlueFlareTickRate = 1f;
+
+    [Header("Default Player Stats")]
+    public float defaultMoveSpeed;
+    public float defaultMaxHealth;
+    public float defaultHpRegen;
+    public float defaultXpNeeded = 10f;
+    public float defaultLevel = 1f;
+
     [Header("Combat Stats")]
     public float swordDamage;
     public float swordRange;
@@ -41,14 +68,58 @@ public class StatsManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
+            return;
         }
+
+        ResetForNewRun();
+    }
+
+    public void ResetForNewRun()
+    {
+        // keep permanent ability unlock booleans
+        bool savedBlueFlareUnlocked = blueFlareUnlocked;
+
+        // combat
+        swordDamage = defaultSwordDamage;
+        swordRange = defaultSwordRange;
+        swordAttackSpeed = defaultSwordAttackSpeed;
+        bowDamage = defaultBowDamage;
+        bowAttackSpeed = defaultBowAttackSpeed;
+
+        // bow upgrades
+        bowArrowsPerShot = defaultBowArrowsPerShot;
+        bowPierceCount = defaultBowPierceCount;
+        bowAngleBetweenArrows = defaultBowAngleBetweenArrows;
+        bowMultishotCooldown = defaultBowMultishotCooldown;
+
+        // flare upgrades
+        flareRadiusBonus = defaultFlareRadiusBonus;
+        blueFlareCooldown = defaultBlueFlareCooldown;
+        blueFlareSlowMultiplier = defaultBlueFlareSlowMultiplier;
+        blueFlareDamagePerTick = defaultBlueFlareDamagePerTick;
+        blueFlareTickRate = defaultBlueFlareTickRate;
+
+        // restore permanent unlock
+        blueFlareUnlocked = savedBlueFlareUnlocked;
+
+        // player
+        moveSpeed = defaultMoveSpeed;
+        maxHealth = defaultMaxHealth;
+        curHealth = maxHealth;
+        hpRegen = defaultHpRegen;
+
+        // misc
+        xp = 0f;
+        xpNeeded = defaultXpNeeded; //for level up
+        level = defaultLevel;
+        totalKilled = 0f;
     }
 }

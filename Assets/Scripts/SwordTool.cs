@@ -33,6 +33,8 @@ public class SwordTool : MeleeTool
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         if (!equipped) return; // Only work if sword is equipped
 
         if (Input.GetMouseButton(0))
