@@ -4900,7 +4900,7 @@ GameObject:
   - component: {fileID: 8112566083446753113}
   - component: {fileID: 2412979247287963725}
   m_Layer: 0
-  m_Name: vfx_Shockwave_Spawn
+  m_Name: vfx_Shockwave_Spawn BOSS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4916,8 +4916,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 8, y: 8, z: 8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8621068985409419601}
   m_Father: {fileID: 0}
@@ -5112,7 +5112,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.25521502, b: 0.05098039, a: 1}
+      maxColor: {r: 1, g: 0.05098039, b: 0.53607076, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

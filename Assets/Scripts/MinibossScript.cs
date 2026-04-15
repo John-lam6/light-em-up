@@ -29,6 +29,8 @@ public class MinibossScript : MonoBehaviour
     }
 
     private void SpawnKey() {
-        Instantiate (key, transform.position, Quaternion.Euler(0,0,0));
+        Collider col = GetComponent<Collider>();
+        Vector3 feetPosition = col.bounds.min;
+        Instantiate (key, feetPosition + new Vector3(0,1,0), Quaternion.Euler(0,0,0));
     }
 }

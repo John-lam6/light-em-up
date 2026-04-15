@@ -16,6 +16,8 @@ public class SpawnManager : MonoBehaviour
     public GameObject tankEnemyBoss;
     public GameObject spawnCircle;
     public GameObject spawnParticle;
+    public GameObject bossSpawnCircle;
+    public GameObject bossSpawnParticle;
 
     public Transform spawnPointParent;
     public List<Transform> spawnPoints = new List<Transform>();
@@ -171,14 +173,17 @@ public class SpawnManager : MonoBehaviour
             }
             Transform bossSpawnPoint = GetValidSpawnPoint();
             if (bossSpawnPoint != null) {
-                StartCoroutine(SpawnWithIndicator(bossPrefab, bossSpawnPoint));
+                StartCoroutine(SpawnWithIndicator(bossPrefab, bossSpawnPoint, true));
             }
         }
     }
 
-    private IEnumerator SpawnWithIndicator(GameObject prefab, Transform spawnPoint) {
+    private IEnumerator SpawnWithIndicator(GameObject prefab, Transform spawnPoint, bool isBoss=false) {
+        GameObject circle;
         
-        GameObject circle = Instantiate (spawnCircle, spawnPoint.position, spawnPoint.rotation);
+        if (!isBoss) circle = Instantiate (spawnCircle, spawnPoint.position, spawnPoint.rotation);
+        else circle = Instantiate (bossSpawnCircle, spawnPoint.position, spawnPoint.rotation);
+        
         Image image = circle.GetComponentInChildren<Image> ();
         Renderer[] renderers = circle.GetComponentsInChildren<Renderer>();
 
@@ -198,10 +203,15 @@ public class SpawnManager : MonoBehaviour
         Destroy(circle);
         
         yield return new WaitForSeconds(0.1f);
-        
-        Instantiate(spawnParticle, spawnPoint.position + new Vector3(0,0.5f,0),  Quaternion.Euler(0,0,0));
-        Instantiate (prefab, spawnPoint.position, spawnPoint.rotation);
-        
+
+        if (!isBoss) {
+            Instantiate(spawnParticle, spawnPoint.position + new Vector3(0, 0.5f, 0), Quaternion.Euler(0, 0, 0));
+            Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+        }
+        else {
+            Instantiate(bossSpawnParticle, spawnPoint.position + new Vector3(0, 0.5f, 0), Quaternion.Euler(0, 0, 0));
+            Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+        }
     }
 
     private Transform GetValidSpawnPoint() {

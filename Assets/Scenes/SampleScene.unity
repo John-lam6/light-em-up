@@ -8305,6 +8305,8 @@ MonoBehaviour:
   tankEnemyBoss: {fileID: 7693940407407726103, guid: 97e41754b08bad94aa3d2f1de98c942e, type: 3}
   spawnCircle: {fileID: 5852303509843267360, guid: 67913420382fb9a4b8f77efdca524c37, type: 3}
   spawnParticle: {fileID: 5270664905476744939, guid: e971a8e670d072a40915253760ca3d3d, type: 3}
+  bossSpawnCircle: {fileID: 5852303509843267360, guid: 36923b2d82b5c57458f33931a1813242, type: 3}
+  bossSpawnParticle: {fileID: 5270664905476744939, guid: d739c5bf68f3d66449b4ecc6cae45496, type: 3}
   spawnPointParent: {fileID: 75255387}
   spawnPoints: []
   spawnInterval: 0.15
@@ -8314,8 +8316,8 @@ MonoBehaviour:
   default_weight: 50
   ranged_weight: 32
   tank_weight: 18
-  rangedUnlockWave: 3
-  tankUnlockWave: 5
+  rangedUnlockWave: 2
+  tankUnlockWave: 3
   currLevel: 1
   spawnDefaultInterval: 0.15
   spawnRangedInterval: 0.2
@@ -21035,15 +21037,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 163870698297769286, guid: 643efefdca72cc04ca303b70299ac004, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.22
+      value: 12.03
       objectReference: {fileID: 0}
     - target: {fileID: 163870698297769286, guid: 643efefdca72cc04ca303b70299ac004, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.18
+      value: 0.28999996
       objectReference: {fileID: 0}
     - target: {fileID: 163870698297769286, guid: 643efefdca72cc04ca303b70299ac004, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.51
+      value: 22.429998
       objectReference: {fileID: 0}
     - target: {fileID: 163870698297769286, guid: 643efefdca72cc04ca303b70299ac004, type: 3}
       propertyPath: m_LocalRotation.w
@@ -21622,15 +21624,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5480645318927649384, guid: 979a647151237734c935c1cc71b19c8a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.27
+      value: 12.080001
       objectReference: {fileID: 0}
     - target: {fileID: 5480645318927649384, guid: 979a647151237734c935c1cc71b19c8a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.05
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 5480645318927649384, guid: 979a647151237734c935c1cc71b19c8a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.88
+      value: 19.8
       objectReference: {fileID: 0}
     - target: {fileID: 5480645318927649384, guid: 979a647151237734c935c1cc71b19c8a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -22056,7 +22058,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5213258419480106706, guid: 5d6132988fee98a4da687235dfc9484f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5789366502561680945, guid: 5d6132988fee98a4da687235dfc9484f, type: 3}
       propertyPath: m_LocalPosition.x

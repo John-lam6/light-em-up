@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 6Pierce
   m_EditorClassIdentifier: 
   id: 6
-  upgradeName: Perice Up
+  upgradeName: Pierce Up
   description: 
   icon: {fileID: 0}
   valueRange: []
