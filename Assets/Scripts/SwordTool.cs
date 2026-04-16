@@ -11,6 +11,9 @@ public class SwordTool : MeleeTool
     [SerializeField] private Animator animator;
     [SerializeField] private SwordHitbox hitbox;
 
+    [Header("Ability UI")]
+    public Sprite berzerkIcon;
+
     private float swingClipLength;
     private float berzerkCooldown = 30f;
     private float berzerk_last_use_time = -999f;
@@ -36,7 +39,11 @@ public class SwordTool : MeleeTool
     {
         if (Time.timeScale == 0f) return;
 
-        if (!equipped) return; // Only work if sword is equipped
+        if (!equipped)
+        {
+            HideAbilityUI();
+            return;
+        }
 
         if (Input.GetMouseButton(0))
             Use();
@@ -46,6 +53,8 @@ public class SwordTool : MeleeTool
             {
                 UseSecondary();
             }
+
+        UpdateAbilityUI();
     }
 
     public override void Equip()
@@ -58,6 +67,10 @@ public class SwordTool : MeleeTool
     public override void Unequip()
     {
         equipped = false;
+
+        if (hotbar != null)
+            hotbar.HideAbilityCooldown();
+
         gameObject.SetActive(false);
     }
 
@@ -94,6 +107,7 @@ public class SwordTool : MeleeTool
         StartCoroutine(TemporaryAttackSpeedBoost(10f));
 
     }
+
     IEnumerator TemporaryAttackSpeedBoost(float duration)
     {
         Debug.Log("Sword Berzerk Activated!");
@@ -104,5 +118,28 @@ public class SwordTool : MeleeTool
         yield return new WaitForSeconds(duration);
 
         StatsManager.Instance.swordAttackSpeed = StatsManager.Instance.swordAttackSpeed/2;
+    }
+
+    void UpdateAbilityUI()
+    {
+        if (hotbar == null || StatsManager.Instance == null) return;
+
+        bool show = equipped && StatsManager.Instance.swordUpgradeUnlocked;
+
+        if (!show)
+        {
+            hotbar.HideAbilityCooldown();
+            return;
+        }
+
+        float timeRemaining = Mathf.Max(0f, (berzerk_last_use_time + berzerkCooldown) - Time.time);
+
+        hotbar.ShowAbilityCooldown(berzerkIcon, timeRemaining, berzerkCooldown);
+    }
+
+    void HideAbilityUI()
+    {
+        if (hotbar != null)
+            hotbar.HideAbilityCooldown();
     }
 }

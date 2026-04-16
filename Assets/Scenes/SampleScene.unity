@@ -1002,6 +1002,7 @@ MonoBehaviour:
   hotbarSlotIndex: 0
   animator: {fileID: 322053294}
   hitbox: {fileID: 1336591038}
+  berzerkIcon: {fileID: 21300000, guid: aef137737c4a7964c9cb60d1bc89a4a0, type: 3}
   audioSource: {fileID: 402985218}
   audioClip: {fileID: 8300000, guid: baf44597c519a3249be431f439096b6f, type: 3}
 --- !u!1 &138566164
