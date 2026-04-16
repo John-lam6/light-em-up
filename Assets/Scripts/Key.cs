@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Key : MonoBehaviour {
-    public GameObject door;
-    public GameObject doubledoor;
-    public Collider doorCollider;
-
-    private Door doorscript;
+    private Collider doorCollider;
+    private Door door;
     void Start()
     {
-        doorscript = door.GetComponent<Door>();
-        doorCollider = doubledoor.GetComponent<Collider>();
+        door = GameObject.Find("Door").GetComponent<Door>();
+        doorCollider = GameObject.Find("Double Door Frame").GetComponent<Collider>();
 
         doorCollider.enabled = false;
     }
@@ -20,7 +17,7 @@ public class Key : MonoBehaviour {
         if(collider.CompareTag("Player"))
         {
             doorCollider.enabled = true;
-            doorscript.turnOnLight();
+            door.turnOnLight();
             Destroy(gameObject);
         }
     }

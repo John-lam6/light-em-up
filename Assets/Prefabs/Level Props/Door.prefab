@@ -142,6 +142,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorLight: {fileID: 1356187184711697133}
+  spawnManager: {fileID: 0}
+  levelLoader: {fileID: 0}
 --- !u!1 &8232185319822253342
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,6 +1057,10 @@ PrefabInstance:
     - target: {fileID: 3380261333905185100, guid: 0b52eea75f6c8d04abacc504f9570dc6, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987662400907556126, guid: 0b52eea75f6c8d04abacc504f9570dc6, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8398543115139028837, guid: 0b52eea75f6c8d04abacc504f9570dc6, type: 3}
       propertyPath: m_LocalPosition.y

@@ -147,8 +147,8 @@ public class PlayerMovement : MonoBehaviour {
     {
         if (other.CompareTag("DoorCollider"))
         {
-            Debug.Log("Door collided");
-            // GO NEXT LEVEL ////////////////////////////////////////////////////////////////////////
+            Door door = other.transform.parent.GetComponent<Door>();
+            door.LoadNextLevel();
         }
     }
 }

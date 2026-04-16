@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour {
     public Light doorLight;
-    
+    [SerializeField] private SpawnManager spawnManager;
+    [SerializeField] private LevelLoader levelLoader;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,4 +19,10 @@ public class Door : MonoBehaviour {
     public void turnOffLight() {
         doorLight.enabled = false;
     }
+
+    public void LoadNextLevel()
+    {
+        spawnManager.currLevel++;
+        levelLoader.LoadLevel(spawnManager.currLevel);
+    } 
 }
