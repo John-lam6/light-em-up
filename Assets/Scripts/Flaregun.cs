@@ -70,7 +70,10 @@ public class Flaregun : ToolBase
 
         if (Input.GetMouseButton(1))
         {
-            UseBlueFlare();
+            if(StatsManager.Instance != null && StatsManager.Instance.blueFlareUnlocked)
+            {
+                UseBlueFlare();
+            }
         }
 
         UpdateAbilityUI();

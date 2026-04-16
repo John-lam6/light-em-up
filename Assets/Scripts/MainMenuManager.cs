@@ -5,6 +5,7 @@ public class MainMenuManager : MonoBehaviour
 {
     [Header("Scene Names")]
     [SerializeField] private string firstLevelSceneName = "SampleScene";
+    [SerializeField] private string upgradeSceneName = "UpgradeScene";
 
     void Start()
     {
@@ -26,6 +27,17 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.LoadScene(firstLevelSceneName);
     }
 
+    public void Upgrade()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        SceneManager.LoadScene(upgradeSceneName);
+    }
+
+    public void Back()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     public void QuitGame()
     {
         Application.Quit();

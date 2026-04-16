@@ -62,7 +62,29 @@ public class Upgrade : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            int upgradeIndex = Random.Range(0, availableUpgrades.Count);
+            int upgradeIndex = Random.Range(2, availableUpgrades.Count);
+
+            if (upgradeIndex == 5)
+            {
+                if (StatsManager.Instance != null && !StatsManager.Instance.bowMultishotUnlocked)
+                {
+                    while (upgradeIndex == 5)
+                    {
+                        upgradeIndex = Random.Range(2, availableUpgrades.Count);
+                    }
+                }
+            }
+
+            if (upgradeIndex == 8)
+            {
+                if (StatsManager.Instance != null && !StatsManager.Instance.blueFlareUnlocked)
+                {
+                    while (upgradeIndex == 8)
+                    {
+                        upgradeIndex = Random.Range(2, availableUpgrades.Count);
+                    }
+                }
+            }
 
             UpgradeData randomUpgrade = availableUpgrades[upgradeIndex];
 
@@ -144,14 +166,11 @@ public class Upgrade : MonoBehaviour
 
         if (data.id == 8)
         {
-            if (StatsManager.Instance != null && !StatsManager.Instance.blueFlareUnlocked)
-            {
-                descText.text = "Unlock blue flare";
-            }
-            else
-            {
-                descText.text = data.description + $" increase by {data.value}";
-            }
+            descText.text = data.description + $" increase blue flare damage by {data.value}";
+        }
+        else if (data.isPercentage)
+        {
+            descText.text = data.description + $" increase by {(data.value-1)*100}%";
         }
         else
         {
@@ -175,15 +194,6 @@ public class Upgrade : MonoBehaviour
 
         switch (data.id)
         {
-            case 0:
-                StatsManager.Instance.maxHealth += data.value;
-                StatsManager.Instance.curHealth += data.value;
-                break;
-
-            case 1:
-                StatsManager.Instance.swordAttackSpeed *= data.value;
-                break;
-
             case 2:
                 StatsManager.Instance.moveSpeed += data.value;
                 break;
@@ -215,14 +225,7 @@ public class Upgrade : MonoBehaviour
                 break;
 
             case 8: // blue flare unlock first, then increase damage
-                if (!StatsManager.Instance.blueFlareUnlocked)
-                {
-                    StatsManager.Instance.blueFlareUnlocked = true;
-                }
-                else
-                {
-                    StatsManager.Instance.blueFlareDamagePerTick += data.value;
-                }
+                StatsManager.Instance.blueFlareDamagePerTick += data.value;
                 break;
         }
     }

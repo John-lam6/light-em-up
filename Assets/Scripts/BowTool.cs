@@ -50,7 +50,10 @@ public class BowTool : RangedTool
             Use();
 
         if (Input.GetMouseButton(1))
-            UseMultiShot();
+            if(StatsManager.Instance != null && StatsManager.Instance.bowMultishotUnlocked)
+            {
+                UseMultiShot();
+            }
 
         UpdateAbilityUI();
     }

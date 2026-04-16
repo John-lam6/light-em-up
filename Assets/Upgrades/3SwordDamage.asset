@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3SwordDamage
   m_EditorClassIdentifier: 
   id: 3
-  upgradeName: DMG Up
+  upgradeName: Sword DMG Up
   description: 
   icon: {fileID: 0}
   valueRange:

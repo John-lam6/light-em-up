@@ -9,7 +9,7 @@ public class PlayerHealth : MonoBehaviour
     public TMP_Text healthText;
     public Slider healthSlider;
 
-    public int maxHealth = 8;
+    public int maxHealth;
     public int currentHealth;
     public float sliderEaseTime = 0.15f;
     
@@ -18,12 +18,11 @@ public class PlayerHealth : MonoBehaviour
     
     // Start is called before the first frame update
     void Start() {
-        currentHealth = maxHealth;
-
         if (StatsManager.Instance != null) {
-            StatsManager.Instance.maxHealth = maxHealth;
-            StatsManager.Instance.curHealth = currentHealth;
+            maxHealth = StatsManager.Instance.maxHealth;
+            currentHealth = StatsManager.Instance.curHealth;
         }
+        currentHealth = maxHealth;
     }
 
     void Update() {

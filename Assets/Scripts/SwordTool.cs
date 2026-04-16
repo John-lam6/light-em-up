@@ -12,7 +12,8 @@ public class SwordTool : MeleeTool
     [SerializeField] private SwordHitbox hitbox;
 
     private float swingClipLength;
-
+    private float berzerkCooldown = 30f;
+    private float berzerk_last_use_time = -999f;
     private float attackSpeed;
     public AudioSource audioSource;
     public AudioClip audioClip;
@@ -39,6 +40,12 @@ public class SwordTool : MeleeTool
 
         if (Input.GetMouseButton(0))
             Use();
+
+        if (Input.GetMouseButton(1))
+            if(StatsManager.Instance != null && StatsManager.Instance.swordUpgradeUnlocked)
+            {
+                UseSecondary();
+            }
     }
 
     public override void Equip()
@@ -74,4 +81,28 @@ public class SwordTool : MeleeTool
         audioSource.PlayOneShot(audioClip);
     }
 
+    void UseSecondary()
+    {
+        if (!equipped) return;
+        if (Time.time < berzerk_last_use_time + berzerkCooldown) return;
+
+        berzerk_last_use_time = Time.time;
+        if (hotbar != null)
+        {
+            hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));
+        }
+        StartCoroutine(TemporaryAttackSpeedBoost(10f));
+
+    }
+    IEnumerator TemporaryAttackSpeedBoost(float duration)
+    {
+        Debug.Log("Sword Berzerk Activated!");
+        if (StatsManager.Instance == null) yield break;
+
+        StatsManager.Instance.swordAttackSpeed *= 2;
+
+        yield return new WaitForSeconds(duration);
+
+        StatsManager.Instance.swordAttackSpeed = StatsManager.Instance.swordAttackSpeed/2;
+    }
 }

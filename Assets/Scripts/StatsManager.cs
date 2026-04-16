@@ -6,10 +6,11 @@ public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance;
 
+    private int totalPermUpgradeIDs = 12;
+
     [Header("Default Combat Stats")]
-    public float defaultSwordDamage;
-    public float defaultSwordRange;
-    public float defaultSwordAttackSpeed;
+    public float defaultSwordDamage = 20f;
+    public float defaultSwordAttackSpeed = 1f;
     public float defaultBowDamage;
     public float defaultBowAttackSpeed;
 
@@ -28,14 +29,14 @@ public class StatsManager : MonoBehaviour
 
     [Header("Default Player Stats")]
     public float defaultMoveSpeed;
-    public float defaultMaxHealth;
-    public float defaultHpRegen;
+    public int defaultMaxHealth = 100;
+    public int defaultHpRegen = 0;
     public float defaultXpNeeded = 10f;
     public float defaultLevel = 1f;
 
-    [Header("Combat Stats")]
+    [Header("Sword Stats")]
     public float swordDamage;
-    public float swordRange;
+    public bool swordUpgradeUnlocked = false;
     public float swordAttackSpeed;
     public float bowDamage;
     public float bowAttackSpeed;
@@ -43,6 +44,7 @@ public class StatsManager : MonoBehaviour
     [Header("Bow Upgrade Stats")]
     public int bowArrowsPerShot = 1;
     public int bowPierceCount = 0;
+    public bool bowMultishotUnlocked = false;
     public float bowAngleBetweenArrows = 0f;
     public float bowMultishotCooldown = 3f;
 
@@ -56,15 +58,16 @@ public class StatsManager : MonoBehaviour
 
     [Header("Player Stats")]
     public float moveSpeed;
-    public float maxHealth;
-    public float curHealth;
-    public float hpRegen;
+    public int maxHealth;
+    public int curHealth;
+    public int hpRegen;
 
     [Header("Misc")]
     public float xp;
     public float xpNeeded; //for level up
     public float level;
     public float totalKilled;
+    public int currency = 9999;
 
     private void Awake()
     {
@@ -84,12 +87,9 @@ public class StatsManager : MonoBehaviour
 
     public void ResetForNewRun()
     {
-        // keep permanent ability unlock booleans
-        bool savedBlueFlareUnlocked = blueFlareUnlocked;
 
         // combat
         swordDamage = defaultSwordDamage;
-        swordRange = defaultSwordRange;
         swordAttackSpeed = defaultSwordAttackSpeed;
         bowDamage = defaultBowDamage;
         bowAttackSpeed = defaultBowAttackSpeed;
@@ -107,14 +107,35 @@ public class StatsManager : MonoBehaviour
         blueFlareDamagePerTick = defaultBlueFlareDamagePerTick;
         blueFlareTickRate = defaultBlueFlareTickRate;
 
-        // restore permanent unlock
-        blueFlareUnlocked = savedBlueFlareUnlocked;
-
         // player
         moveSpeed = defaultMoveSpeed;
         maxHealth = defaultMaxHealth;
         curHealth = maxHealth;
         hpRegen = defaultHpRegen;
+
+        for (int i = 0; i <= totalPermUpgradeIDs; i++)
+        {
+            if (PlayerPrefs.GetInt(i.ToString(), 0) == 1)
+            {
+                if (i <= 4){
+                    maxHealth += 2;
+                } else if (i <= 9)
+                {
+                    hpRegen += 1;
+                } else if (i == 10)
+                {
+                    swordUpgradeUnlocked = true;
+                } else if (i == 11)
+                {
+                    bowMultishotUnlocked = true;
+                } else if(i == 12)
+                {
+                    blueFlareUnlocked = true;
+                }
+            }
+        }
+
+
 
         // misc
         xp = 0f;

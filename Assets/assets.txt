@@ -111,3 +111,6 @@ https://assetstore.unity.com/packages/3d/props/rust-key-167590
 
 Miniboss Spawn Sound
 https://pixabay.com/sound-effects/film-special-effects-relaxing-music-viking-horn-12-116626/
+
+Melee animation 
+https://assetstore.unity.com/packages/3d/animations/human-melee-animations-free-165785
