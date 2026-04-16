@@ -99,6 +99,7 @@ public class StatsManager : MonoBehaviour
         bowPierceCount = defaultBowPierceCount;
         bowAngleBetweenArrows = defaultBowAngleBetweenArrows;
         bowMultishotCooldown = defaultBowMultishotCooldown;
+        bowMultishotUnlocked = false;
 
         // flare upgrades
         flareRadiusBonus = defaultFlareRadiusBonus;
@@ -106,6 +107,10 @@ public class StatsManager : MonoBehaviour
         blueFlareSlowMultiplier = defaultBlueFlareSlowMultiplier;
         blueFlareDamagePerTick = defaultBlueFlareDamagePerTick;
         blueFlareTickRate = defaultBlueFlareTickRate;
+        blueFlareUnlocked = false;
+
+        // sword upgrades
+        swordUpgradeUnlocked = false;
 
         // player
         moveSpeed = defaultMoveSpeed;
@@ -128,14 +133,14 @@ public class StatsManager : MonoBehaviour
                 } else if (i == 11)
                 {
                     bowMultishotUnlocked = true;
+                    bowArrowsPerShot = 3;
+                    bowAngleBetweenArrows += 2f;
                 } else if(i == 12)
                 {
                     blueFlareUnlocked = true;
                 }
             }
         }
-
-
 
         // misc
         xp = 0f;

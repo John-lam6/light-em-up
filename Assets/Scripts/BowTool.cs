@@ -157,7 +157,6 @@ public class BowTool : RangedTool
             float angle = centerOffset * angleBetweenArrows;
 
             Vector3 baseDirection = arrowSpawn.forward;
-            baseDirection += Vector3.down * 0.1f;
             baseDirection.Normalize();
 
             Vector3 shotDirection =
