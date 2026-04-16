@@ -24,7 +24,8 @@ public class MainMenuManager : MonoBehaviour
         }
 
         Time.timeScale = 1f;
-        SceneManager.LoadScene(firstLevelSceneName);
+        // SceneManager.LoadScene(firstLevelSceneName);
+        SceneManager.LoadScene("Level 1.2");
     }
 
     public void Upgrade()
