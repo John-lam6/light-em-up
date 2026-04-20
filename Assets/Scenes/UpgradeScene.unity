@@ -459,6 +459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeID: 12
   cost: 30
+  costText: {fileID: 1431647913}
 --- !u!1 &138215117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,6 +1242,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeID: 7
   cost: 30
+  costText: {fileID: 502494193}
 --- !u!1 &291149007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,6 +1410,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeID: 9
   cost: 50
+  costText: {fileID: 2040480818}
 --- !u!1 &348427570
 GameObject:
   m_ObjectHideFlags: 0
@@ -2650,6 +2653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeID: 3
   cost: 40
+  costText: {fileID: 859325182}
 --- !u!1 &859325180
 GameObject:
   m_ObjectHideFlags: 0
@@ -3103,6 +3107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeID: 10
   cost: 30
+  costText: {fileID: 1930593131}
 --- !u!1 &904465747
 GameObject:
   m_ObjectHideFlags: 0
@@ -3470,6 +3475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeID: 4
   cost: 50
+  costText: {fileID: 1088356420}
 --- !u!1 &1079442920
 GameObject:
   m_ObjectHideFlags: 0
@@ -3987,6 +3993,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeID: 5
   cost: 10
+  costText: {fileID: 681686059}
 --- !u!1 &1265551532
 GameObject:
   m_ObjectHideFlags: 0
@@ -5438,6 +5445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeID: 11
   cost: 30
+  costText: {fileID: 1759013125}
 --- !u!1 &1811956470
 GameObject:
   m_ObjectHideFlags: 0
@@ -6156,6 +6164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeID: 0
   cost: 10
+  costText: {fileID: 960783988}
 --- !u!1 &1963940588
 GameObject:
   m_ObjectHideFlags: 0
@@ -6323,6 +6332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeID: 8
   cost: 40
+  costText: {fileID: 2101526422}
 --- !u!1 &1965411520
 GameObject:
   m_ObjectHideFlags: 0
@@ -6565,6 +6575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeID: 1
   cost: 20
+  costText: {fileID: 2024180493}
 --- !u!1 &2024180491
 GameObject:
   m_ObjectHideFlags: 0
@@ -7279,6 +7290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeID: 2
   cost: 30
+  costText: {fileID: 661105937}
 --- !u!1 &2112523044
 GameObject:
   m_ObjectHideFlags: 0
@@ -7446,6 +7458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeID: 6
   cost: 20
+  costText: {fileID: 1292150311}
 --- !u!1 &2125800538
 GameObject:
   m_ObjectHideFlags: 0

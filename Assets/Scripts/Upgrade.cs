@@ -16,7 +16,8 @@ public class Upgrade : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip audioclip;
-    
+
+    private bool isLeveling = false;    
     void Awake()
     {
         Instance = this;
@@ -40,17 +41,25 @@ public class Upgrade : MonoBehaviour
         if (Time.timeScale == 0f && !upgradePanel.activeSelf)
             return;
 
-        if (StatsManager.Instance.xp >= StatsManager.Instance.xpNeeded) {
-            if (audioSource != null && audioclip != null)
+        if (StatsManager.Instance.xp >= StatsManager.Instance.xpNeeded && !isLeveling) {
+            StartCoroutine(LevelUpDelay());
+        }
+    }
+
+    IEnumerator LevelUpDelay()
+    {
+        isLeveling = true;
+        yield return new WaitForSeconds(0.5f);
+        if (audioSource != null && audioclip != null)
             {
                 audioSource.volume = 0.6f;
                 audioSource.PlayOneShot(audioclip);
             }
 
-            UpgradePlayer();
-            StatsManager.Instance.xp -= StatsManager.Instance.xpNeeded;
-            StatsManager.Instance.xpNeeded *= 1.5f;
-        }
+        UpgradePlayer();
+        StatsManager.Instance.xp -= StatsManager.Instance.xpNeeded;
+        StatsManager.Instance.xpNeeded *= 1.5f;
+        isLeveling = false;
     }
 
     public void UpgradePlayer()
@@ -62,29 +71,12 @@ public class Upgrade : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            int upgradeIndex = Random.Range(2, availableUpgrades.Count);
-
-            if (upgradeIndex == 5)
+            int upgradeIndex;
+            do
             {
-                if (StatsManager.Instance != null && !StatsManager.Instance.bowMultishotUnlocked)
-                {
-                    while (upgradeIndex == 5)
-                    {
-                        upgradeIndex = Random.Range(2, availableUpgrades.Count);
-                    }
-                }
+                upgradeIndex = Random.Range(0, availableUpgrades.Count);
             }
-
-            if (upgradeIndex == 8)
-            {
-                if (StatsManager.Instance != null && !StatsManager.Instance.blueFlareUnlocked)
-                {
-                    while (upgradeIndex == 8)
-                    {
-                        upgradeIndex = Random.Range(2, availableUpgrades.Count);
-                    }
-                }
-            }
+            while (availableUpgrades[upgradeIndex].id == 1 ||availableUpgrades[upgradeIndex].id == 0 ||availableUpgrades[upgradeIndex].id == 5 || (availableUpgrades[upgradeIndex].id == 8 && StatsManager.Instance != null && !StatsManager.Instance.blueFlareUnlocked));
 
             UpgradeData randomUpgrade = availableUpgrades[upgradeIndex];
 

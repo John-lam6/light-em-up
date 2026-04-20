@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42505586e4c23414c9ef1196f4bbc305, type: 3}
-  m_Name: 2Speed
+  m_Name: 1
   m_EditorClassIdentifier: 
-  id: 2
-  upgradeName: MS Up
+  id: 1
+  upgradeName: 
   description: 
   icon: {fileID: 0}
-  valueRange:
-  - 1
-  - 5
-  value: 3
+  valueRange: []
+  value: 0
   isPercentage: 0
   isFloat: 0

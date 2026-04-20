@@ -116,7 +116,7 @@ public class EnemyController : MonoBehaviour
         
         if (currentHealth <= 0 && !dead) {
             StatsManager.Instance.xp += xpValue;
-            Debug.Log("Gained " + xpValue + " XP " + StatsManager.Instance.xp + " / " + StatsManager.Instance.xpNeeded);
+            //Debug.Log("Gained " + xpValue + " XP " + StatsManager.Instance.xp + " / " + StatsManager.Instance.xpNeeded);
             agent.isStopped = true;
             agent.enabled = false;
             dead = true;

@@ -9,6 +9,9 @@ public class PermaUpgrade : MonoBehaviour
 {
     public string upgradeID;
     public int cost;
+    public TMP_Text costText;
+    private Color normalColor = Color.white;
+    private Color errorColor = Color.red;
     private Button button;
 
     void Awake()
@@ -33,6 +36,10 @@ public class PermaUpgrade : MonoBehaviour
         if (StatsManager.Instance.currency < cost)
         {
             Debug.Log("Not enough currency to purchase: " + upgradeID);
+            costText.DOColor(errorColor, 0.15f).OnComplete(() =>
+            {
+                costText.DOColor(normalColor, 0.3f);
+            });
             return;
         }
 

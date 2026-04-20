@@ -111,13 +111,14 @@ public class SwordTool : MeleeTool
     IEnumerator TemporaryAttackSpeedBoost(float duration)
     {
         Debug.Log("Sword Berzerk Activated!");
+
         if (StatsManager.Instance == null) yield break;
-
+        float originalSpeed = StatsManager.Instance.swordAttackSpeed;
         StatsManager.Instance.swordAttackSpeed *= 2;
-
         yield return new WaitForSeconds(duration);
+        StatsManager.Instance.swordAttackSpeed = originalSpeed;
 
-        StatsManager.Instance.swordAttackSpeed = StatsManager.Instance.swordAttackSpeed/2;
+        Debug.Log("Sword Berzerk Ended.");
     }
 
     void UpdateAbilityUI()
