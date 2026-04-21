@@ -11,8 +11,7 @@ public class StatsManager : MonoBehaviour
     [Header("Default Combat Stats")]
     public float defaultSwordDamage = 20f;
     public float defaultSwordAttackSpeed = 1f;
-    public float defaultBowDamage;
-    public float defaultBowAttackSpeed;
+    public float defaultBowDamage = 10f;
 
     [Header("Default Bow Upgrade Stats")]
     public int defaultBowArrowsPerShot = 1;
@@ -23,23 +22,22 @@ public class StatsManager : MonoBehaviour
     [Header("Default Flare Upgrade Stats")]
     public float defaultFlareRadiusBonus = 0f;
     public float defaultBlueFlareCooldown = 20f;
-    public float defaultBlueFlareSlowMultiplier = 0.85f;
-    public float defaultBlueFlareDamagePerTick = 1f;
-    public float defaultBlueFlareTickRate = 1f;
+    public float defaultBlueFlareSlowMultiplier = 0.6f;
 
     [Header("Default Player Stats")]
-    public float defaultMoveSpeed;
-    public int defaultMaxHealth = 100;
+    public float defaultMoveSpeed = 12f;
+    public int defaultMaxHealth = 10;
     public int defaultHpRegen = 0;
-    public float defaultXpNeeded = 10f;
-    public float defaultLevel = 1f;
+    public float defaultXpNeeded = 20f;
+    public float defaultLevel = 0f;
 
     [Header("Sword Stats")]
     public float swordDamage;
     public bool swordUpgradeUnlocked = false;
     public float swordAttackSpeed;
+    
+    [Header("Bow Stats")]
     public float bowDamage;
-    public float bowAttackSpeed;
 
     [Header("Bow Upgrade Stats")]
     public int bowArrowsPerShot = 1;
@@ -51,10 +49,8 @@ public class StatsManager : MonoBehaviour
     [Header("Flare Upgrade Stats")]
     public float flareRadiusBonus = 0f;
     public bool blueFlareUnlocked = false;
-    public float blueFlareCooldown = 20f;
-    public float blueFlareSlowMultiplier = 0.85f;
-    public float blueFlareDamagePerTick = 1f;
-    public float blueFlareTickRate = 1f;
+    public float blueFlareCooldown = 30f;
+    public float blueFlareSlowMultiplier = 0.6f;
 
     [Header("Player Stats")]
     public float moveSpeed;
@@ -64,7 +60,7 @@ public class StatsManager : MonoBehaviour
 
     [Header("Misc")]
     public float xp;
-    public float xpNeeded; //for level up
+    public float xpNeeded;
     public float level;
     public float totalKilled;
     public int currency = 9999;
@@ -87,12 +83,12 @@ public class StatsManager : MonoBehaviour
 
     public void ResetForNewRun()
     {
-
-        // combat
+        // sword combat
         swordDamage = defaultSwordDamage;
         swordAttackSpeed = defaultSwordAttackSpeed;
+
+        // bow combat
         bowDamage = defaultBowDamage;
-        bowAttackSpeed = defaultBowAttackSpeed;
 
         // bow upgrades
         bowArrowsPerShot = defaultBowArrowsPerShot;
@@ -105,8 +101,6 @@ public class StatsManager : MonoBehaviour
         flareRadiusBonus = defaultFlareRadiusBonus;
         blueFlareCooldown = defaultBlueFlareCooldown;
         blueFlareSlowMultiplier = defaultBlueFlareSlowMultiplier;
-        blueFlareDamagePerTick = defaultBlueFlareDamagePerTick;
-        blueFlareTickRate = defaultBlueFlareTickRate;
         blueFlareUnlocked = false;
 
         // sword upgrades
@@ -144,7 +138,7 @@ public class StatsManager : MonoBehaviour
 
         // misc
         xp = 0f;
-        xpNeeded = defaultXpNeeded; //for level up
+        xpNeeded = defaultXpNeeded;
         level = defaultLevel;
         totalKilled = 0f;
     }

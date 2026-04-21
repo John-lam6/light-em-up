@@ -80,11 +80,6 @@ public class ArrowProjectile : MonoBehaviour
     {
         hasStuck = true;
 
-        ContactPoint contact = collision.contacts[0];
-
-        transform.position = contact.point;
-        transform.rotation = Quaternion.LookRotation(-contact.normal);
-
         if (rb != null)
         {
             rb.velocity = Vector3.zero;

@@ -159,8 +159,7 @@ public class BowTool : RangedTool
             Vector3 baseDirection = arrowSpawn.forward;
             baseDirection.Normalize();
 
-            Vector3 shotDirection =
-                Quaternion.AngleAxis(angle, arrowSpawn.up) * baseDirection;
+            Vector3 shotDirection = Quaternion.AngleAxis(angle, arrowSpawn.up) * baseDirection;
 
             Vector3 spawnPosition =
                 arrowSpawn.position +

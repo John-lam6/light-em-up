@@ -1327,27 +1327,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSwordDamage: 20
   defaultSwordAttackSpeed: 1
-  defaultBowDamage: 20
-  defaultBowAttackSpeed: 1
+  defaultBowDamage: 10
   defaultBowArrowsPerShot: 1
   defaultBowPierceCount: 0
   defaultBowAngleBetweenArrows: 0
   defaultBowMultishotCooldown: 3
   defaultFlareRadiusBonus: 0
   defaultBlueFlareCooldown: 20
-  defaultBlueFlareSlowMultiplier: 0.85
-  defaultBlueFlareDamagePerTick: 1
-  defaultBlueFlareTickRate: 1
-  defaultMoveSpeed: 0
+  defaultBlueFlareSlowMultiplier: 0.6
+  defaultMoveSpeed: 12
   defaultMaxHealth: 10
   defaultHpRegen: 0
-  defaultXpNeeded: 10
-  defaultLevel: 1
-  swordDamage: 20
+  defaultXpNeeded: 20
+  defaultLevel: 0
+  swordDamage: 0
   swordUpgradeUnlocked: 0
-  swordAttackSpeed: 1
-  bowDamage: 20
-  bowAttackSpeed: 1
+  swordAttackSpeed: 0
+  bowDamage: 0
   bowArrowsPerShot: 1
   bowPierceCount: 0
   bowMultishotUnlocked: 0
@@ -1355,16 +1351,14 @@ MonoBehaviour:
   bowMultishotCooldown: 3
   flareRadiusBonus: 0
   blueFlareUnlocked: 0
-  blueFlareCooldown: 20
-  blueFlareSlowMultiplier: 0.5
-  blueFlareDamagePerTick: 5
-  blueFlareTickRate: 0.5
-  moveSpeed: 12
-  maxHealth: 10
-  curHealth: 10
+  blueFlareCooldown: 30
+  blueFlareSlowMultiplier: 0.6
+  moveSpeed: 0
+  maxHealth: 0
+  curHealth: 0
   hpRegen: 0
   xp: 0
-  xpNeeded: 20
+  xpNeeded: 0
   level: 0
   totalKilled: 0
   currency: 9999

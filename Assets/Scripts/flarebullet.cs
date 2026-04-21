@@ -25,7 +25,6 @@ public class FlareBullet : MonoBehaviour
 
     [HideInInspector] public bool isBlueFlare = false;
 
-    private float damageTickTimer = 0f;
     private Dictionary<EnemyController, float> slowedEnemies = new Dictionary<EnemyController, float>();
 
     void Start()
@@ -155,9 +154,7 @@ public class FlareBullet : MonoBehaviour
                     if (!slowedEnemies.ContainsKey(enemy))
                     {
                         slowedEnemies.Add(enemy, enemy.agent.speed);
-
-                        float softerSlowMultiplier = Mathf.Max(0.8f, StatsManager.Instance.blueFlareSlowMultiplier);
-                        enemy.agent.speed *= softerSlowMultiplier;
+                        enemy.agent.speed *= StatsManager.Instance.blueFlareSlowMultiplier;
                     }
                 }
             }
@@ -181,23 +178,6 @@ public class FlareBullet : MonoBehaviour
         foreach (EnemyController enemy in enemiesToRestore)
         {
             slowedEnemies.Remove(enemy);
-        }
-
-        damageTickTimer += Time.deltaTime;
-
-        if (damageTickTimer >= StatsManager.Instance.blueFlareTickRate)
-        {
-            damageTickTimer = 0f;
-
-            int softerDamage = Mathf.Max(1, Mathf.RoundToInt(StatsManager.Instance.blueFlareDamagePerTick * 0.5f));
-
-            foreach (EnemyController enemy in enemiesInRange)
-            {
-                if (enemy != null && !enemy.isDead())
-                {
-                    StartCoroutine(enemy.DamageAgent(softerDamage));
-                }
-            }
         }
     }
 

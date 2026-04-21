@@ -76,7 +76,7 @@ public class Upgrade : MonoBehaviour
             {
                 upgradeIndex = Random.Range(0, availableUpgrades.Count);
             }
-            while (availableUpgrades[upgradeIndex].id == 1 ||availableUpgrades[upgradeIndex].id == 0 ||availableUpgrades[upgradeIndex].id == 5 || (availableUpgrades[upgradeIndex].id == 8 && StatsManager.Instance != null && !StatsManager.Instance.blueFlareUnlocked));
+            while (availableUpgrades[upgradeIndex].id == 1 ||availableUpgrades[upgradeIndex].id == 0 ||availableUpgrades[upgradeIndex].id == 5 || (availableUpgrades[upgradeIndex].id == 8));
 
             UpgradeData randomUpgrade = availableUpgrades[upgradeIndex];
 
@@ -198,6 +198,7 @@ public class Upgrade : MonoBehaviour
                 StatsManager.Instance.bowDamage += data.value;
                 break;
 
+            // not called/used
             case 5: // multishot (arrows + spread together)
                 StatsManager.Instance.bowArrowsPerShot += Mathf.RoundToInt(data.value);
                 StatsManager.Instance.bowArrowsPerShot = Mathf.Max(1, StatsManager.Instance.bowArrowsPerShot);
@@ -216,8 +217,9 @@ public class Upgrade : MonoBehaviour
                 StatsManager.Instance.flareRadiusBonus += data.value;
                 break;
 
+            // not called/used
             case 8: // blue flare unlock first, then increase damage
-                StatsManager.Instance.blueFlareDamagePerTick += data.value;
+                //StatsManager.Instance.blueFlareDamagePerTick += data.value;
                 break;
         }
     }
