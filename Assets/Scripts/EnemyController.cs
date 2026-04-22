@@ -23,6 +23,11 @@ public class EnemyController : MonoBehaviour
     private bool dead = false;
     private CapsuleCollider capsule;
     private bool canMove = false;
+
+    [Header("Audio")]
+    public AudioClip enemyDamageSound;
+    private AudioSource audioSource;
+
     
     [HideInInspector]
     public NavMeshAgent agent;
@@ -45,6 +50,8 @@ public class EnemyController : MonoBehaviour
         renderers = GetComponentsInChildren<Renderer>();
         m_Color = renderers[0].material.color;
         currentHealth = maxHealth;
+        audioSource = GetComponent<AudioSource>();
+
 
         canMove = true;
     }
@@ -109,8 +116,12 @@ public class EnemyController : MonoBehaviour
                 //r.material.DOColor(m_Color, 0.1f);
         }
         
+        audioSource.PlayOneShot(enemyDamageSound);
+
         if (currentHealth - damage < 0) currentHealth = 0;
         else currentHealth -= damage;
+
+
     
         yield return new WaitForSeconds(sliderEaseTime);
         

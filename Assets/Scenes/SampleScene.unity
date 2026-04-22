@@ -11242,7 +11242,8 @@ MonoBehaviour:
   currentHealth: 0
   sliderEaseTime: 0.15
   audioSource: {fileID: 402985218}
-  audioClip: {fileID: 8300000, guid: f0742d00cfd4ff64d9fb866e4e06d360, type: 3}
+  audioClip: {fileID: 8300000, guid: ce6bbbbc9a0edaa4ba239dc69ea6964a, type: 3}
+  deathSound: {fileID: 8300000, guid: cd9d4fc3ddb1a6340a94b2155c11e0b2, type: 3}
 --- !u!4 &1094222961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5823525275512884197, guid: afefdb0547fbe6448bbc31b63d2f358c, type: 3}

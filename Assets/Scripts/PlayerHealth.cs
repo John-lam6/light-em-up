@@ -15,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     
     public AudioSource audioSource;
     public AudioClip audioClip;
+    public AudioClip deathSound;
     
     // Start is called before the first frame update
     void Start() {
@@ -55,6 +56,7 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(sliderEaseTime);
 
         if (currentHealth == 0) {
+            audioSource.PlayOneShot(deathSound);
             // END GAME
             if (GameEndManager.Instance != null) {
                 GameEndManager.Instance.ShowDeath();
