@@ -6,6 +6,7 @@ public class MainMenuManager : MonoBehaviour
     [Header("Scene Names")]
     [SerializeField] private string firstLevelSceneName = "SampleScene";
     [SerializeField] private string upgradeSceneName = "UpgradeScene";
+    [SerializeField] private LevelLoader levelLoader;
 
     void Start()
     {
@@ -24,7 +25,7 @@ public class MainMenuManager : MonoBehaviour
         }
 
         Time.timeScale = 1f;
-        SceneManager.LoadScene(firstLevelSceneName);
+        levelLoader.LoadLevel(1);
     }
 
     public void Upgrade()

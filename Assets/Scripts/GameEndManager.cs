@@ -7,6 +7,8 @@ public class GameEndManager : MonoBehaviour
 {
     public static GameEndManager Instance;
 
+    [SerializeField] private LevelLoader levelLoader;
+
     [Header("UI Panels")]
     public GameObject victoryPanel;
     public GameObject deathPanel;
@@ -18,8 +20,6 @@ public class GameEndManager : MonoBehaviour
 
     [Header("Scene Names")]
     [SerializeField] private string mainMenuSceneName = "MainMenu";
-    [SerializeField] private string firstLevelSceneName = "SampleScene";
-
     private bool gameEnded = false;
 
     private void Awake()
@@ -132,7 +132,7 @@ public class GameEndManager : MonoBehaviour
         if (StatsManager.Instance != null)
             StatsManager.Instance.ResetForNewRun();
 
-        SceneManager.LoadScene(firstLevelSceneName);
+        levelLoader.LoadLevel(1);
     }
 
     private void OnDestroy()
