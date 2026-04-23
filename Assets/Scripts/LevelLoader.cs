@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    private int[] levelVariants = {0, 2, 1};
+    private int[] levelVariants = {0, 2, 2, 2};
     public void LoadLevel(int level)
     {
         int variant = Random.Range(1, levelVariants[level] + 1);
