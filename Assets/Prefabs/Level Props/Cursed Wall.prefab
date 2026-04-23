@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6577624424529841463}
   - component: {fileID: 4016950213509052456}
   - component: {fileID: 2640826572260186384}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cursed Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 986552319424319017}
   - component: {fileID: 2733341474725238280}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cursed Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   - component: {fileID: 4591207497083396015}
   - component: {fileID: 8988228679307586276}
   - component: {fileID: 3484980019807480350}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cursed Torch (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,7 +322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7505468183799357440}
   - component: {fileID: 2140940015242673287}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cursed Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -417,7 +417,7 @@ GameObject:
   - component: {fileID: 4826680251193424156}
   - component: {fileID: 1745160795752117972}
   - component: {fileID: 5105250907947819384}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Torch Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -488,7 +488,7 @@ GameObject:
   - component: {fileID: 3805969890593920554}
   - component: {fileID: 5714202795771736673}
   - component: {fileID: 5820418868500618155}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Torch Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -560,7 +560,7 @@ GameObject:
   - component: {fileID: 711984819571955917}
   - component: {fileID: 3510678057991491449}
   - component: {fileID: 7342912324279957339}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cursed Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

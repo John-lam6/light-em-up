@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1566124088176742239}
   - component: {fileID: 3348232984409917920}
   - component: {fileID: 1612852122338490897}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: EA04_Prop_cauldron_01a_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 521218153142171511}
   - component: {fileID: 6162435384522549411}
   - component: {fileID: 6326421341420609201}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: EA04_Prop_cauldron_01a_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8335935210210665598}
   - component: {fileID: 8123551088805305248}
   - component: {fileID: 5248975497093100246}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: EA04_Prop_cauldron_01a_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 8384988836995243593}
   - component: {fileID: 1962849470411763750}
   - component: {fileID: 576784065731671186}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Cauldron
   m_TagString: Untagged
   m_Icon: {fileID: 0}
