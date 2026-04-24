@@ -71,7 +71,7 @@ public class FlareBullet : MonoBehaviour
         }
         else
         {
-            flaresound.PlayOneShot(flareBurningSound, 1f);
+            flaresound.PlayOneShot(flareBurningSound, 0.5f);
         }
 
         rb.useGravity = false;
