@@ -102,7 +102,7 @@ public class SwordTool : MeleeTool
         if (Time.time < berzerk_last_use_time + berzerkCooldown) return;
 
         berzerk_last_use_time = Time.time;
-        audioSource.volume = 0.4f;
+        audioSource.volume = 0.25f;
         audioSource.PlayOneShot(beserkSound);
         if (hotbar != null)
         {
