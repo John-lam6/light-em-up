@@ -1203,6 +1203,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136585297}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6285a916ffbc944bd1f249903938d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  damage: 10
+  range: 5
+  hotbar: {fileID: 0}
+  hotbarSlotIndex: 0
+  animator: {fileID: 322053294}
+  hitbox: {fileID: 1336591038}
+  berzerkIcon: {fileID: 0}
+  audioSource: {fileID: 402985218}
+  audioClip: {fileID: 8300000, guid: baf44597c519a3249be431f439096b6f, type: 3}
+  beserkSound: {fileID: 8300000, guid: a6574f5d256451d418447207abbeee28, type: 3}
 --- !u!1 &138566164
 GameObject:
   m_ObjectHideFlags: 0
@@ -10017,8 +10032,8 @@ MonoBehaviour:
   currentHealth: 0
   sliderEaseTime: 0.15
   audioSource: {fileID: 402985218}
-  audioClip: {fileID: 8300000, guid: f0742d00cfd4ff64d9fb866e4e06d360, type: 3}
-  deathSound: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 217768cb8ac72b34bbfed4002d4ce701, type: 3}
+  deathSound: {fileID: 8300000, guid: c3bc1d8a11122914e881475d19501e56, type: 3}
 --- !u!1 &1096333486 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7258757750473675484, guid: 5d6132988fee98a4da687235dfc9484f, type: 3}
@@ -15831,6 +15846,7 @@ MonoBehaviour:
   upgradeOptionPrefab: {fileID: 1900242685151005853, guid: cb62391ed91c8c44ab810f18523054fe, type: 3}
   audioSource: {fileID: 402985218}
   audioclip: {fileID: 8300000, guid: 54c8fb17359545e43b47bdae85d96517, type: 3}
+  upgradeClickDelay: 1
 --- !u!1 &1704412559
 GameObject:
   m_ObjectHideFlags: 0

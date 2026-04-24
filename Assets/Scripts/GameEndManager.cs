@@ -107,6 +107,8 @@ public class GameEndManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
+        DOTween.KillAll();
+
         if (deathOverlay != null)
         {
             deathOverlay.DOKill();
@@ -122,6 +124,8 @@ public class GameEndManager : MonoBehaviour
     public void RestartRun()
     {
         Time.timeScale = 1f;
+
+        DOTween.KillAll();
 
         if (deathOverlay != null)
         {

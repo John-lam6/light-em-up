@@ -58,6 +58,12 @@ https://game-icons.net/1x1/lorc/arrow-cluster.html#download
 Blue Flare sprite
 https://game-icons.net/1x1/delapouite/shambling-zombie.html#download
 
+Trophy sprite
+https://game-icons.net/1x1/delapouite/trophy-cup.html#download
+
+Curtains/Cave sprite
+https://game-icons.net/1x1/delapouite/theater-curtains.html#download
+
 Dash sound
 https://www.youtube.com/watch?v=JPxJPY1Mw8c
 
@@ -91,6 +97,28 @@ https://pixabay.com/sound-effects/film-special-effects-inventory-open-94932/
 
 Take Damage
 https://pixabay.com/sound-effects/film-special-effects-classic-punch-impact-352711/
+
+Player Damage Audio
+https://pixabay.com/sound-effects/people-young-man-being-hurt-95628/
+
+Enemy Damage Audio
+https://pixabay.com/sound-effects/film-special-effects-slap-hurt-pain-sound-effect-262618/
+
+Player Dying Audio
+https://pixabay.com/sound-effects/horror-falling-man-scream-450793/
+
+Beserk Ability Audio
+https://pixabay.com/sound-effects/film-special-effects-sword-35999/
+
+Blue Flare Ability Audio
+https://pixabay.com/sound-effects/household-cauldron-boiling-173607/
+
+Main Menu Audio
+https://pixabay.com/sound-effects/horror-dark-crime-atmosphere-04-30s-335783/
+
+Victory Screen Audio
+https://pixabay.com/sound-effects/musical-victory-at-last-486385/
+
 
 Atmosphere
 https://pixabay.com/sound-effects/film-special-effects-deathmagic-94937/
