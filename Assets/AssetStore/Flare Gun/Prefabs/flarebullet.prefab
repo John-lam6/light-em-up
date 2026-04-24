@@ -106,9 +106,13 @@ MonoBehaviour:
   radius: 10
   landedLightIntensity: 3
   flareBurningSound: {fileID: 8300000, guid: 0ed0d71c3db32c64aa047c6dc5794514, type: 3}
+  blueFlareBurningSound: {fileID: 8300000, guid: be9b76d48c2dd3c4f88b544daed2208e, type: 3}
   targetPoint: {x: 0, y: 0, z: 0}
   moveSpeed: 18
   landedHeightOffset: 1.5
+  flareVolume: 0.3
+  flareSpatialBlend: 1
+  flareMinDistance: 2
   isBlueFlare: 0
 --- !u!82 &8200000
 AudioSource:
@@ -121,17 +125,17 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_PlayOnAwake: 1
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 100
+  Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 5
+  MaxDistance: 10
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -141,28 +145,19 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.33369565
+      time: 0
       value: 1
-      inSlope: -2.997937
-      outSlope: -2.997937
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.6673913
-      value: 0.5
-      inSlope: -0.74948424
-      outSlope: -0.74948424
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.32338637
-      inSlope: -0.33382887
-      outSlope: -0.33382887
+      value: 0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -175,7 +170,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.1
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -190,7 +185,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.5972222
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -17,7 +17,7 @@ public class VaseBreak : MonoBehaviour
 
     void breakVase()
     {
-        AudioSource.PlayClipAtPoint(vase_break, transform.position);
+        AudioSource.PlayClipAtPoint(vase_break, transform.position, 50f);
         Instantiate(particlePrefab, transform.position, transform.rotation);
         Destroy(gameObject);
     }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour {
     public Light doorLight;
@@ -22,6 +23,14 @@ public class Door : MonoBehaviour {
 
     public void LoadNextLevel()
     {
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (sceneName.StartsWith("Level 3."))
+        {
+            SceneManager.LoadScene("VictoryScreen");
+            return;
+        }
+
         spawnManager.currLevel++;
         PlayerPrefs.Save();
         levelLoader.LoadLevel(spawnManager.currLevel);

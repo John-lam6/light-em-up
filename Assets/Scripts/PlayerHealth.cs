@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public IEnumerator Damage(int damage) {
-        audioSource.volume = 0.35f;
+        audioSource.volume = 0.3f;
         audioSource.PlayOneShot(audioClip);
 
         StatsManager.Instance.curHealth -= damage;

@@ -18,10 +18,16 @@ public class FlareBullet : MonoBehaviour
     public float radius = 10f;
     public float landedLightIntensity = 1f;
     public AudioClip flareBurningSound;
+    public AudioClip blueFlareBurningSound;
 
     public Vector3 targetPoint;
     public float moveSpeed = 20f;
     public float landedHeightOffset = 0.3f;
+
+    [Header("Audio Settings")]
+    [SerializeField] private float flareVolume = 0.3f;
+    [SerializeField] private float flareSpatialBlend = 1f;
+    [SerializeField] private float flareMinDistance = 2f;
 
     [HideInInspector] public bool isBlueFlare = false;
 
@@ -38,29 +44,38 @@ public class FlareBullet : MonoBehaviour
         {
             radius += StatsManager.Instance.flareRadiusBonus;
         }
+        Debug.Log("Flare parent is: " + transform.parent);
 
-        if (flarelight != null)
+        if (flaresound != null)
         {
-            if (isBlueFlare)
-            {
-                flarelight.color = Color.blue;
-            }
-            else
-            {
-                flarelight.color = new Color(1f, 0.35f, 0f);
-            }
+            flaresound.volume = 1f;
+            flaresound.spatialBlend = 1f;
+            flaresound.minDistance = radius * 0.2f;
+            flaresound.maxDistance = radius * 2.8f;
+            flaresound.rolloffMode = AudioRolloffMode.Linear;
+            flaresound.dopplerLevel = 0f;
         }
 
-        if (flaresound != null && flareBurningSound != null)
+        if (isBlueFlare)
         {
-            flaresound.PlayOneShot(flareBurningSound);
+            flarelight.color = Color.blue;
+        }
+        else
+        {
+            flarelight.color = new Color(1f, 0.35f, 0f);
         }
 
-        if (rb != null)
+        if (isBlueFlare)
         {
-            rb.useGravity = false;
-            rb.isKinematic = true;
+            flaresound.PlayOneShot(blueFlareBurningSound, 3f);
         }
+        else
+        {
+            flaresound.PlayOneShot(flareBurningSound, 1f);
+        }
+
+        rb.useGravity = false;
+        rb.isKinematic = true;
 
         Destroy(gameObject, flareTimer + 2f);
     }
@@ -85,11 +100,8 @@ public class FlareBullet : MonoBehaviour
 
         if (landed && burning)
         {
-            if (flarelight != null)
-            {
-                flarelight.intensity = Mathf.Lerp(flarelight.intensity, landedLightIntensity, Time.deltaTime * smooth);
-                flarelight.range = Mathf.Lerp(flarelight.range, radius, Time.deltaTime * smooth);
-            }
+            flarelight.intensity = Mathf.Lerp(flarelight.intensity, landedLightIntensity, Time.deltaTime * smooth);
+            flarelight.range = Mathf.Lerp(flarelight.range, radius, Time.deltaTime * smooth);
 
             if (isBlueFlare)
             {
@@ -98,24 +110,15 @@ public class FlareBullet : MonoBehaviour
         }
         else if (!landed && burning)
         {
-            if (flarelight != null)
-            {
-                flarelight.intensity = landedLightIntensity;
-                flarelight.range = radius;
-            }
+            flarelight.intensity = landedLightIntensity;
+            flarelight.range = radius;
         }
         else
         {
-            if (flarelight != null)
-            {
-                flarelight.intensity = Mathf.Lerp(flarelight.intensity, 0f, Time.deltaTime * smooth);
-                flarelight.range = Mathf.Lerp(flarelight.range, 0f, Time.deltaTime * smooth);
-            }
+            flarelight.intensity = Mathf.Lerp(flarelight.intensity, 0f, Time.deltaTime * smooth);
+            flarelight.range = Mathf.Lerp(flarelight.range, 0f, Time.deltaTime * smooth);
 
-            if (flaresound != null)
-            {
-                flaresound.volume = Mathf.Lerp(flaresound.volume, 0f, Time.deltaTime * smooth);
-            }
+            flaresound.volume = Mathf.Lerp(flaresound.volume, 0f, Time.deltaTime * smooth);
         }
     }
 

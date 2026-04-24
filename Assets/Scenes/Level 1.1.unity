@@ -1006,6 +1006,7 @@ MonoBehaviour:
   berzerkIcon: {fileID: 21300000, guid: aef137737c4a7964c9cb60d1bc89a4a0, type: 3}
   audioSource: {fileID: 402985218}
   audioClip: {fileID: 8300000, guid: baf44597c519a3249be431f439096b6f, type: 3}
+  beserkSound: {fileID: 8300000, guid: a6574f5d256451d418447207abbeee28, type: 3}
 --- !u!1 &138566164
 GameObject:
   m_ObjectHideFlags: 0
@@ -8708,7 +8709,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -10057,14 +10058,14 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.249
+  m_PlayOnAwake: 1
+  m_Volume: 0.3
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 126
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -11470,8 +11471,8 @@ MonoBehaviour:
   currentHealth: 0
   sliderEaseTime: 0.15
   audioSource: {fileID: 402985218}
-  audioClip: {fileID: 8300000, guid: ce6bbbbc9a0edaa4ba239dc69ea6964a, type: 3}
-  deathSound: {fileID: 8300000, guid: cd9d4fc3ddb1a6340a94b2155c11e0b2, type: 3}
+  audioClip: {fileID: 8300000, guid: 217768cb8ac72b34bbfed4002d4ce701, type: 3}
+  deathSound: {fileID: 8300000, guid: c3bc1d8a11122914e881475d19501e56, type: 3}
 --- !u!4 &1094222961 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5823525275512884197, guid: afefdb0547fbe6448bbc31b63d2f358c, type: 3}
@@ -18285,7 +18286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1695060279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18443,6 +18444,7 @@ MonoBehaviour:
   upgradeOptionPrefab: {fileID: 1900242685151005853, guid: cb62391ed91c8c44ab810f18523054fe, type: 3}
   audioSource: {fileID: 402985218}
   audioclip: {fileID: 8300000, guid: 54c8fb17359545e43b47bdae85d96517, type: 3}
+  upgradeClickDelay: 1
 --- !u!1 &1704412559
 GameObject:
   m_ObjectHideFlags: 0
