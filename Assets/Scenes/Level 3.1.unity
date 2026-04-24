@@ -1377,21 +1377,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 120858622}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a6285a916ffbc944bd1f249903938d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cooldown: 0
-  damage: 10
-  range: 5
-  hotbar: {fileID: 0}
-  hotbarSlotIndex: 0
-  animator: {fileID: 322053294}
-  hitbox: {fileID: 1336591038}
-  berzerkIcon: {fileID: 0}
-  audioSource: {fileID: 402985218}
-  audioClip: {fileID: 8300000, guid: baf44597c519a3249be431f439096b6f, type: 3}
-  beserkSound: {fileID: 0}
 --- !u!43 &138013107
 Mesh:
   m_ObjectHideFlags: 0
@@ -5481,7 +5466,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.000030517578, y: 9.9999695}
+  m_AnchoredPosition: {x: 0.000030517578, y: 9.999939}
   m_SizeDelta: {x: 100, y: 150}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &611386549
@@ -10109,6 +10094,7 @@ MonoBehaviour:
   berzerkIcon: {fileID: 21300000, guid: aef137737c4a7964c9cb60d1bc89a4a0, type: 3}
   audioSource: {fileID: 402985218}
   audioClip: {fileID: 8300000, guid: baf44597c519a3249be431f439096b6f, type: 3}
+  beserkSound: {fileID: 8300000, guid: a6574f5d256451d418447207abbeee28, type: 3}
 --- !u!1 &1091732709
 GameObject:
   m_ObjectHideFlags: 0
@@ -10326,8 +10312,8 @@ MonoBehaviour:
   currentHealth: 0
   sliderEaseTime: 0.15
   audioSource: {fileID: 402985218}
-  audioClip: {fileID: 8300000, guid: f0742d00cfd4ff64d9fb866e4e06d360, type: 3}
-  deathSound: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 217768cb8ac72b34bbfed4002d4ce701, type: 3}
+  deathSound: {fileID: 8300000, guid: c3bc1d8a11122914e881475d19501e56, type: 3}
 --- !u!1 &1096333486 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7258757750473675484, guid: 5d6132988fee98a4da687235dfc9484f, type: 3}
