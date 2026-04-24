@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour {
         // dashes for a short duration
         isDashing = true;
         m_Animator.SetBool("isDashing", true);
-        audioSource.PlayOneShot(dash_sound);
+        audioSource.PlayOneShot(dash_sound, 1f);
         Instantiate(particlePrefab, transform.position, transform.rotation);
         Vector3 moveDir = new Vector3(movementX, 0, movementY).normalized;
         m_Rigidbody.velocity = new Vector3 (moveDir.x * dash_speed, 0, moveDir.z * dash_speed);

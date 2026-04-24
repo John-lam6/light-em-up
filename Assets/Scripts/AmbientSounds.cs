@@ -72,7 +72,8 @@ public class AmbientSounds : MonoBehaviour {
         humAudioSource.clip = clip;
         humAudioSource.priority = 200;
         humAudioSource.loop = true;
-        humAudioSource.volume = 0.1f;
+        humAudioSource.volume = 0.2f;
+        humAudioSource.spatialBlend = 0;
         humAudioSource.Play();
 
         // pause the audio when the game is paused
