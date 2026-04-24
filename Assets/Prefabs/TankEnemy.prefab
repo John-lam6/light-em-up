@@ -133,7 +133,12 @@ MonoBehaviour:
   currentHealth: 0
   sliderEaseTime: 0.05
   deathDelay: 1.2
-  enemyDamageSound: {fileID: 8300000, guid: 842a272e1ecd0e04f80cfc5deb86b064, type: 3}
+  enemyDamageSound: {fileID: 8300000, guid: b633f2df848e88148a5195a2603e0e09, type: 3}
+  damageSoundVolume: 1
+  damageSoundSpatialBlend: 1
+  damageSoundMinDistance: 2
+  damageSoundMaxDistance: 15
+  damageSoundRolloff: 1
   agent: {fileID: 0}
   rb: {fileID: 0}
   renderers: []

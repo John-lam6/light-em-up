@@ -28,6 +28,13 @@ public class EnemyController : MonoBehaviour
     public AudioClip enemyDamageSound;
     private AudioSource audioSource;
 
+    [Header("Enemy Damage Sound Settings")]
+    [SerializeField] private float damageSoundVolume = 1f;
+    [SerializeField] private float damageSoundSpatialBlend = 1f;
+    [SerializeField] private float damageSoundMinDistance = 2f;
+    [SerializeField] private float damageSoundMaxDistance = 15f;
+    [SerializeField] private AudioRolloffMode damageSoundRolloff = AudioRolloffMode.Linear;
+
     
     [HideInInspector]
     public NavMeshAgent agent;
@@ -52,6 +59,15 @@ public class EnemyController : MonoBehaviour
         currentHealth = maxHealth;
         audioSource = GetComponent<AudioSource>();
 
+        if (audioSource != null)
+        {
+            audioSource.volume = 0.65f;
+            audioSource.spatialBlend = 0.8f;
+            audioSource.minDistance = 1f;
+            audioSource.maxDistance = 7;
+            audioSource.rolloffMode = AudioRolloffMode.Logarithmic;
+            audioSource.dopplerLevel = 0f;
+        }
 
         canMove = true;
     }
@@ -99,7 +115,6 @@ public class EnemyController : MonoBehaviour
                 r.material.DOColor(Color.black, "_EmissionColor", 0.1f);
             }
             
-            
             /*
             foreach (Renderer r in renderers)
                 r.material.DOColor(damageColor, 0.1f);
@@ -116,7 +131,10 @@ public class EnemyController : MonoBehaviour
                 //r.material.DOColor(m_Color, 0.1f);
         }
         
-        audioSource.PlayOneShot(enemyDamageSound);
+        if (audioSource != null && enemyDamageSound != null)
+        {
+            audioSource.PlayOneShot(enemyDamageSound);
+        }
 
         if (currentHealth - damage < 0) currentHealth = 0;
         else currentHealth -= damage;

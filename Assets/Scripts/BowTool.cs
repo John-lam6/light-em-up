@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class BowTool : RangedTool
 {
@@ -102,6 +103,12 @@ public class BowTool : RangedTool
             hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));
 
         ShootArrow(1);
+
+        // single shot sound
+        if (audioSource != null && shootSound != null)
+        {
+            audioSource.PlayOneShot(shootSound, 0.8f);
+        }
     }
 
     // MULTISHOT
@@ -140,6 +147,9 @@ public class BowTool : RangedTool
             hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));
 
         ShootArrow(StatsManager.Instance.bowArrowsPerShot);
+
+        // multishot delayed sound
+        StartCoroutine(MultishotSound());
     }
 
     void ShootArrow(int arrowsToShoot)
@@ -168,12 +178,6 @@ public class BowTool : RangedTool
                 arrowSpawn.right * (centerOffset * sidewaysSpawnOffset);
 
             SpawnArrow(spawnPosition, shotDirection);
-        }
-
-        if (audioSource != null && shootSound != null)
-        {
-            audioSource.volume = 0.8f;
-            audioSource.PlayOneShot(shootSound);
         }
     }
 
@@ -215,6 +219,22 @@ public class BowTool : RangedTool
         if (arrowCol != null && bowCol != null)
         {
             Physics.IgnoreCollision(arrowCol, bowCol);
+        }
+    }
+
+    // multishot sound coroutine
+    IEnumerator MultishotSound()
+    {
+        if (audioSource == null || shootSound == null) yield break;
+
+        int count = StatsManager.Instance != null ? StatsManager.Instance.bowArrowsPerShot : 1;
+
+        for (int i = 0; i < count; i++)
+        {
+            audioSource.PlayOneShot(shootSound, 0.8f);
+
+            if (i < count - 1)
+                yield return new WaitForSeconds(0.06f);
         }
     }
 

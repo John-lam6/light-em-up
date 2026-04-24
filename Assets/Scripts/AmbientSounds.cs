@@ -7,7 +7,7 @@ public class AmbientSounds : MonoBehaviour {
     public float minDelay = 12f;
     public float maxDelay = 23f;
 
-    public float playChance = 0.3f; // chance to play audio
+    public float playChance = 0.5f; // chance to play audio
     public List<AudioClip> ambienceSounds; 
     public AudioSource audioSource;
     public bool isPaused = false;
@@ -44,9 +44,10 @@ public class AmbientSounds : MonoBehaviour {
                 AudioClip clip = ambienceSounds[Random.Range(0, ambienceSounds.Count)];
 
                 if (audioSource != null) {
-                    audioSource.spatialBlend = 1;
-                    audioSource.volume = Random.Range(0.55f, 1.0f);
-                    audioSource.pitch = Random.Range(0.9f, 1.1f);
+                    audioSource.spatialBlend = 0;
+                    audioSource.volume = Random.Range(0.1f, 0.25f);
+                    audioSource.pitch  = Random.Range(0.95f, 1.05f);
+                    audioSource.priority = 180;
                     audioSource.PlayOneShot(clip);
                     
                     // pause the audio when the game is paused
@@ -64,20 +65,25 @@ public class AmbientSounds : MonoBehaviour {
     }
 
     private void PlayHum() {
+        if (humAudioSource == null || humAudioClips.Count == 0) return;
+
         AudioClip clip = humAudioClips[Random.Range(0, humAudioClips.Count)];
 
-        audioSource.volume = 0.08f;
-        audioSource.PlayOneShot(clip);
+        humAudioSource.clip = clip;
+        humAudioSource.priority = 200;
+        humAudioSource.loop = true;
+        humAudioSource.volume = 0.1f;
+        humAudioSource.Play();
+
         // pause the audio when the game is paused
-        if (audioSource.isPlaying && isPaused) {
-            audioSource.Pause();
+        if (humAudioSource.isPlaying && isPaused) {
+            humAudioSource.Pause();
         }
         
         // unpause the audio when the game is unpaused
         if (!isPaused) {
-            audioSource.UnPause();
+            humAudioSource.UnPause();
         }
-        
     }
     
     void Update()

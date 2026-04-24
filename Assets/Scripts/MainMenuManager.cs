@@ -8,6 +8,10 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private string upgradeSceneName = "UpgradeScene";
     [SerializeField] private LevelLoader levelLoader;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip menuMusic;
+
     void Start()
     {
         Time.timeScale = 1f;
@@ -15,10 +19,21 @@ public class MainMenuManager : MonoBehaviour
         // top down game, keep mouse visible
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
+        if (audioSource != null && menuMusic != null)
+        {
+            audioSource.clip = menuMusic;
+            audioSource.loop = true;
+            audioSource.volume = 0.8f;
+            audioSource.Play();
+        }
     }
 
     public void NewRun()
     {
+        if (audioSource != null)
+            audioSource.Stop();
+
         if (StatsManager.Instance != null)
         {
             StatsManager.Instance.ResetForNewRun();

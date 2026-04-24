@@ -16,6 +16,7 @@ public class Upgrade : MonoBehaviour
 
     public AudioSource audioSource;
     public AudioClip audioclip;
+    [SerializeField] private float upgradeClickDelay = 1f;
 
     private bool isLeveling = false;    
     void Awake()
@@ -51,10 +52,10 @@ public class Upgrade : MonoBehaviour
         isLeveling = true;
         yield return new WaitForSeconds(0.5f);
         if (audioSource != null && audioclip != null)
-            {
-                audioSource.volume = 0.6f;
-                audioSource.PlayOneShot(audioclip);
-            }
+        {
+            audioSource.volume = 0.8f;
+            audioSource.PlayOneShot(audioclip);
+        }
 
         UpgradePlayer();
         StatsManager.Instance.xp -= StatsManager.Instance.xpNeeded;
@@ -154,6 +155,9 @@ public class Upgrade : MonoBehaviour
             return;
         }
 
+        optionButton.interactable = false;
+        StartCoroutine(EnableUpgradeButton(optionButton));
+
         nameText.text = data.upgradeName;
 
         if (data.id == 8)
@@ -221,6 +225,16 @@ public class Upgrade : MonoBehaviour
             case 8: // blue flare unlock first, then increase damage
                 //StatsManager.Instance.blueFlareDamagePerTick += data.value;
                 break;
+        }
+    }
+
+    IEnumerator EnableUpgradeButton(Button button)
+    {
+        yield return new WaitForSecondsRealtime(upgradeClickDelay);
+
+        if (button != null)
+        {
+            button.interactable = true;
         }
     }
 }

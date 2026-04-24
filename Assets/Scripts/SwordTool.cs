@@ -20,6 +20,8 @@ public class SwordTool : MeleeTool
     private float attackSpeed;
     public AudioSource audioSource;
     public AudioClip audioClip;
+    public AudioClip beserkSound;
+
 
     // Start is called before the first frame update
     protected override void Start()
@@ -100,6 +102,8 @@ public class SwordTool : MeleeTool
         if (Time.time < berzerk_last_use_time + berzerkCooldown) return;
 
         berzerk_last_use_time = Time.time;
+        audioSource.volume = 0.4f;
+        audioSource.PlayOneShot(beserkSound);
         if (hotbar != null)
         {
             hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));

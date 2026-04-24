@@ -82,4 +82,13 @@ public class TooltipUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         tooltipRect.gameObject.SetActive(false);
         isHovering = false;
     }
+
+    private void OnDestroy()
+    {
+        if (scaleTween != null && scaleTween.IsActive())
+        {
+            scaleTween.Kill();
+            scaleTween = null;
+        }
+    }
 }
