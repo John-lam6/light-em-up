@@ -76,7 +76,11 @@ public class Upgrade : MonoBehaviour
             {
                 upgradeIndex = Random.Range(0, availableUpgrades.Count);
             }
-            while (availableUpgrades[upgradeIndex].id == 1 ||availableUpgrades[upgradeIndex].id == 0 ||availableUpgrades[upgradeIndex].id == 5 || (availableUpgrades[upgradeIndex].id == 8));
+            while (availableUpgrades[upgradeIndex].id == 1  
+                 ||availableUpgrades[upgradeIndex].id == 0 
+                 ||availableUpgrades[upgradeIndex].id == 5 
+                 ||availableUpgrades[upgradeIndex].id == 8 
+                 ||availableUpgrades[upgradeIndex].id == 6);
 
             UpgradeData randomUpgrade = availableUpgrades[upgradeIndex];
 

@@ -23,6 +23,7 @@ public class Door : MonoBehaviour {
     public void LoadNextLevel()
     {
         spawnManager.currLevel++;
+        PlayerPrefs.Save();
         levelLoader.LoadLevel(spawnManager.currLevel);
     } 
 }

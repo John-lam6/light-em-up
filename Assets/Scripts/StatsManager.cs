@@ -6,7 +6,7 @@ public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance;
 
-    private int totalPermUpgradeIDs = 12;
+    private int totalPermUpgradeIDs = 13;
 
     [Header("Default Combat Stats")]
     public float defaultSwordDamage = 20f;
@@ -132,6 +132,9 @@ public class StatsManager : MonoBehaviour
                 } else if(i == 12)
                 {
                     blueFlareUnlocked = true;
+                } else if (i == 13)
+                {
+                    bowPierceCount = 1;
                 }
             }
         }

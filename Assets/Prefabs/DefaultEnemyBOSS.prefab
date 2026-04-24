@@ -725,6 +725,7 @@ MonoBehaviour:
   target: {fileID: 0}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   xpValue: 80
+  permCurrencyChance: 5
   maxHealth: 250
   currentHealth: 0
   sliderEaseTime: 0.05
