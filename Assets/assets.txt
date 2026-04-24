@@ -58,6 +58,12 @@ https://game-icons.net/1x1/lorc/arrow-cluster.html#download
 Blue Flare sprite
 https://game-icons.net/1x1/delapouite/shambling-zombie.html#download
 
+Trophy sprite
+https://game-icons.net/1x1/delapouite/trophy-cup.html#download
+
+Curtains/Cave sprite
+https://game-icons.net/1x1/delapouite/theater-curtains.html#download
+
 Dash sound
 https://www.youtube.com/watch?v=JPxJPY1Mw8c
 
@@ -109,6 +115,9 @@ https://pixabay.com/sound-effects/household-cauldron-boiling-173607/
 
 Main Menu Audio
 https://pixabay.com/sound-effects/horror-dark-crime-atmosphere-04-30s-335783/
+
+Victory Screen Audio
+https://pixabay.com/sound-effects/musical-victory-at-last-486385/
 
 
 Atmosphere
