@@ -443,6 +443,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PT_Skeleton_Male_Modular
       objectReference: {fileID: 0}
+    - target: {fileID: 1264433200921298619, guid: b91f2cacb0bef7f4bac8f61b0f00b4c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1929787907488324609, guid: b91f2cacb0bef7f4bac8f61b0f00b4c6, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.7

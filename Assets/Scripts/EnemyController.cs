@@ -169,13 +169,12 @@ public class EnemyController : MonoBehaviour
             capsule.enabled = false;
             rb.isKinematic = true;
 
-            while (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("death") && !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Z_FallingBack")) {
+            while (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("death") && !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Z_FallingBack") && !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Z_FallingBack 0")) {
                 yield return null;
             }
-                        
+            
             AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
             float deathAnimLength = stateInfo.length;
-            
             yield return new WaitForSeconds(deathAnimLength);
             Destroy(gameObject);
         }
