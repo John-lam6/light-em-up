@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -144,5 +145,10 @@ public class StatsManager : MonoBehaviour
         xpNeeded = defaultXpNeeded;
         level = defaultLevel;
         totalKilled = 0f;
+    }
+
+    public void HealAfterLevel()
+    {
+        curHealth = Math.Min(curHealth + hpRegen, maxHealth);
     }
 }

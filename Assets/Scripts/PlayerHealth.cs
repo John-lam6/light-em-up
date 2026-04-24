@@ -22,8 +22,8 @@ public class PlayerHealth : MonoBehaviour
         if (StatsManager.Instance != null) {
             maxHealth = StatsManager.Instance.maxHealth;
             currentHealth = StatsManager.Instance.curHealth;
+            healthSlider.DOValue((float)currentHealth / maxHealth, sliderEaseTime).SetEase(Ease.Linear);
         }
-        currentHealth = maxHealth;
     }
 
     void Update() {

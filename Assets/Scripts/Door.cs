@@ -25,5 +25,6 @@ public class Door : MonoBehaviour {
         spawnManager.currLevel++;
         PlayerPrefs.Save();
         levelLoader.LoadLevel(spawnManager.currLevel);
+        StatsManager.Instance.HealAfterLevel();
     } 
 }
