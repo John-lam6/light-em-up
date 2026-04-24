@@ -20,7 +20,7 @@ public class VaseBreak : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(vase_break, transform.position, 50f);
         Instantiate(particlePrefab, transform.position, transform.rotation);
-        Instantiate(droppables[Random.Range(0, droppables.Count - 1)], transform.position, transform.rotation);
+        Instantiate(droppables[Random.Range(0, droppables.Count)], transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }
