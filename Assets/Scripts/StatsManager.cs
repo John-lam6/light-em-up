@@ -148,8 +148,12 @@ public class StatsManager : MonoBehaviour
         totalKilled = 0f;
     }
 
+    public void Heal(int amount)
+    {
+        curHealth = Math.Min(curHealth + amount, maxHealth);
+    }
     public void HealAfterLevel()
     {
-        curHealth = Math.Min(curHealth + hpRegen, maxHealth);
+        Heal(hpRegen);
     }
 }

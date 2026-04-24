@@ -122,3 +122,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vase_break: {fileID: 8300000, guid: abfb504bd9997b0438434c14816536a5, type: 3}
   particlePrefab: {fileID: 1376905856516238, guid: 3b89a0b81c18f8548ae1e630445434b9, type: 3}
+  droppables:
+  - {fileID: 2349946555258156762, guid: 5a919ff282fa39e42968f02542587387, type: 3}
