@@ -119,6 +119,7 @@ public class StatsManager : MonoBehaviour
             {
                 if (i <= 4){
                     maxHealth += 2;
+                    curHealth = maxHealth;
                 } else if (i <= 9)
                 {
                     hpRegen += 1;

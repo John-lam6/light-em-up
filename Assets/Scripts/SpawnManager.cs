@@ -84,8 +84,8 @@ public class SpawnManager : MonoBehaviour
         if (currentWave < numWaves) {
             int enemiesToSpawn = 3;
             if (currLevel == 1) enemiesToSpawn = 2 + currentWave * 3; // 5, 8, 11, 14, 17
-            else if (currLevel == 2) enemiesToSpawn = 7 + currentWave * 3; // 10, 13, 16, 19, 22
-            else if (currLevel == 3) enemiesToSpawn = 6 + currentWave * 4; // 10, 14, 18, 22, 26
+            else if (currLevel == 2) enemiesToSpawn = 10 + currentWave * 4; // 14, 18, 22, 26, 30
+            else if (currLevel == 3) enemiesToSpawn = 15 + currentWave * 5; // 20, 25, 30, 35, 40
             //int enemiesToSpawn = 20;
 
             for (int i = 0; i < enemiesToSpawn; i++) {
@@ -130,9 +130,9 @@ public class SpawnManager : MonoBehaviour
         }
         else {
             int enemiesToSpawn = 3;
-            if (currLevel == 1) enemiesToSpawn = 2 + (2) * 3; // 8
-            else if (currLevel == 2) enemiesToSpawn = 7 + (2) * 3; // 13
-            else if (currLevel == 3) enemiesToSpawn = 6 + (2) * 4; // 14
+            if (currLevel == 1) enemiesToSpawn = 2 + (3) * 3; // 11
+            else if (currLevel == 2) enemiesToSpawn = 10 + (3) * 4; // 22
+            else if (currLevel == 3) enemiesToSpawn = 15 + (3) * 5; // 30
             //int enemiesToSpawn = 20;
 
             for (int i = 0; i < enemiesToSpawn; i++) {

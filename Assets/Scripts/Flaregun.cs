@@ -149,7 +149,7 @@ public class Flaregun : ToolBase
             anim.CrossFade("Shoot");
 
         if (audioSource != null && flareShotSound != null)
-            audioSource.PlayOneShot(flareShotSound);
+            audioSource.PlayOneShot(flareShotSound, 0.25f);
 
         if (playerCamera == null)
         {
