@@ -5231,7 +5231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &649015547
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10013,8 +10013,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 1192360889}
   healthSlider: {fileID: 1235934742}
-  maxHealth: 8
-  currentHealth: 0
   sliderEaseTime: 0.15
   audioSource: {fileID: 402985218}
   audioClip: {fileID: 8300000, guid: f0742d00cfd4ff64d9fb866e4e06d360, type: 3}
@@ -12057,7 +12055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1297924553
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12196,7 +12194,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1322225589
 RectTransform:
   m_ObjectHideFlags: 0
