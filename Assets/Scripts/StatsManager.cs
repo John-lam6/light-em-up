@@ -10,9 +10,9 @@ public class StatsManager : MonoBehaviour
     private int totalPermUpgradeIDs = 13;
 
     [Header("Default Combat Stats")]
-    public float defaultSwordDamage = 20f;
+    public float defaultSwordDamage = 15f;
     public float defaultSwordAttackSpeed = 1f;
-    public float defaultBowDamage = 10f;
+    public float defaultBowDamage = 30f;
 
     [Header("Default Bow Upgrade Stats")]
     public int defaultBowArrowsPerShot = 1;
