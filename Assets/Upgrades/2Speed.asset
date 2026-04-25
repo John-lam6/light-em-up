@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 2Speed
   m_EditorClassIdentifier: 
   id: 2
-  upgradeName: MS Up
+  upgradeName: Movement Speed Up
   description: 
   icon: {fileID: 0}
   valueRange: []
