@@ -8,7 +8,11 @@ public class Key : MonoBehaviour {
     private Door door;
     void Start()
     {
-        tutorialManager = GameObject.Find("TutorialManager").GetComponent<TutorialManager>();
+        GameObject tutorialManagerObj = GameObject.Find("TutorialManager");
+        if(tutorialManagerObj)
+        {
+            tutorialManager = tutorialManagerObj.GetComponent<TutorialManager>();    
+        }
 
         door = GameObject.Find("Door").GetComponent<Door>();
         doorCollider = GameObject.Find("Double Door Frame").GetComponent<Collider>();
