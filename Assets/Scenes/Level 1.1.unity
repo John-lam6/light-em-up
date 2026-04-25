@@ -8824,15 +8824,15 @@ MonoBehaviour:
   waveDelay: 30
   currentWave: 0
   numWaves: 5
-  default_weight: 50
+  default_weight: 58
   ranged_weight: 32
-  tank_weight: 18
+  tank_weight: 10
   rangedUnlockWave: 2
-  tankUnlockWave: 3
+  tankUnlockWave: 4
   currLevel: 1
   spawnDefaultInterval: 0.15
   spawnRangedInterval: 0.2
-  spawnTankInterval: 0.25
+  spawnTankInterval: 0.35
   minDistanceFromPlayer: 15
   spawnCircleDuration: 2
 --- !u!4 &882502189
