@@ -277,7 +277,7 @@ public class SpawnManager : MonoBehaviour
         else if (roll < default_weight + ranged_weight && currentWave >= tankUnlockWave) {
             return 2;
         }
-        else if (currentWave >= tank_weight) {
+        else if (currentWave >= tankUnlockWave) {
             return 3;
         }
         else {
