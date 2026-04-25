@@ -107,6 +107,7 @@ public class EnemyController : MonoBehaviour
             foreach (Renderer r in renderers)
             {
                 r.material.EnableKeyword("_EMISSION");
+                r.material.SetColor("_EmissionColor", Color.black);
                 r.material.DOColor(damageColor * 0.3f, "_EmissionColor", 0.1f);
             }
 
