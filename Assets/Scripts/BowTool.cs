@@ -107,7 +107,7 @@ public class BowTool : RangedTool
         // single shot sound
         if (audioSource != null && shootSound != null)
         {
-            audioSource.PlayOneShot(shootSound, 0.9f);
+            audioSource.PlayOneShot(shootSound, 0.7f);
         }
     }
 
