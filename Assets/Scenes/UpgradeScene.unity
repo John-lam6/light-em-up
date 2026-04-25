@@ -345,8 +345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81015951396b2e4ea7e3e526799a772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltipMessage: Unlocks "Blue Flare" ability. Does damage over time and slows nearby
-    enemies by right clicking with the flare gun.
+  tooltipMessage: Unlocks "Blue Flare" ability. Slows nearby enemies by right clicking
+    with the flare gun.
   offset: {x: -500, y: 100}
   tooltipRect: {fileID: 1348243509}
   tooltipText: {fileID: 2125800540}
