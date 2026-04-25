@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Dash Settings")]
     public float dash_speed = 30f;
     public float dash_cooldown = 2f;
-    public float dash_duration = 1f;
+    public float dash_duration = 0.3f;
     private float last_dash_time;
     private bool isDashing = false;
     private bool canDash = true;

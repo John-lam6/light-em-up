@@ -51,9 +51,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void Upgrade()
     {
-        int permCurrency = PlayerPrefs.GetInt("PermCurrency", 0);
-        PlayerPrefs.SetInt("PermCurrency", permCurrency);
-        PlayerPrefs.Save();
         SceneManager.LoadScene(upgradeSceneName);
     }
 

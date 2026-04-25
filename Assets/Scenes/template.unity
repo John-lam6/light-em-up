@@ -992,8 +992,10 @@ MonoBehaviour:
   hotbarSlotIndex: 0
   animator: {fileID: 322053294}
   hitbox: {fileID: 1336591038}
+  berzerkIcon: {fileID: 0}
   audioSource: {fileID: 402985218}
   audioClip: {fileID: 8300000, guid: baf44597c519a3249be431f439096b6f, type: 3}
+  beserkSound: {fileID: 0}
 --- !u!1 &138566164
 GameObject:
   m_ObjectHideFlags: 0
@@ -6248,6 +6250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fd8ebb0033d584dac0d1b02d3566e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialManager: {fileID: 0}
   defaultEnemy: {fileID: 5163700773192029694, guid: cccd324f7ae74724c83599a75bd7c4ee, type: 3}
   rangedEnemy: {fileID: 1400672979450679916, guid: a64ad7f00b9cb0946aa9fcd3be5ac704, type: 3}
   tankEnemy: {fileID: 7909147294634513256, guid: fdac654c7dec5f3418a9c62b4cc36b81, type: 3}
@@ -8326,7 +8329,7 @@ MonoBehaviour:
   m_Animator: {fileID: 322053294}
   m_Rigidbody: {fileID: 0}
   dash_speed: 20
-  dash_cooldown: 0.6
+  dash_cooldown: 1
   dash_duration: 0.3
   dash_slider: {fileID: 886952320}
   particlePrefab: {fileID: 1551494778287644, guid: 63206a6b58e89d74483b27ded7f2e41c, type: 3}
@@ -8378,11 +8381,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 1192360889}
   healthSlider: {fileID: 1235934742}
-  maxHealth: 8
-  currentHealth: 0
   sliderEaseTime: 0.15
   audioSource: {fileID: 402985218}
   audioClip: {fileID: 8300000, guid: f0742d00cfd4ff64d9fb866e4e06d360, type: 3}
+  deathSound: {fileID: 0}
 --- !u!1 &1096333486 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7258757750473675484, guid: 5d6132988fee98a4da687235dfc9484f, type: 3}
@@ -13473,6 +13475,7 @@ MonoBehaviour:
   upgradeOptionPrefab: {fileID: 1900242685151005853, guid: cb62391ed91c8c44ab810f18523054fe, type: 3}
   audioSource: {fileID: 402985218}
   audioclip: {fileID: 8300000, guid: 54c8fb17359545e43b47bdae85d96517, type: 3}
+  upgradeClickDelay: 1
 --- !u!1 &1704412559
 GameObject:
   m_ObjectHideFlags: 0
