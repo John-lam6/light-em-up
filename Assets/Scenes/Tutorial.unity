@@ -8990,7 +8990,7 @@ MonoBehaviour:
   healthSlider: {fileID: 1235934742}
   sliderEaseTime: 0.15
   audioSource: {fileID: 402985218}
-  audioClip: {fileID: 8300000, guid: f0742d00cfd4ff64d9fb866e4e06d360, type: 3}
+  audioClip: {fileID: 8300000, guid: 217768cb8ac72b34bbfed4002d4ce701, type: 3}
   deathSound: {fileID: 8300000, guid: c3bc1d8a11122914e881475d19501e56, type: 3}
 --- !u!1 &1096333486 stripped
 GameObject:
