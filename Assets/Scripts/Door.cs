@@ -32,6 +32,10 @@ public class Door : MonoBehaviour {
         }
 
         spawnManager.currLevel++;
+        if(spawnManager.currLevel == 1)
+        {
+            PlayerPrefs.SetInt("hasBeatTutorial", 1);
+        }
         PlayerPrefs.Save();
         levelLoader.LoadLevel(spawnManager.currLevel);
         StatsManager.Instance.HealAfterLevel();

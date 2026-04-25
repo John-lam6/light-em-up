@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
+    [SerializeField] private TutorialManager tutorialManager;
     private bool canSummon = false;
 
     public GameObject defaultEnemy;
@@ -52,8 +53,10 @@ public class SpawnManager : MonoBehaviour
         isSpawning = false;
         player = GameObject.FindWithTag("Player");
         
-        
-        StartCoroutine(StartSummon());
+        if(!tutorialManager)
+        {
+           StartCoroutine(StartSummon());
+        } 
     }
 
     public void Reset() {
@@ -73,6 +76,26 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(StartNextWave());
     }
     
+    public IEnumerator StartTutorialWave()
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            Transform spawnPoint = GetValidSpawnPoint();
+            if (spawnPoint != null) {
+                StartCoroutine(SpawnWithIndicator(defaultEnemy, spawnPoint));
+                yield return new WaitForSeconds(spawnDefaultInterval);
+            }
+        }
+
+        yield return new WaitForSeconds(20.0f);
+        tutorialManager.BeginBossPhase();
+
+        Transform bossSpawnPoint = GetValidSpawnPoint();
+        if (bossSpawnPoint != null) {
+            StartCoroutine(SpawnWithIndicator(defaultEnemyBoss, bossSpawnPoint, true));
+        }
+    }
+
     IEnumerator StartNextWave() {
         if (isSpawning) yield break;
         
