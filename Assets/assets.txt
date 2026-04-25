@@ -154,3 +154,9 @@ https://game-icons.net/1x1/lorc/drop.html#download
 
 Pierce icon
 https://game-icons.net/1x1/lorc/pierced-body.html#download
+
+Final Boss Crown
+https://assetstore.unity.com/packages/3d/props/clothing/accessories/golden-jewelry-use-as-necklace-bracelet-ring-215018
+
+Item Pickup Sound
+https://pixabay.com/sound-effects/film-special-effects-pickupplasticobject-91036/

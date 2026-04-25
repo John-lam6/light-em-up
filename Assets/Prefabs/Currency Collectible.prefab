@@ -214,4 +214,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91fd179b7d907554caa1f61cf6166bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 8300000, guid: 5ad21d95cf9184c418ee2a165705f0a0, type: 3}
   currencyGain: 1

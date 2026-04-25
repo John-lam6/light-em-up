@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ed02647e6595d43b07be07730d689a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickupSound: {fileID: 8300000, guid: 5ad21d95cf9184c418ee2a165705f0a0, type: 3}
   percentHealing: 50
 --- !u!1 &5164620350631161328
 GameObject:

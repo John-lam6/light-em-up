@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Key : MonoBehaviour {
+    [SerializeField] private AudioClip pickupSound;
+    private AudioSource audioSource;
     private TutorialManager tutorialManager;
     private Collider doorCollider;
     private Door door;
     void Start()
     {
+        audioSource = GameObject.Find("Audio Source").GetComponent<AudioSource>();
+
         GameObject tutorialManagerObj = GameObject.Find("TutorialManager");
         if(tutorialManagerObj)
         {
@@ -30,6 +34,7 @@ public class Key : MonoBehaviour {
 
             doorCollider.enabled = true;
             door.turnOnLight();
+            audioSource.PlayOneShot(pickupSound);
             Destroy(gameObject);
         }
     }

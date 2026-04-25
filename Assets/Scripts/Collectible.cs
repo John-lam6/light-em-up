@@ -4,10 +4,14 @@ using UnityEngine;
 
 public abstract class Collectible : MonoBehaviour
 {
+    [SerializeField] private AudioClip pickupSound;
+    private AudioSource audioSource;
     private bool isCollectible = false;
     protected abstract void Collect();
     void Start()
     {
+        audioSource = GameObject.Find("Audio Source").GetComponent<AudioSource>();
+
         StartCoroutine(SpawnDelay());
     }
 
@@ -16,6 +20,7 @@ public abstract class Collectible : MonoBehaviour
         if(other.CompareTag("Player") && isCollectible)
         {
             Collect();
+            audioSource.PlayOneShot(pickupSound);
             Destroy(gameObject);
         }
     }
