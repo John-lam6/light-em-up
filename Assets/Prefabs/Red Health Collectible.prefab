@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupSound: {fileID: 8300000, guid: 5ad21d95cf9184c418ee2a165705f0a0, type: 3}
-  percentHealing: 50
+  percentHealing: 30
 --- !u!1 &5164620350631161328
 GameObject:
   m_ObjectHideFlags: 0

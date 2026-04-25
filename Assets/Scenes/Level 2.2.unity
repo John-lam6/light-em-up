@@ -7749,7 +7749,7 @@ MonoBehaviour:
   tank_weight: 18
   rangedUnlockWave: 2
   tankUnlockWave: 3
-  currLevel: 1
+  currLevel: 2
   spawnDefaultInterval: 0.15
   spawnRangedInterval: 0.2
   spawnTankInterval: 0.25
