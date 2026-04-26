@@ -9,4 +9,6 @@ public class UpgradeData : ScriptableObject
     public Sprite icon;
     public float[] valueRange;
     public float value;
+    public bool isPercentage;
+    public bool isFloat;
 }

@@ -52,6 +52,18 @@ https://www.freepik.com/premium-vector/swap-icon_320035090.htm
 Dash sprite
 https://www.shutterstock.com/image-vector/dash-fast-run-icon-element-walking-1208750191
 
+Multishot sprite
+https://game-icons.net/1x1/lorc/arrow-cluster.html#download
+
+Blue Flare sprite
+https://game-icons.net/1x1/delapouite/shambling-zombie.html#download
+
+Trophy sprite
+https://game-icons.net/1x1/delapouite/trophy-cup.html#download
+
+Curtains/Cave sprite
+https://game-icons.net/1x1/delapouite/theater-curtains.html#download
+
 Dash sound
 https://www.youtube.com/watch?v=JPxJPY1Mw8c
 
@@ -70,3 +82,81 @@ https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/crusader-t
 Particles
 https://assetstore.unity.com/packages/vfx/particles/spells/fx-magic-plane-ii-free-25218
 https://assetstore.unity.com/packages/vfx/particles/free-quick-effects-vol-1-304424
+
+Bow Shot Audio
+https://www.youtube.com/watch?v=dBH6LSnOoPk
+
+Level Up Audio
+https://pixabay.com/sound-effects/film-special-effects-level-up-289723/
+
+Sword Swing Audio
+https://pixabay.com/sound-effects/film-special-effects-sword-sound-260274/
+
+Swap Weapon Audio
+https://pixabay.com/sound-effects/film-special-effects-inventory-open-94932/
+
+Take Damage
+https://pixabay.com/sound-effects/film-special-effects-classic-punch-impact-352711/
+
+Player Damage Audio
+https://pixabay.com/sound-effects/people-young-man-being-hurt-95628/
+
+Enemy Damage Audio
+https://pixabay.com/sound-effects/film-special-effects-slap-hurt-pain-sound-effect-262618/
+
+Player Dying Audio
+https://pixabay.com/sound-effects/horror-falling-man-scream-450793/
+
+Beserk Ability Audio
+https://pixabay.com/sound-effects/film-special-effects-sword-35999/
+
+Blue Flare Ability Audio
+https://pixabay.com/sound-effects/household-cauldron-boiling-173607/
+
+Main Menu Audio
+https://pixabay.com/sound-effects/horror-dark-crime-atmosphere-04-30s-335783/
+
+Victory Screen Audio
+https://pixabay.com/sound-effects/musical-victory-at-last-486385/
+
+
+Atmosphere
+https://pixabay.com/sound-effects/film-special-effects-deathmagic-94937/
+https://pixabay.com/sound-effects/film-special-effects-dark-magic-6-378652/
+https://pixabay.com/sound-effects/nature-droplets-in-a-cave-482871/
+https://pixabay.com/sound-effects/film-special-effects-creepy-cave-47164/
+https://pixabay.com/sound-effects/soft-wind-477404/
+https://www.youtube.com/watch?v=o-b5nMCj5hI
+
+Hum atmosphere
+https://www.youtube.com/watch?v=XpDwKwF-d2s
+
+Castle Door
+https://assetstore.unity.com/packages/3d/environments/fantasy/medieval-castle-modular-282498
+
+Key
+https://assetstore.unity.com/packages/3d/props/rust-key-167590
+
+Miniboss Spawn Sound
+https://pixabay.com/sound-effects/film-special-effects-relaxing-music-viking-horn-12-116626/
+
+Melee animation 
+https://assetstore.unity.com/packages/3d/animations/human-melee-animations-free-165785
+
+Permanent Upgrade max HP
+https://game-icons.net/1x1/skoll/hearts.html#download
+
+Permanent Upgrade HP regen
+https://game-icons.net/1x1/delapouite/nested-hearts.html#download
+
+Cursed blood (Currency)
+https://game-icons.net/1x1/lorc/drop.html#download
+
+Pierce icon
+https://game-icons.net/1x1/lorc/pierced-body.html#download
+
+Final Boss Crown
+https://assetstore.unity.com/packages/3d/props/clothing/accessories/golden-jewelry-use-as-necklace-bracelet-ring-215018
+
+Item Pickup Sound
+https://pixabay.com/sound-effects/film-special-effects-pickupplasticobject-91036/

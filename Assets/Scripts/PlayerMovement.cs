@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Dash Settings")]
     public float dash_speed = 30f;
     public float dash_cooldown = 2f;
-    public float dash_duration = 1f;
+    public float dash_duration = 0.3f;
     private float last_dash_time;
     private bool isDashing = false;
     private bool canDash = true;
@@ -44,6 +44,8 @@ public class PlayerMovement : MonoBehaviour {
 
 
     void Update() {
+        if (Time.timeScale == 0f) return;
+
         if (canMove) {
             if (isDashing) return; // if it is dashing, prevent any new inputs
             
@@ -62,9 +64,19 @@ public class PlayerMovement : MonoBehaviour {
                 last_dash_time = Time.time;
                 canDash = false;
                 StartCoroutine(Dash());
-                dash_slider.gameObject.SetActive(true);
-                dash_slider.value = 0;
-                dash_slider.DOValue (1, dash_cooldown).SetEase (Ease.Linear).OnComplete(() => dash_slider.gameObject.SetActive(false));
+
+                if (dash_slider != null) {
+                    dash_slider.DOKill();
+                    dash_slider.gameObject.SetActive(true);
+                    dash_slider.value = 0;
+                    dash_slider.DOValue(1, dash_cooldown)
+                        .SetEase(Ease.Linear)
+                        .OnComplete(() => {
+                            if (dash_slider != null) {
+                                dash_slider.gameObject.SetActive(false);
+                            }
+                        });
+                }
             }
 
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
@@ -73,13 +85,22 @@ public class PlayerMovement : MonoBehaviour {
             if (Physics.Raycast(ray, out hit)) {
                 Vector3 lookDir = hit.point - transform.position;
                 lookDir.y = 0;
-                Quaternion rotation = Quaternion.LookRotation(lookDir);
-                transform.rotation = rotation;
+
+                if (lookDir.sqrMagnitude > 0.001f) {
+                    Quaternion rotation = Quaternion.LookRotation(lookDir);
+                    transform.rotation = rotation;
+                }
             }
         }
     }
     
     void FixedUpdate() {
+        if (!canMove || Time.timeScale == 0f) {
+            m_Rigidbody.velocity = new Vector3(0f, m_Rigidbody.velocity.y, 0f);
+            m_Animator.SetBool("isRunning", false);
+            return;
+        }
+
         Vector3 moveDir = new Vector3(movementX, 0, movementY).normalized;
         
         if (!isDashing) {
@@ -107,12 +128,27 @@ public class PlayerMovement : MonoBehaviour {
         // dashes for a short duration
         isDashing = true;
         m_Animator.SetBool("isDashing", true);
-        audioSource.PlayOneShot(dash_sound);
+        audioSource.PlayOneShot(dash_sound, 1f);
         Instantiate(particlePrefab, transform.position, transform.rotation);
         Vector3 moveDir = new Vector3(movementX, 0, movementY).normalized;
         m_Rigidbody.velocity = new Vector3 (moveDir.x * dash_speed, 0, moveDir.z * dash_speed);
         yield return new WaitForSeconds(dash_duration);
         isDashing = false;
         m_Animator.SetBool("isDashing", false);
+    }
+
+    void OnDestroy() {
+        if (dash_slider != null) {
+            dash_slider.DOKill();
+        }
+    }
+    
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DoorCollider"))
+        {
+            Door door = other.transform.parent.GetComponent<Door>();
+            door.LoadNextLevel();
+        }
     }
 }

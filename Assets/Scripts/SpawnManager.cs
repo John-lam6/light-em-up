@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
+    [SerializeField] private TutorialManager tutorialManager;
     private bool canSummon = false;
 
     public GameObject defaultEnemy;
     public GameObject rangedEnemy;
     public GameObject tankEnemy;
+    public GameObject defaultEnemyBoss;
+    public GameObject rangedEnemyBoss;
+    public GameObject tankEnemyBoss;
     public GameObject spawnCircle;
     public GameObject spawnParticle;
+    public GameObject bossSpawnCircle;
+    public GameObject bossSpawnParticle;
 
     public Transform spawnPointParent;
     public List<Transform> spawnPoints = new List<Transform>();
@@ -20,6 +27,7 @@ public class SpawnManager : MonoBehaviour
 
     public int currentWave = 0;
     private bool isSpawning = false;
+    public int numWaves = 7;
     
     public int default_weight = 50;
     public int ranged_weight = 32;
@@ -27,6 +35,8 @@ public class SpawnManager : MonoBehaviour
     
     public int rangedUnlockWave = 3;
     public int tankUnlockWave = 5;
+
+    public int currLevel = 1;
     
     public float spawnDefaultInterval = 0.15f;
     public float spawnRangedInterval = 0.2f;
@@ -43,8 +53,10 @@ public class SpawnManager : MonoBehaviour
         isSpawning = false;
         player = GameObject.FindWithTag("Player");
         
-        
-        StartCoroutine(StartSummon());
+        if(!tutorialManager)
+        {
+           StartCoroutine(StartSummon());
+        } 
     }
 
     public void Reset() {
@@ -64,57 +76,137 @@ public class SpawnManager : MonoBehaviour
         StartCoroutine(StartNextWave());
     }
     
-    IEnumerator StartNextWave() {
-        if (isSpawning) yield break;
-        isSpawning = true;
-        
-        currentWave++;
-        
-        int enemiesToSpawn = 2 + currentWave * 3;
-        //int enemiesToSpawn = 20;
-        
-        for (int i = 0; i < enemiesToSpawn; i++) {
-            int enemyType = GetWeightedEnemyType();
-            GameObject prefab;
-            float interval;
-            if (enemyType == 1) {
-                prefab = defaultEnemy;
-                interval = spawnDefaultInterval;
-            }
-            else if (enemyType == 2) {
-                prefab = rangedEnemy;
-                interval = spawnRangedInterval;
-            }
-            else {//if(enemyType == 3) {
-                prefab = tankEnemy;
-                interval = spawnTankInterval;
-            }
-            
+    public IEnumerator StartTutorialWave()
+    {
+        for(int i = 0; i < 4; i++)
+        {
             Transform spawnPoint = GetValidSpawnPoint();
             if (spawnPoint != null) {
-                StartCoroutine(SpawnWithIndicator(prefab, spawnPoint));
+                StartCoroutine(SpawnWithIndicator(defaultEnemy, spawnPoint));
+                yield return new WaitForSeconds(spawnDefaultInterval);
             }
-            
-            yield return new WaitForSeconds(interval);
-
-
-            /*
-            int enemyType = SpawnWeightedEnemy();
-
-            if (enemyType == 1) yield return new WaitForSeconds(spawnDefaultInterval);
-            else if (enemyType == 2) yield return new WaitForSeconds(spawnRangedInterval);
-            else if (enemyType == 3) yield return new WaitForSeconds(spawnTankInterval);
-            //yield return new WaitForSeconds(spawnInterval);
-            */
         }
-        isSpawning = false;
-        yield return new WaitForSeconds(waveDelay);
-        StartCoroutine(StartNextWave());
+
+        yield return new WaitForSeconds(20.0f);
+        tutorialManager.BeginBossPhase();
+
+        Transform bossSpawnPoint = GetValidSpawnPoint();
+        if (bossSpawnPoint != null) {
+            StartCoroutine(SpawnWithIndicator(defaultEnemyBoss, bossSpawnPoint, true));
+        }
     }
 
-    private IEnumerator SpawnWithIndicator(GameObject prefab, Transform spawnPoint) {
+    IEnumerator StartNextWave() {
+        if (isSpawning) yield break;
         
-        GameObject circle = Instantiate (spawnCircle, spawnPoint.position, spawnPoint.rotation);
+        currentWave++;
+            
+        isSpawning = true;
+
+        // pre boss waves
+        if (currentWave < numWaves) {
+            int enemiesToSpawn = 3;
+            if (currLevel == 1) enemiesToSpawn = 2 + currentWave * 3; // 5, 8, 11, 14, 17
+            else if (currLevel == 2) enemiesToSpawn = 10 + currentWave * 4; // 14, 18, 22, 26, 30
+            else if (currLevel == 3) enemiesToSpawn = 15 + currentWave * 5; // 20, 25, 30, 35, 40
+            //int enemiesToSpawn = 20;
+
+            for (int i = 0; i < enemiesToSpawn; i++) {
+                int enemyType = GetWeightedEnemyType();
+                GameObject prefab;
+                float interval;
+                if (enemyType == 1) {
+                    prefab = defaultEnemy;
+                    interval = spawnDefaultInterval;
+                }
+                else if (enemyType == 2) {
+                    prefab = rangedEnemy;
+                    interval = spawnRangedInterval;
+                }
+                else {
+                    //if(enemyType == 3) {
+                    prefab = tankEnemy;
+                    interval = spawnTankInterval;
+                }
+
+                Transform spawnPoint = GetValidSpawnPoint();
+                if (spawnPoint != null) {
+                    StartCoroutine(SpawnWithIndicator(prefab, spawnPoint));
+                }
+
+                yield return new WaitForSeconds(interval);
+
+
+                /*
+                int enemyType = SpawnWeightedEnemy();
+
+                if (enemyType == 1) yield return new WaitForSeconds(spawnDefaultInterval);
+                else if (enemyType == 2) yield return new WaitForSeconds(spawnRangedInterval);
+                else if (enemyType == 3) yield return new WaitForSeconds(spawnTankInterval);
+                //yield return new WaitForSeconds(spawnInterval);
+                */
+            }
+
+            isSpawning = false;
+            yield return new WaitForSeconds(waveDelay);
+            StartCoroutine(StartNextWave());
+        }
+        else {
+            int enemiesToSpawn = 3;
+            if (currLevel == 1) enemiesToSpawn = 2 + (3) * 3; // 11
+            else if (currLevel == 2) enemiesToSpawn = 10 + (3) * 4; // 22
+            else if (currLevel == 3) enemiesToSpawn = 15 + (3) * 5; // 30
+            //int enemiesToSpawn = 20;
+
+            for (int i = 0; i < enemiesToSpawn; i++) {
+                int enemyType = GetWeightedEnemyType();
+                GameObject prefab;
+                float interval;
+                if (enemyType == 1) {
+                    prefab = defaultEnemy;
+                    interval = spawnDefaultInterval;
+                }
+                else if (enemyType == 2) {
+                    prefab = rangedEnemy;
+                    interval = spawnRangedInterval;
+                }
+                else {
+                    //if(enemyType == 3) {
+                    prefab = tankEnemy;
+                    interval = spawnTankInterval;
+                }
+
+                Transform spawnPoint = GetValidSpawnPoint();
+                if (spawnPoint != null) {
+                    StartCoroutine(SpawnWithIndicator(prefab, spawnPoint));
+                }
+            }
+
+            GameObject bossPrefab = defaultEnemyBoss;
+            switch (currLevel) {
+                case 1:
+                    bossPrefab = defaultEnemyBoss;
+                    break;
+                case 2:
+                    bossPrefab = rangedEnemyBoss;
+                    break;
+                case 3:
+                    bossPrefab = tankEnemyBoss;
+                    break;
+            }
+            Transform bossSpawnPoint = GetValidSpawnPoint();
+            if (bossSpawnPoint != null) {
+                StartCoroutine(SpawnWithIndicator(bossPrefab, bossSpawnPoint, true));
+            }
+        }
+    }
+
+    private IEnumerator SpawnWithIndicator(GameObject prefab, Transform spawnPoint, bool isBoss=false) {
+        GameObject circle;
+        
+        if (!isBoss) circle = Instantiate (spawnCircle, spawnPoint.position, spawnPoint.rotation);
+        else circle = Instantiate (bossSpawnCircle, spawnPoint.position, spawnPoint.rotation);
+        
         Image image = circle.GetComponentInChildren<Image> ();
         Renderer[] renderers = circle.GetComponentsInChildren<Renderer>();
 
@@ -134,10 +226,15 @@ public class SpawnManager : MonoBehaviour
         Destroy(circle);
         
         yield return new WaitForSeconds(0.1f);
-        
-        Instantiate(spawnParticle, spawnPoint.position + new Vector3(0,0.5f,0),  Quaternion.Euler(0,0,0));
-        Instantiate (prefab, spawnPoint.position, spawnPoint.rotation);
-        
+
+        if (!isBoss) {
+            Instantiate(spawnParticle, spawnPoint.position + new Vector3(0, 0.5f, 0), Quaternion.Euler(0, 0, 0));
+            Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+        }
+        else {
+            Instantiate(bossSpawnParticle, spawnPoint.position + new Vector3(0, 0.5f, 0), Quaternion.Euler(0, 0, 0));
+            Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
+        }
     }
 
     private Transform GetValidSpawnPoint() {
@@ -180,7 +277,7 @@ public class SpawnManager : MonoBehaviour
         else if (roll < default_weight + ranged_weight && currentWave >= tankUnlockWave) {
             return 2;
         }
-        else if (currentWave >= tank_weight) {
+        else if (currentWave >= tankUnlockWave) {
             return 3;
         }
         else {

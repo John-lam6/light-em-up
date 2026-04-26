@@ -6,7 +6,6 @@ public class Flaregun : ToolBase
     [Header("References")]
     public Rigidbody flareBullet;
     public Transform barrelEnd;
-    public GameObject muzzleParticles;
     public HotbarManager hotbar;
 
     [Header("Audio")]
@@ -23,13 +22,21 @@ public class Flaregun : ToolBase
     [Header("Hotbar")]
     [SerializeField] private int hotbarSlotIndex = 2;
 
+    [Header("Shared Visible Cooldown")]
+    [SerializeField] private float flareHotbarCooldown = 5f;
+    
+    [Header("Ability Slot UI")]
+    public Sprite blueFlareIcon;
+
     private Animation anim;
     private AudioSource audioSource;
     private bool equipped = false;
 
+    private float last_blue_flare_time = -999f;
+
     void Start()
     {
-        cooldown = 5f;
+        cooldown = flareHotbarCooldown;
         last_use_time = -cooldown;
 
         anim = GetComponent<Animation>();
@@ -48,12 +55,28 @@ public class Flaregun : ToolBase
 
     void Update()
     {
-        if (!equipped) return;
+        if (Time.timeScale == 0f) return;
 
-        if (Input.GetButtonDown("Fire1") && (anim == null || !anim.isPlaying))
+        if (!equipped)
+        {
+            HideAbilityUI();
+            return;
+        }
+
+        if (Input.GetMouseButton(0))
         {
             Use();
         }
+
+        if (Input.GetMouseButton(1))
+        {
+            if(StatsManager.Instance != null && StatsManager.Instance.blueFlareUnlocked)
+            {
+                UseBlueFlare();
+            }
+        }
+
+        UpdateAbilityUI();
     }
 
     public override void Equip()
@@ -65,28 +88,50 @@ public class Flaregun : ToolBase
     public override void Unequip()
     {
         equipped = false;
+
+        if (hotbar != null)
+            hotbar.HideAbilityCooldown();
+
         gameObject.SetActive(false);
     }
 
     public override void Use()
     {
-        if (!equipped)
-            return;
+        if (!equipped) return;
 
-        if (!CanUse())
-            return;
+        if (hotbar != null && hotbar.IsOnCooldown(hotbarSlotIndex)) return;
 
-        last_use_time = Time.time;
+        Shoot(false);
 
         if (hotbar != null)
         {
             hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));
         }
-
-        Shoot();
     }
 
-    void Shoot()
+    void UseBlueFlare()
+    {
+        if (!equipped) return;
+
+        if (hotbar != null && hotbar.IsOnCooldown(hotbarSlotIndex)) return;
+
+        if (StatsManager.Instance == null) return;
+        if (!StatsManager.Instance.blueFlareUnlocked) return;
+
+        if (Time.time < last_blue_flare_time + StatsManager.Instance.blueFlareCooldown)
+            return;
+
+        last_blue_flare_time = Time.time;
+
+        Shoot(true);
+
+        if (hotbar != null)
+        {
+            hotbar.StartCoroutine(hotbar.cooldownSlider(hotbarSlotIndex, cooldown));
+        }
+    }
+
+    void Shoot(bool isBlueFlare)
     {
         if (barrelEnd == null)
         {
@@ -104,7 +149,7 @@ public class Flaregun : ToolBase
             anim.CrossFade("Shoot");
 
         if (audioSource != null && flareShotSound != null)
-            audioSource.PlayOneShot(flareShotSound);
+            audioSource.PlayOneShot(flareShotSound, 0.25f);
 
         if (playerCamera == null)
         {
@@ -136,11 +181,31 @@ public class Flaregun : ToolBase
         if (flareScript != null)
         {
             flareScript.targetPoint = targetPoint;
+            flareScript.isBlueFlare = isBlueFlare;
+        }
+    }
+
+    void UpdateAbilityUI()
+    {
+        if (hotbar == null || StatsManager.Instance == null) return;
+
+        bool show = equipped && StatsManager.Instance.blueFlareUnlocked;
+
+        if (!show)
+        {
+            hotbar.HideAbilityCooldown();
+            return;
         }
 
-        if (muzzleParticles != null)
-        {
-            Instantiate(muzzleParticles, barrelEnd.position, barrelEnd.rotation);
-        }
+        float cooldown = StatsManager.Instance.blueFlareCooldown;
+        float timeRemaining = Mathf.Max(0f, (last_blue_flare_time + cooldown) - Time.time);
+
+        hotbar.ShowAbilityCooldown(blueFlareIcon, timeRemaining, cooldown);
+    }
+
+    void HideAbilityUI()
+    {
+        if (hotbar != null)
+            hotbar.HideAbilityCooldown();
     }
 }

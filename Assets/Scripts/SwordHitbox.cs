@@ -24,7 +24,7 @@ public class SwordHitbox : MonoBehaviour
 
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("Hit enemy for " + damage);
+            //Debug.Log("Hit enemy for " + damage + " at " +Time.time);
             EnemyController enemy = other.GetComponent<EnemyController>();
             enemy.StartCoroutine(enemy.DamageAgent((int)damage));
         }
