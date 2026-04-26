@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour
     public Transform target;
     public Color damageColor;
     public int xpValue;
+    public float permCurrencyChance;
+    public TMP_Text currencyText;
     private float nextPathUpdateTime = 0f;
     private float updateRate = 0.2f;
     
@@ -105,6 +107,7 @@ public class EnemyController : MonoBehaviour
             foreach (Renderer r in renderers)
             {
                 r.material.EnableKeyword("_EMISSION");
+                r.material.SetColor("_EmissionColor", Color.black);
                 r.material.DOColor(damageColor * 0.3f, "_EmissionColor", 0.1f);
             }
 
@@ -145,6 +148,20 @@ public class EnemyController : MonoBehaviour
         
         if (currentHealth <= 0 && !dead) {
             StatsManager.Instance.xp += xpValue;
+            if (permCurrencyChance > 1f)
+            {
+                PlayerPrefs.SetInt("PermCurrency", PlayerPrefs.GetInt("PermCurrency", 0) + (int)permCurrencyChance);
+                CurrencyManager.Instance.UpdateDisplay((int)permCurrencyChance);    
+            } else
+            {
+                float roll = Random.value; // gives a number between 0.0 and 1.0
+                if (roll < permCurrencyChance)
+                {
+                    PlayerPrefs.SetInt("PermCurrency", PlayerPrefs.GetInt("PermCurrency", 0) + 1);
+                    CurrencyManager.Instance.UpdateDisplay(1);
+                }
+            }
+            
             //Debug.Log("Gained " + xpValue + " XP " + StatsManager.Instance.xp + " / " + StatsManager.Instance.xpNeeded);
             agent.isStopped = true;
             agent.enabled = false;
@@ -153,13 +170,12 @@ public class EnemyController : MonoBehaviour
             capsule.enabled = false;
             rb.isKinematic = true;
 
-            while (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("death") && !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Z_FallingBack")) {
+            while (!m_Animator.GetCurrentAnimatorStateInfo(0).IsName("death") && !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Z_FallingBack") && !m_Animator.GetCurrentAnimatorStateInfo(0).IsName("Z_FallingBack 0")) {
                 yield return null;
             }
-                        
+            
             AnimatorStateInfo stateInfo = m_Animator.GetCurrentAnimatorStateInfo(0);
             float deathAnimLength = stateInfo.length;
-            
             yield return new WaitForSeconds(deathAnimLength);
             Destroy(gameObject);
         }

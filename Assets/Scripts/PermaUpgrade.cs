@@ -33,7 +33,7 @@ public class PermaUpgrade : MonoBehaviour
         }
             
 
-        if (StatsManager.Instance.currency < cost)
+        if (PlayerPrefs.GetInt("PermCurrency", 0) < cost)
         {
             Debug.Log("Not enough currency to purchase: " + upgradeID);
             costText.DOColor(errorColor, 0.15f).OnComplete(() =>
@@ -43,7 +43,7 @@ public class PermaUpgrade : MonoBehaviour
             return;
         }
 
-        StatsManager.Instance.currency -= cost;
+        PlayerPrefs.SetInt("PermCurrency", PlayerPrefs.GetInt("PermCurrency", 0) - cost);
         Debug.Log("Purchased upgrade: " + upgradeID);
         PlayerPrefs.SetInt(upgradeID, 1);
         PlayerPrefs.Save();

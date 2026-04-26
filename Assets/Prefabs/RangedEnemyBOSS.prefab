@@ -1572,7 +1572,9 @@ MonoBehaviour:
   target: {fileID: 0}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   xpValue: 100
-  maxHealth: 200
+  permCurrencyChance: 5
+  currencyText: {fileID: 0}
+  maxHealth: 300
   currentHealth: 0
   sliderEaseTime: 0.05
   deathDelay: 1.2
@@ -1652,7 +1654,7 @@ MonoBehaviour:
   arrowSpawnPoint: {fileID: 5910475083994520398}
   arrowSpeed: 20
   attackRange: 28
-  attackCooldown: 2.2
+  attackCooldown: 2
   obstacleMask:
     serializedVersion: 2
     m_Bits: 512

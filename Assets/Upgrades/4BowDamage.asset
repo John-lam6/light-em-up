@@ -17,7 +17,7 @@ MonoBehaviour:
   description: 
   icon: {fileID: 0}
   valueRange:
-  - 1
+  - 2
   - 3
   value: 2
   isPercentage: 0

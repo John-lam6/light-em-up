@@ -8,6 +8,6 @@ public class CurrencyDisplayer : MonoBehaviour
     public TextMeshProUGUI text;
     void Update()
     {
-        text.text = StatsManager.Instance.currency.ToString();       
+        text.text = PlayerPrefs.GetInt("PermCurrency", 0).ToString();       
     }
 }

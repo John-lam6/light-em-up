@@ -6,6 +6,7 @@ public class VaseBreak : MonoBehaviour
 {
     public AudioClip vase_break;
     public GameObject particlePrefab; 
+    [SerializeField] private List<GameObject> droppables; 
     // Update is called once per frame
     void OnCollisionEnter(Collision collision)
     {
@@ -19,6 +20,7 @@ public class VaseBreak : MonoBehaviour
     {
         AudioSource.PlayClipAtPoint(vase_break, transform.position, 50f);
         Instantiate(particlePrefab, transform.position, transform.rotation);
+        Instantiate(droppables[Random.Range(0, droppables.Count)], transform.position, transform.rotation);
         Destroy(gameObject);
     }
 }

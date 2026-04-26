@@ -136,7 +136,13 @@ public class GameEndManager : MonoBehaviour
         if (StatsManager.Instance != null)
             StatsManager.Instance.ResetForNewRun();
 
-        levelLoader.LoadLevel(1);
+        if(PlayerPrefs.GetInt("hasBeatTutorial") != 1)
+        {
+            SceneManager.LoadScene("Tutorial");
+        } else
+        {
+            levelLoader.LoadLevel(1);    
+        }
     }
 
     private void OnDestroy()

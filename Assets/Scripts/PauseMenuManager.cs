@@ -117,7 +117,7 @@ public class PauseMenuManager : MonoBehaviour
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-
+        PlayerPrefs.Save();
         SceneManager.LoadScene(mainMenuSceneName);
     }
 }

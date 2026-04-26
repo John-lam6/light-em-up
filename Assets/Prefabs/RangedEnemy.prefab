@@ -130,7 +130,9 @@ MonoBehaviour:
   target: {fileID: 0}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   xpValue: 20
-  maxHealth: 30
+  permCurrencyChance: 0.2
+  currencyText: {fileID: 0}
+  maxHealth: 50
   currentHealth: 0
   sliderEaseTime: 0.05
   deathDelay: 1.2
@@ -154,7 +156,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.35
-  m_Speed: 3
+  m_Speed: 3.2
   m_Acceleration: 8
   avoidancePriority: 99
   m_AngularSpeed: 120
@@ -210,7 +212,7 @@ MonoBehaviour:
   arrowSpawnPoint: {fileID: 8419501553959338634}
   arrowSpeed: 15
   attackRange: 15
-  attackCooldown: 3
+  attackCooldown: 2.3
   obstacleMask:
     serializedVersion: 2
     m_Bits: 512
@@ -440,6 +442,10 @@ PrefabInstance:
     - target: {fileID: 1264433200921298619, guid: b91f2cacb0bef7f4bac8f61b0f00b4c6, type: 3}
       propertyPath: m_Name
       value: PT_Skeleton_Male_Modular
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264433200921298619, guid: b91f2cacb0bef7f4bac8f61b0f00b4c6, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1929787907488324609, guid: b91f2cacb0bef7f4bac8f61b0f00b4c6, type: 3}
       propertyPath: m_LocalScale.x

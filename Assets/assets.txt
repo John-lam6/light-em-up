@@ -142,3 +142,21 @@ https://pixabay.com/sound-effects/film-special-effects-relaxing-music-viking-hor
 
 Melee animation 
 https://assetstore.unity.com/packages/3d/animations/human-melee-animations-free-165785
+
+Permanent Upgrade max HP
+https://game-icons.net/1x1/skoll/hearts.html#download
+
+Permanent Upgrade HP regen
+https://game-icons.net/1x1/delapouite/nested-hearts.html#download
+
+Cursed blood (Currency)
+https://game-icons.net/1x1/lorc/drop.html#download
+
+Pierce icon
+https://game-icons.net/1x1/lorc/pierced-body.html#download
+
+Final Boss Crown
+https://assetstore.unity.com/packages/3d/props/clothing/accessories/golden-jewelry-use-as-necklace-bracelet-ring-215018
+
+Item Pickup Sound
+https://pixabay.com/sound-effects/film-special-effects-pickupplasticobject-91036/

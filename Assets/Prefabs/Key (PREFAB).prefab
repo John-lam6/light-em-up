@@ -70,9 +70,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b34f716d82473c647bad48f723bf3f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 0}
-  doubledoor: {fileID: 0}
-  doorCollider: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 5ad21d95cf9184c418ee2a165705f0a0, type: 3}
 --- !u!1 &5280497243416324584
 GameObject:
   m_ObjectHideFlags: 0
