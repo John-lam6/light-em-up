@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,9 @@ public class StatsManager : MonoBehaviour
     private int totalPermUpgradeIDs = 13;
 
     [Header("Default Combat Stats")]
-    public float defaultSwordDamage = 20f;
+    private float defaultSwordDamage = 15f;
     public float defaultSwordAttackSpeed = 1f;
-    public float defaultBowDamage = 10f;
+    private float defaultBowDamage = 30f;
 
     [Header("Default Bow Upgrade Stats")]
     public int defaultBowArrowsPerShot = 1;
@@ -118,6 +119,7 @@ public class StatsManager : MonoBehaviour
             {
                 if (i <= 4){
                     maxHealth += 2;
+                    curHealth = maxHealth;
                 } else if (i <= 9)
                 {
                     hpRegen += 1;
@@ -144,5 +146,14 @@ public class StatsManager : MonoBehaviour
         xpNeeded = defaultXpNeeded;
         level = defaultLevel;
         totalKilled = 0f;
+    }
+
+    public void Heal(int amount)
+    {
+        curHealth = Math.Min(curHealth + amount, maxHealth);
+    }
+    public void HealAfterLevel()
+    {
+        Heal(hpRegen);
     }
 }

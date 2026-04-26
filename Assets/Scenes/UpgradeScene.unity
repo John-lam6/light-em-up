@@ -345,8 +345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81015951396b2e4ea7e3e526799a772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tooltipMessage: Unlocks "Blue Flare" ability. Does damage over time and slows nearby
-    enemies by right clicking with the flare gun.
+  tooltipMessage: Unlocks "Blue Flare" ability. Slows nearby enemies by right clicking
+    with the flare gun.
   offset: {x: -500, y: 100}
   tooltipRect: {fileID: 1348243509}
   tooltipText: {fileID: 2125800540}
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 12
-  cost: 30
+  cost: 40
   costText: {fileID: 1431647913}
 --- !u!1 &94490341
 GameObject:
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 30
+  m_text: 40
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2277,6 +2277,8 @@ MonoBehaviour:
   firstLevelSceneName: SampleScene
   upgradeSceneName: UpgradeScene
   levelLoader: {fileID: 0}
+  audioSource: {fileID: 0}
+  menuMusic: {fileID: 0}
 --- !u!1 &661105935
 GameObject:
   m_ObjectHideFlags: 0
@@ -2602,7 +2604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 13
-  cost: 30
+  cost: 40
   costText: {fileID: 94490343}
 --- !u!114 &683098137
 MonoBehaviour:
@@ -3560,7 +3562,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 10
-  cost: 30
+  cost: 40
   costText: {fileID: 1930593131}
 --- !u!1 &904465747
 GameObject:
@@ -4910,7 +4912,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 30
+  m_text: 40
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5172,8 +5174,8 @@ Camera:
   m_GameObject: {fileID: 1560730388}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5655,7 +5657,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 30
+  m_text: 40
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5899,7 +5901,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeID: 11
-  cost: 30
+  cost: 40
   costText: {fileID: 1759013125}
 --- !u!1 &1811956470
 GameObject:
@@ -6088,7 +6090,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1847386150}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
@@ -6375,7 +6377,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 30
+  m_text: 40
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

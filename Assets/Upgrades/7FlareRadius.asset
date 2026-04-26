@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: 7FlareRadius
   m_EditorClassIdentifier: 
   id: 7
-  upgradeName: Incr Flare Radius
+  upgradeName: Increase Flare Radius
   description: 
   icon: {fileID: 0}
   valueRange: []
-  value: 2
+  value: 1
   isPercentage: 0
   isFloat: 0

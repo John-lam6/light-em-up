@@ -3551,12 +3551,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Animator: {fileID: 0}
   m_Rigidbody: {fileID: 0}
-  m_Speed: 10
   dash_speed: 20
   dash_cooldown: 1
-  dash_duration: 0.25
+  dash_duration: 0.3
   dash_slider: {fileID: 0}
   particlePrefab: {fileID: 0}
+  audioSource: {fileID: 0}
+  dash_sound: {fileID: 0}
   camera: {fileID: 963194227}
 --- !u!1001 &1096754458
 PrefabInstance:

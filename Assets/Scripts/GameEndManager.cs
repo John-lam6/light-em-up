@@ -107,6 +107,8 @@ public class GameEndManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
+        DOTween.KillAll();
+
         if (deathOverlay != null)
         {
             deathOverlay.DOKill();
@@ -123,6 +125,8 @@ public class GameEndManager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
+        DOTween.KillAll();
+
         if (deathOverlay != null)
         {
             deathOverlay.DOKill();
@@ -132,7 +136,13 @@ public class GameEndManager : MonoBehaviour
         if (StatsManager.Instance != null)
             StatsManager.Instance.ResetForNewRun();
 
-        levelLoader.LoadLevel(1);
+        if(PlayerPrefs.GetInt("hasBeatTutorial") != 1)
+        {
+            SceneManager.LoadScene("Tutorial");
+        } else
+        {
+            levelLoader.LoadLevel(1);    
+        }
     }
 
     private void OnDestroy()

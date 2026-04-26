@@ -17,7 +17,7 @@ public class MinibossScript : MonoBehaviour
     {
         transform = GetComponent<Transform>();
         enemyscript = GetComponent<EnemyController>();
-        audiosource.volume = 0.35f;
+        audiosource.volume = 0.5f;
         audiosource.PlayOneShot(clip);
     }
 
